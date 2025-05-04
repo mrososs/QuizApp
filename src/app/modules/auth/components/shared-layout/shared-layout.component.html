@@ -1,0 +1,27 @@
+<section class="auth-layout bg-black h-[100vh]">
+  <div class="container mx-auto py-5">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <div class="logo">
+          <img
+            src="assets/images/Logo-white.svg"
+            alt="logo"
+            class="w-[40%] h-[100%]"
+          />
+        </div>
+        <div class="mt-5">
+          <div class="forms-input">
+            <ng-content></ng-content>
+          </div>
+        </div>
+      </div>
+      <div>
+        <img
+          src="assets/images/auth-img.png"
+          class="w-[100%] hidden md:block"
+          alt="auth"
+        />
+      </div>
+    </div>
+  </div>
+</section>
