@@ -1,0 +1,44 @@
+mat-form-field.auth-form-field {
+  position: relative;
+  margin-bottom: -2rem;
+  label {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: white;
+    display: block;
+  }
+  input {
+    background: none;
+    width: 100%;
+    padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+    border-radius: 0.375rem;
+    border-width: 1px;
+    margin-top: 0.5rem;
+    color: white;
+  }
+  mat-icon {
+    color: white;
+    position: absolute;
+    top: 4rem;
+    left: 0.5rem;
+    &.eye {
+      left: 92%;
+      cursor: pointer;
+    }
+  }
+}
+.submit-button {
+  background-color: #f5f5f5;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 1.3rem;
+  border-radius: 10px;
+  mat-icon {
+    color: white;
+    border-radius: 50%;
+    background-color: black;
+  }
+}

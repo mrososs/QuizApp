@@ -1,0 +1,30 @@
+.text {
+  h1 {
+    color: #c5d86d;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+
+.auth-button {
+  background-color: #333333;
+  color: white;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  &.active {
+    border: 5px solid #c5d86d;
+  }
+  p {
+    font-weight: 700;
+  }
+}
+p.forgetPassword{
+  color: white;
+  font-size: 0.8rem;
+  a{
+    color: #C5D86D;
+    text-decoration: underline;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
