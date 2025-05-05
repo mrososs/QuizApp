@@ -18,18 +18,37 @@
   </div>
   <div class="mt-2">
     <div class="">
-      <form class="flex flex-col">
-        <mat-form-field class="w-full auth-form-field">
+      <form
+        class="flex flex-col gap-3"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="w-full auth-form-field">
           <label for="email" class="">Registered email address</label>
           <mat-icon>mail</mat-icon>
           <input
+            formControlName="email"
             id="email"
             type="email"
             placeholder="Enter your email"
             required
           />
-        </mat-form-field>
-        <mat-form-field class="w-full auth-form-field">
+          @if (loginForm.controls['email'].invalid) {
+          <div
+            class="error-message text-red-600 text-[0.8rem] mt-3"
+            *ngIf="loginForm.controls['email'].errors?.['required']"
+          >
+            Email is required
+          </div>
+          <div
+            class="error-message text-red-600 text-[0.8rem] mt-3"
+            *ngIf="loginForm.controls['email'].errors?.['email']"
+          >
+            Invalid email format
+          </div>
+          }
+        </div>
+        <div class="w-full auth-form-field">
           <label for="password" class="">Password</label>
           <mat-icon>key</mat-icon>
           <mat-icon (click)="togglePasswordVisibility()" class="eye">{{
@@ -37,13 +56,23 @@
           }}</mat-icon>
 
           <input
+            formControlName="password"
             id="password"
             [type]="passwordVisible ? 'text' : 'password'"
             placeholder="Enter your password"
             required
           />
-        </mat-form-field>
-        <div class="mt-5 ml-4 flex justify-between items-center pr-5">
+          @if (loginForm.controls['password'].invalid) {
+          <div
+            class="error-message text-red-600 text-[0.8rem] mt-3"
+            *ngIf="loginForm.controls['password'].errors?.['required']"
+          >
+            Password is required
+          </div>
+
+          }
+        </div>
+        <div class="mt-5 flex justify-between items-center">
           <button class="submit-button">
             Sign in <mat-icon>check</mat-icon>
           </button>

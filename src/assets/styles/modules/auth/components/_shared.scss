@@ -1,6 +1,6 @@
-mat-form-field.auth-form-field {
+.auth-form-field {
   position: relative;
-  margin-bottom: -2rem;
+
   label {
     font-weight: 700;
     font-size: 0.8rem;
@@ -19,7 +19,7 @@ mat-form-field.auth-form-field {
   mat-icon {
     color: white;
     position: absolute;
-    top: 4rem;
+    top: 2.2rem;
     left: 0.5rem;
     &.eye {
       left: 92%;
@@ -34,7 +34,7 @@ mat-form-field.auth-form-field {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 1.3rem;
+  padding: 0.6rem 1.5rem;
   border-radius: 10px;
   mat-icon {
     color: white;
