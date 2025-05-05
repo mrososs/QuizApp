@@ -1,5 +1,84 @@
 <app-shared-layout>
-    <div class="text">
-        <h1>Continue your learning journey with QuizWiz!</h1>
+  <div class="text">
+    <h1>Continue your learning journey with QuizWiz!</h1>
+  </div>
+  <div class="mt-5 flex justify-start items-center gap-8">
+    <button class="auth-button active">
+      <div class="flex flex-col items-center gap-4">
+        <img src="assets/icons/signIn.png" alt="Sign In" class="w-8 h-8" />
+        <p class="text-sm">Sign in</p>
+      </div>
+    </button>
+    <button class="auth-button">
+      <div class="flex flex-col items-center gap-4">
+        <img src="assets/icons/signUp.png" alt="Sign Un" class="w-10 h-8" />
+        <p class="text-sm">Sign Up</p>
+      </div>
+    </button>
+  </div>
+  <div class="mt-2">
+    <div class="">
+      <form
+        class="flex flex-col gap-3"
+        [formGroup]="loginForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="w-full auth-form-field">
+          <label for="email" class="">Registered email address</label>
+          <mat-icon>mail</mat-icon>
+          <input
+            formControlName="email"
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            required
+          />
+          @if (loginForm.controls['email'].invalid) {
+          <div
+            class="error-message text-red-600 text-[0.8rem] mt-3"
+            *ngIf="loginForm.controls['email'].errors?.['required']"
+          >
+            Email is required
+          </div>
+          <div
+            class="error-message text-red-600 text-[0.8rem] mt-3"
+            *ngIf="loginForm.controls['email'].errors?.['email']"
+          >
+            Invalid email format
+          </div>
+          }
+        </div>
+        <div class="w-full auth-form-field">
+          <label for="password" class="">Password</label>
+          <mat-icon>key</mat-icon>
+          <mat-icon (click)="togglePasswordVisibility()" class="eye">{{
+            passwordVisible ? "visibility_off" : "visibility"
+          }}</mat-icon>
+
+          <input
+            formControlName="password"
+            id="password"
+            [type]="passwordVisible ? 'text' : 'password'"
+            placeholder="Enter your password"
+            required
+          />
+          @if (loginForm.controls['password'].invalid) {
+          <div
+            class="error-message text-red-600 text-[0.8rem] mt-3"
+            *ngIf="loginForm.controls['password'].errors?.['required']"
+          >
+            Password is required
+          </div>
+
+          }
+        </div>
+        <div class="mt-5 flex justify-between items-center">
+          <button class="submit-button">
+            Sign in <mat-icon>check</mat-icon>
+          </button>
+          <p class="forgetPassword">Forget Password? <a>Click here</a></p>
+        </div>
+      </form>
     </div>
+  </div>
 </app-shared-layout>

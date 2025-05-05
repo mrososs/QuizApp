@@ -1,15 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import {
+  FormGroup,
+  NonNullableFormBuilder,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [SharedLayoutComponent,CommonModule,ReactiveFormsModule],
+  imports: [
+    SharedLayoutComponent,
+    MatIconModule,
+    CommonModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
+  styleUrl: './login.component.scss',
 })
-export class LoginComponent {
-
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
+  passwordVisible = false;
+  constructor(private fb: NonNullableFormBuilder) {
+    this.loginForm = this.fb.group({
+      email: this.fb.control('', {
+        validators: [Validators.required, Validators.email],
+      }),
+      password: this.fb.control('', {
+        validators: [Validators.required],
+      }),
+    });
+  }
+  ngOnInit(): void {}
+  onSubmit() {}
+  togglePasswordVisibility() {
+    this.passwordVisible = !this.passwordVisible;
+  }
 }
