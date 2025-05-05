@@ -8,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +19,17 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     ReactiveFormsModule,
   ],
+  providers: [AuthService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   passwordVisible = false;
-  constructor(private fb: NonNullableFormBuilder) {
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private authService: AuthService
+  ) {
     this.loginForm = this.fb.group({
       email: this.fb.control('', {
         validators: [Validators.required, Validators.email],
@@ -35,7 +40,11 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {}
-  onSubmit() {}
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe();
+    }
+  }
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
