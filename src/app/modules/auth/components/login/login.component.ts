@@ -7,9 +7,6 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -18,11 +15,8 @@ import { MatIconModule } from '@angular/material/icon';
   imports: [
     SharedLayoutComponent,
     MatIconModule,
-    MatInputModule,
     CommonModule,
     ReactiveFormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
