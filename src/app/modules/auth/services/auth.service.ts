@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { StorgeService } from '../../../core/services/storge.service';
 import { LoginResponse } from '../../../core/models/login-response.model';
+import { IForgot } from '../models/forgot';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ login(data:ILogin):Observable<LoginResponse>{
     })
   )
 }
-
-
+forgot(data: IForgot): Observable<any> {
+  return this._http.post('auth/forgot-password', data);
+}
 }
