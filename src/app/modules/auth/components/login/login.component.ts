@@ -19,7 +19,6 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     ReactiveFormsModule,
   ],
-  providers: [AuthService],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

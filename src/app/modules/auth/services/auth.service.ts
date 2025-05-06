@@ -24,6 +24,4 @@ login(data:ILogin):Observable<LoginResponse>{
 changePassword(data: IChangePassword): Observable<ChangePasswordResponse> {
   return this._http.post<ChangePasswordResponse>('auth/change-password', data);
 }
-
-
 }

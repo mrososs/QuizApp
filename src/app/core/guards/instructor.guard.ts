@@ -1,9 +1,9 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { StorgeService } from '../services/storage.service';
+import { StorageService } from '../services/storage.service';
 import { inject } from '@angular/core';
 
 export const instructorGuard: CanActivateFn = (route, state) => {
-  const storage = inject(StorgeService);
+  const storage = inject(StorageService);
   const router = inject(Router);
   const role = storage.getUserRole();
 
