@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
 import {
   FormGroup,
   NonNullableFormBuilder,
@@ -9,6 +10,8 @@ import {
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService } from '../../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-change-password',
   standalone: true,
@@ -16,17 +19,21 @@ import { AuthService } from '../../services/auth.service';
     MatIconModule,
     CommonModule,
     ReactiveFormsModule,
+    SharedLayoutComponent
   ],
-  providers: [AuthService],
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.scss'
 })
 export class ChangePasswordComponent implements OnInit {
   changePasswordForm!: FormGroup;
-  passwordVisible = false;
+  oldPasswordVisible = false;
+  newPasswordVisible = false;
+  confirmPasswordVisible = false;
   constructor(
     private fb: NonNullableFormBuilder,
-    private authService: AuthService   
+    private authService: AuthService,
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.changePasswordForm = this.fb.group({
       password: this.fb.control('', {
@@ -41,6 +48,7 @@ export class ChangePasswordComponent implements OnInit {
     } , { validators: ChangePasswordComponent.passwordMatchValidator });
   }
   static passwordMatchValidator(form: AbstractControl) {
+  
     const newPassword = form.get('password_new')?.value;
     const confirmNewPassword = form.get('password_confirm')?.value;
     return newPassword === confirmNewPassword ? null : { mismatch: true };
@@ -49,10 +57,32 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {}
   onSubmit() {
     if (this.changePasswordForm.valid) {
-      this.authService.changePassword(this.changePasswordForm.value).subscribe();
+      const formValue = { ...this.changePasswordForm.value };
+      delete formValue.password_confirm;
+  
+      this.authService.changePassword(formValue).subscribe({
+        next: (res) =>{ 
+          console.log(res);
+          this.toastr.success('change password successfully');
+        },
+        error: (err) => {
+          console.error('Error response:', err);
+          this.toastr.error(err.message || 'Something went wrong.')
+        },
+        complete: () => {
+          this.router.navigate(['/auth']);
+        }
+      });    
     }
   }
-  togglePasswordVisibility() {
-    this.passwordVisible = !this.passwordVisible;
+  
+  toggleOldPasswordVisibility() {
+    this.oldPasswordVisible = !this.oldPasswordVisible;
+  }
+  toggleNewPasswordVisibility() {
+    this.newPasswordVisible = !this.newPasswordVisible;
+  }
+  toggleConfirmPasswordVisibility() {
+    this.confirmPasswordVisible = !this.confirmPasswordVisible;
   }
 }

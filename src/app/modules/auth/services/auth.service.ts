@@ -1,5 +1,5 @@
 import { ILogin } from './../models/login.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { StorageService } from '../../../core/services/storage.service';
@@ -22,6 +22,13 @@ login(data:ILogin):Observable<LoginResponse>{
   )
 }
 changePassword(data: IChangePassword): Observable<ChangePasswordResponse> {
-  return this._http.post<ChangePasswordResponse>('auth/change-password', data);
+  const token = this.storageService.getAccessToken();
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
+
+  return this._http.post<ChangePasswordResponse>('auth/change-password', data,{ headers });
 }
+
+
 }
