@@ -1,27 +1,44 @@
 import { ILogin } from './../models/login.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { StorgeService } from '../../../core/services/storge.service';
+import { StorageService } from '../../../core/services/storage.service';
 import { LoginResponse } from '../../../core/models/login-response.model';
 import { IForgot } from '../models/forgot';
+import {
+  ChangePasswordResponse,
+  IChangePassword,
+} from '../../../core/models/change-pass.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  constructor(
+    private _http: HttpClient,
+    private storageService: StorageService
+  ) {}
 
-constructor(private _http:HttpClient,private storgeService:StorgeService) { }
+  login(data: ILogin): Observable<LoginResponse> {
+    return this._http.post<LoginResponse>('auth/login', data).pipe(
+      tap((res: LoginResponse) => {
+        this.storageService.saveLoginData(res.data);
+      })
+    );
+  }
+  forgot(data: IForgot): Observable<any> {
+    return this._http.post('auth/forgot-password', data);
+  }
+  changePassword(data: IChangePassword): Observable<ChangePasswordResponse> {
+    const token = this.storageService.getAccessToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
 
-login(data:ILogin):Observable<LoginResponse>{
-  return this._http.post<LoginResponse>('auth/login',data).pipe(
-    tap((res:LoginResponse)=>{
-      
-      this.storgeService.saveLoginData(res.data);
-    })
-  )
-}
-forgot(data: IForgot): Observable<any> {
-  return this._http.post('auth/forgot-password', data);
-}
+    return this._http.post<ChangePasswordResponse>(
+      'auth/change-password',
+      data,
+      { headers }
+    );
+  }
 }
