@@ -1,7 +1,7 @@
 // src/app/core/interceptors/auth-token.interceptor.ts
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { StorgeService } from '../services/storge.service';
+import { StorgeService } from '../services/storage.service';
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const storage = inject(StorgeService);

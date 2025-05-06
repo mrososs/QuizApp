@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
 import { CommonModule } from '@angular/common';
@@ -5,10 +6,9 @@ import {
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',

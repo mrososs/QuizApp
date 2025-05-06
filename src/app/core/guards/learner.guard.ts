@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { StorgeService } from '../services/storge.service';
+import { StorgeService } from '../services/storage.service';
 
 export const learnerGuard: CanActivateFn = (route, state) => {
    const storage = inject(StorgeService);
