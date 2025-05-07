@@ -5,7 +5,7 @@ import { jwtDecode } from 'jwt-decode';
 @Injectable({
   providedIn: 'root'
 })
-export class StorgeService {
+export class StorageService {
   private readonly TOKEN_KEY = 'accessToken';
   private readonly REFRESH_KEY = 'refreshToken';
   private readonly PROFILE_KEY = 'userProfile';

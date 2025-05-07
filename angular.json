@@ -34,7 +34,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["node_modules/ngx-toastr/toastr.css", "src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -94,5 +94,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "01e0f23c-540d-4998-b910-e71089cb5505"
   }
 }

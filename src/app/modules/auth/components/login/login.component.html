@@ -33,7 +33,7 @@
             placeholder="Enter your email"
             required
           />
-          @if (loginForm.controls['email'].invalid) {
+          @if (loginForm.controls['email'].dirty) {
           <div
             class="error-message text-red-600 text-[0.8rem] mt-3"
             *ngIf="loginForm.controls['email'].errors?.['required']"
@@ -62,7 +62,7 @@
             placeholder="Enter your password"
             required
           />
-          @if (loginForm.controls['password'].invalid) {
+          @if (loginForm.controls['password'].dirty) {
           <div
             class="error-message text-red-600 text-[0.8rem] mt-3"
             *ngIf="loginForm.controls['password'].errors?.['required']"
@@ -76,7 +76,7 @@
           <button class="submit-button">
             Sign in <mat-icon>check</mat-icon>
           </button>
-          <p class="forgetPassword">Forget Password? <a>Click here</a></p>
+          <p class="forgetPassword">Forget Password? <a routerLink="/auth/forgot">Click here</a></p>
         </div>
       </form>
     </div>
