@@ -72,6 +72,11 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       this.register(this.registerForm.value);
     }
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      // this.toastr.error('Please fill all the required fields.');
+      return;
+    }
   }
   register(registerData: any): void {
     this._AuthService.register(registerData).subscribe({

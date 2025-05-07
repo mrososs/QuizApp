@@ -36,7 +36,8 @@
             placeholder="Enter your email"
             required
           />
-          @if (loginForm.controls['email'].dirty) {
+          @if (loginForm.controls['email'].invalid &&
+          loginForm.controls['email'].touched) {
           <div
             class="error-message text-red-600 text-[0.8rem] mt-3"
             *ngIf="loginForm.controls['email'].errors?.['required']"
@@ -65,7 +66,8 @@
             placeholder="Enter your password"
             required
           />
-          @if (loginForm.controls['password'].dirty) {
+          @if (loginForm.controls['password'].invalid &&
+          loginForm.controls['password'].touched) {
           <div
             class="error-message text-red-600 text-[0.8rem] mt-3"
             *ngIf="loginForm.controls['password'].errors?.['required']"
