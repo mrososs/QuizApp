@@ -5,6 +5,7 @@ import { Observable, tap } from 'rxjs';
 import { StorageService } from '../../../core/services/storage.service';
 import { LoginResponse } from '../../../core/models/login-response.model';
 import { IForgot } from '../models/forgot';
+import { IReset } from '../models/reset';
 import {
   ChangePasswordResponse,
   IChangePassword,
@@ -40,5 +41,9 @@ export class AuthService {
       data,
       { headers }
     );
+  }
+
+  resetPassword(data: IReset): Observable<any> {
+    return this._http.post('auth/reset-password', data);
   }
 }

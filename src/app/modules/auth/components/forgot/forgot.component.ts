@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SharedLayoutComponent } from '../shared-layout/shared-layout.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { IForgot } from '../../models/forgot';
@@ -26,7 +26,8 @@ export class ForgotComponent {
 
   constructor(
     private fb: NonNullableFormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.forgotForm = this.fb.group({
       email: this.fb.control('', {
@@ -37,14 +38,21 @@ export class ForgotComponent {
 
   sendForgot() {
     if (this.forgotForm.invalid) return;
-
+  
     const data: IForgot = {
       email: this.forgotForm.get('email')?.value
     };
-
+  
     this.authService.forgot(data).subscribe({
-      next: (res) => console.log('تم الإرسال:', res),
-      error: (err) => console.error('فيه مشكلة:', err)
+      next: (res) => {
+        console.log('Email sent successfully:', res);
+        this.router.navigate(['/auth/forgot/reset']); // Navigate to reset page
+      },
+      error: (err) => {
+        console.error('There was an error sending the email:', err);
+      }
     });
   }
+  
+  
 }
