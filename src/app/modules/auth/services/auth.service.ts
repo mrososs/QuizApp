@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { StorageService } from '../../../core/services/storage.service';
 import { LoginResponse } from '../../../core/models/login-response.model';
+import { RegisterParams, RegisterRes } from '../models/register';
 import { IForgot } from '../models/forgot';
 import {
   ChangePasswordResponse,
@@ -18,6 +19,11 @@ export class AuthService {
     private _http: HttpClient,
     private storageService: StorageService
   ) {}
+
+
+register(data:RegisterParams):Observable<RegisterRes>{
+  return this._http.post<RegisterRes>(`auth/register` , data)
+}
 
   login(data: ILogin): Observable<LoginResponse> {
     return this._http.post<LoginResponse>('auth/login', data).pipe(

@@ -1,0 +1,180 @@
+<app-shared-layout>
+  <div class="text">
+    <h1>Create your account and start using QuizWiz!</h1>
+  </div>
+  <!-- sign up/in icon -->
+  <div class="mt-5 flex justify-start items-center gap-8">
+
+   <a routerLink="/auth/login" routerLinkActive="active" >
+    <button class="auth-button "  >
+      <div class="flex flex-col items-center gap-4">
+        <img src="assets/icons/signInN.png" alt="Sign In" class="w-8 h-8" />
+        <p class="text-sm">Sign in</p>
+      </div>
+    </button>
+   </a>
+
+    <button class="auth-button  active">
+      <div class="flex flex-col items-center gap-4">
+        <img src="assets/icons/signUpActive.png" alt="Sign Up" class="w-10 h-8" />
+        <p class="text-sm">Sign Up</p>
+      </div>
+    </button>
+
+  </div>
+  <!-- form -->
+
+  <div class="mt-2">
+    <div class="">
+      <form
+        class="flex flex-col gap-3"
+        [formGroup]="registerForm"
+        (ngSubmit)="onSubmit()"
+      >
+      <!-- first_name last_name -->
+      <div class="flex  justify-between items-center  md:col-2 sm:col-1">
+      <div class="w-[48%]  auth-form-field">
+        <label for="firstName" class="">Your First Name </label>
+        <mat-icon>article_person</mat-icon>
+        <input
+          formControlName="first_name"
+          id="firstName"
+          type="text"
+          placeholder="Enter your first Name"
+          required
+        />
+        @if (registerForm.controls['first_name'].touched
+        && registerForm.controls['first_name'].invalid ) {
+        <div class="error-message "
+          *ngIf="registerForm.controls['first_name'].errors?.['required'] "
+        >
+        first name is required
+        </div>
+        <div class="error-message "
+          *ngIf="registerForm.controls['first_name'].errors?.['minlength']"
+        >
+        minLength is 3
+        </div>
+        <div class="error-message "
+        *ngIf="registerForm.controls['first_name'].errors?.['maxlength']"
+      >
+      maxLength is 8
+      </div>
+        }
+      </div>
+      <div class="w-[48%]   auth-form-field">
+        <label for="last_name" class="">Your Last Name </label>
+        <mat-icon>article_person</mat-icon>
+        <input
+          formControlName="last_name"
+          id="last_name"
+          type="text"
+          placeholder="Enter your last Name"
+          required
+        />
+        @if (registerForm.controls['last_name'].touched
+         && registerForm.controls['last_name'].invalid ) {
+        <div
+          class="error-message "
+          *ngIf="registerForm.controls['last_name'].errors?.['required'] "
+        >
+        last name is required
+        </div>
+        <div class="error-message "
+        *ngIf="registerForm.controls['last_name'].errors?.['minlength']"
+      >
+      minLength is 3
+      </div>
+      <div class="error-message "
+      *ngIf="registerForm.controls['last_name'].errors?.['maxlength']"
+    >
+    maxLength is 8
+    </div>
+        }
+      </div>
+      </div>
+      <!-- email -->
+        <div class="w-full auth-form-field">
+          <label for="email" class="">Your email address</label>
+          <mat-icon>mail</mat-icon>
+          <input
+            formControlName="email"
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            required
+          />
+          @if (registerForm.controls['email'].touched
+          && registerForm.controls['email'].invalid  ) {
+          <div
+            class="error-message "
+            *ngIf="registerForm.controls['email'].errors?.['required'] "
+          >
+            Email is required
+          </div>
+          <div
+            class="error-message "
+            *ngIf="registerForm.controls['email'].errors?.['email']"
+          >
+            Invalid email format
+          </div>
+          }
+        </div>
+        <!-- role -->
+        <div class="w-full auth-form-field mt-2">
+          <label for="role" class="">Your Role</label>
+          <mat-form-field class="w-full my-0">
+            <mat-select name="role"  class="inputStyle w-full my-0"
+              required  formControlName="role"
+            >
+              @for (UrRole of role; track UrRole) {
+                <mat-option [value]="UrRole">{{UrRole}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          @if (registerForm.controls['role'].touched
+          && registerForm.controls['role'].invalid ) {
+          <div  class="error-message "
+            *ngIf="registerForm.controls['role'].errors?.['required']
+            && registerForm.controls['role'].touched "
+          >
+            role is required
+          </div>
+          }
+        </div>
+        <!-- password -->
+        <div class="w-full auth-form-field">
+          <label for="password" class="">Password</label>
+          <mat-icon>key</mat-icon>
+          <mat-icon (click)="togglePasswordVisibility()" class="eye">{{
+            passwordVisible ? "visibility_off" : "visibility"
+          }}</mat-icon>
+
+          <input
+            formControlName="password"
+            id="password"
+            [type]="passwordVisible ? 'text' : 'password'"
+            placeholder="Enter your password"
+            required
+          />
+          @if (registerForm.controls['password'].invalid
+          && registerForm.controls['password'].touched ) {
+          <div  class="error-message "
+            *ngIf="registerForm.controls['password'].errors?.['required']"
+          >
+            Password is required
+          </div>
+
+          }
+        </div>
+        <!-- sign up -->
+        <div class="mt-5 ">
+          <button class="submit-button " >
+            Sign Up <mat-icon>check</mat-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</app-shared-layout>
