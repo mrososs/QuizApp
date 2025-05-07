@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: NonNullableFormBuilder,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
     this.loginForm = this.fb.group({
       email: this.fb.control('', {
@@ -42,28 +43,36 @@ export class LoginComponent implements OnInit {
       }),
     });
   }
-  ngOnInit(): void {
-
-  }
-  onSubmit() {
-    if(this.loginForm.invalid) {
+  ngOnInit(): void {}
+  onSubmit():void {
+    if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      return;
-
-    }
-    if (this.loginForm.valid) {
+      
+    } else {
       this.authService.login(this.loginForm.value).subscribe({
-        next: () => {
+        next: (res) => {
+          // Save tokens and profile
+
           this.toastr.success('Login successful', 'Success!');
+
+          const role = this.authService.getUserRole(); // get from storage
+          console.log(role);
+          if (role === 'Instructor') {
+            this.router.navigate(['/dashboard/instructor']);
+          } else if (role === 'Student') {
+            this.router.navigate(['/dashboard/learner']);
+          } else {
+            this.toastr.error('Unauthorized role');
+          }
         },
         error: (err) => {
-          this.toastr.error(err.error.message, 'Error!');
+          this.toastr.error(err.error.message || 'Login failed', 'Error!');
         },
       });
     }
   }
+
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
- 
 }
