@@ -6,10 +6,11 @@ import {
   FormGroup,
   NonNullableFormBuilder,
   ReactiveFormsModule,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     CommonModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
   passwordVisible = false;
   constructor(
     private fb: NonNullableFormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.loginForm = this.fb.group({
       email: this.fb.control('', {
@@ -40,13 +42,23 @@ export class LoginComponent implements OnInit {
       }),
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
   onSubmit() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe();
+      this.authService.login(this.loginForm.value).subscribe({
+        next: () => {
+          this.toastr.success('Login successful', 'Success!');
+        },
+        error: (err) => {
+          this.toastr.error(err.error.message, 'Error!');
+        },
+      });
     }
   }
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
+ 
 }

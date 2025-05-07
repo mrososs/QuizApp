@@ -1,13 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { ToastContainerDirective, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-shared-layout',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ToastContainerDirective],
   templateUrl: './shared-layout.component.html',
-  styleUrl: './shared-layout.component.scss'
+  styleUrl: './shared-layout.component.scss',
 })
-export class SharedLayoutComponent {
-
+export class SharedLayoutComponent  {
+  @ViewChild(ToastContainerDirective, { static: true })
+  toastContainer!: ToastContainerDirective;
+  constructor(private toastr: ToastrService) {}
+  ngAfterViewInit() {
+    
+    this.toastr.overlayContainer = this.toastContainer;
+  }
 }
