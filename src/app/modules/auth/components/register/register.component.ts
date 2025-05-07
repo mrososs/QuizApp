@@ -63,7 +63,11 @@ export class RegisterComponent implements OnInit {
       email: this.fb.control('', {
         validators: [Validators.required, Validators.email],
       }),
-      password: this.fb.control('', { validators: [Validators.required] }),
+      password: this.fb.control('', {
+         validators: [
+          Validators.required ,
+         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)
+        ] }),
       role: this.fb.control('', { validators: [Validators.required] }),
     });
   }
