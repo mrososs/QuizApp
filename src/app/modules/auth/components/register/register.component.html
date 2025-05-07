@@ -2,7 +2,7 @@
   <div class="text">
     <h1>Create your account and start using QuizWiz!</h1>
   </div>
-  <!-- sign up icon -->
+  <!-- sign up/in icon -->
   <div class="mt-5 flex justify-start items-center gap-8">
 
    <a routerLink="/auth/login" routerLinkActive="active" >
@@ -31,10 +31,11 @@
         [formGroup]="registerForm"
         (ngSubmit)="onSubmit()"
       >
+      <!-- first_name last_name -->
       <div class="flex  justify-between items-center  md:col-2 sm:col-1">
       <div class="w-[48%]  auth-form-field">
         <label for="firstName" class="">Your First Name </label>
-        <mat-icon>person_edit</mat-icon>
+        <mat-icon>article_person</mat-icon>
         <input
           formControlName="first_name"
           id="firstName"
@@ -42,25 +43,28 @@
           placeholder="Enter your first Name"
           required
         />
-        @if (registerForm.controls['first_name'].touched ) {
-        <div
-          class="error-message "
-          *ngIf="registerForm.controls['first_name'].errors?.['required']
-          && registerForm.controls['first_name'].touched "
+        @if (registerForm.controls['first_name'].touched
+        && registerForm.controls['first_name'].invalid ) {
+        <div class="error-message "
+          *ngIf="registerForm.controls['first_name'].errors?.['required'] "
         >
         first name is required
         </div>
-        <div
-          class="error-message "
-          *ngIf="registerForm.controls['first_name'].errors"
+        <div class="error-message "
+          *ngIf="registerForm.controls['first_name'].errors?.['minlength']"
         >
-          Invalid Name format
+        minLength is 3
         </div>
+        <div class="error-message "
+        *ngIf="registerForm.controls['first_name'].errors?.['maxlength']"
+      >
+      maxLength is 8
+      </div>
         }
       </div>
       <div class="w-[48%]   auth-form-field">
         <label for="last_name" class="">Your Last Name </label>
-        <mat-icon>person_edit</mat-icon>
+        <mat-icon>article_person</mat-icon>
         <input
           formControlName="last_name"
           id="last_name"
@@ -68,25 +72,28 @@
           placeholder="Enter your last Name"
           required
         />
-        @if (registerForm.controls['last_name'].touched ) {
+        @if (registerForm.controls['last_name'].touched
+         && registerForm.controls['last_name'].invalid ) {
         <div
           class="error-message "
-          *ngIf="registerForm.controls['last_name'].errors?.['required']
-          && registerForm.controls['last_name'].touched "
+          *ngIf="registerForm.controls['last_name'].errors?.['required'] "
         >
         last name is required
         </div>
-        <div
-          class="error-message "
-          *ngIf="registerForm.controls['last_name'].errors"
-        >
-          Invalid Name format
-        </div>
+        <div class="error-message "
+        *ngIf="registerForm.controls['last_name'].errors?.['minlength']"
+      >
+      minLength is 3
+      </div>
+      <div class="error-message "
+      *ngIf="registerForm.controls['last_name'].errors?.['maxlength']"
+    >
+    maxLength is 8
+    </div>
         }
       </div>
       </div>
-
-
+      <!-- email -->
         <div class="w-full auth-form-field">
           <label for="email" class="">Your email address</label>
           <mat-icon>mail</mat-icon>
@@ -97,11 +104,11 @@
             placeholder="Enter your email"
             required
           />
-          @if (registerForm.controls['email'].touched ) {
+          @if (registerForm.controls['email'].touched
+          && registerForm.controls['email'].invalid  ) {
           <div
             class="error-message "
-            *ngIf="registerForm.controls['email'].errors?.['required']
-            && registerForm.controls['email'].touched "
+            *ngIf="registerForm.controls['email'].errors?.['required'] "
           >
             Email is required
           </div>
@@ -113,36 +120,30 @@
           </div>
           }
         </div>
-
+        <!-- role -->
         <div class="w-full auth-form-field mt-2">
           <label for="role" class="">Your Role</label>
-          <mat-form-field class="w-full">
-            <!-- <mat-label>Your Role</mat-label> -->
-            <mat-select name="role"  class="inputStyle w-full"
-            required  formControlName="role">
+          <mat-form-field class="w-full my-0">
+            <mat-select name="role"  class="inputStyle w-full my-0"
+              required  formControlName="role"
+            >
               @for (UrRole of role; track UrRole) {
                 <mat-option [value]="UrRole">{{UrRole}}</mat-option>
               }
             </mat-select>
           </mat-form-field>
 
-          @if (registerForm.controls['role'].touched ) {
-          <div
-            class="error-message "
+          @if (registerForm.controls['role'].touched
+          && registerForm.controls['role'].invalid ) {
+          <div  class="error-message "
             *ngIf="registerForm.controls['role'].errors?.['required']
             && registerForm.controls['role'].touched "
           >
             role is required
           </div>
-          <div
-            class="error-message "
-            *ngIf="registerForm.controls['role'].errors?.['role']"
-          >
-            Invalid role format
-          </div>
           }
         </div>
-
+        <!-- password -->
         <div class="w-full auth-form-field">
           <label for="password" class="">Password</label>
           <mat-icon>key</mat-icon>
@@ -157,9 +158,9 @@
             placeholder="Enter your password"
             required
           />
-          @if (registerForm.controls['password'].invalid && registerForm.controls['password'].touched ) {
-          <div
-            class="error-message "
+          @if (registerForm.controls['password'].invalid
+          && registerForm.controls['password'].touched ) {
+          <div  class="error-message "
             *ngIf="registerForm.controls['password'].errors?.['required']"
           >
             Password is required
@@ -167,8 +168,9 @@
 
           }
         </div>
+        <!-- sign up -->
         <div class="mt-5 ">
-          <button class="submit-button">
+          <button class="submit-button " >
             Sign Up <mat-icon>check</mat-icon>
           </button>
         </div>
