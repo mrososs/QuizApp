@@ -148,7 +148,7 @@
           <label for="password" class="">Password</label>
           <mat-icon>key</mat-icon>
           <mat-icon (click)="togglePasswordVisibility()" class="eye">{{
-            passwordVisible ? "visibility_off" : "visibility"
+            !passwordVisible ? "visibility_off" : "visibility"
           }}</mat-icon>
 
           <input
@@ -165,12 +165,18 @@
           >
             Password is required
           </div>
+          <div  class="error-message "
+            *ngIf="registerForm.controls['password'].errors?.['pattern']"
+          >
+          The password must include one lowercase ,
+          one uppercase, one digit, and one special char
+          </div>
 
           }
         </div>
         <!-- sign up -->
         <div class="mt-5 ">
-          <button class="submit-button " >
+          <button class="submit-button  disabled:opacity-90 disabled:cursor-not-allowed"  [disabled]="registerForm.invalid">
             Sign Up <mat-icon>check</mat-icon>
           </button>
         </div>
