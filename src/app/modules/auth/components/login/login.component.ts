@@ -9,6 +9,7 @@ import {
   Validators
 } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     CommonModule,
     ReactiveFormsModule,
+    RouterModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',

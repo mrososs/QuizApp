@@ -1,0 +1,51 @@
+<app-shared-layout>
+    <div class="text">
+      <h1>Continue your learning journey with QuizWiz!</h1>
+    </div>
+  
+    <div class="mt-12">
+      <div>
+        <form
+          class="flex flex-col gap-3"
+          [formGroup]="forgotForm"
+          (ngSubmit)="sendForgot()"
+        >
+          <div class="w-full auth-form-field">
+            <label for="email">Email address</label>
+            <mat-icon>mail</mat-icon>
+            <input
+              formControlName="email"
+              id="email"
+              type="email"
+              placeholder="Type your email"
+              required
+            />
+            @if (forgotForm.controls['email'].invalid) {
+            <div
+              class="error-message text-red-600 text-[0.8rem] mt-3"
+              *ngIf="forgotForm.controls['email'].errors?.['required']"
+            >
+              Email is required
+            </div>
+            <div
+              class="error-message text-red-600 text-[0.8rem] mt-3"
+              *ngIf="forgotForm.controls['email'].errors?.['email']"
+            >
+              Invalid email format
+            </div>
+            }
+          </div>
+  
+          <div class="mt-5 flex justify-between items-center">
+            <button type="submit" class="submit-button">
+              Send email <mat-icon>check</mat-icon>
+            </button>
+            <p class="forgetPassword">
+              Login? <a routerLink="/auth/login">click here</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </app-shared-layout>
+  
