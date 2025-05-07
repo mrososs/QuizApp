@@ -35,7 +35,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent implements OnInit {
-  role: string[] = ['Student', 'instructor'];
+  role: string[] = ['Student', 'Instructor'];
   passwordVisible: boolean = false;
   registerForm!: FormGroup;
   constructor(
@@ -64,10 +64,13 @@ export class RegisterComponent implements OnInit {
         validators: [Validators.required, Validators.email],
       }),
       password: this.fb.control('', {
-         validators: [
-          Validators.required ,
-         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/)
-        ] }),
+        validators: [
+          Validators.required,
+          Validators.pattern(
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/
+          ),
+        ],
+      }),
       role: this.fb.control('', { validators: [Validators.required] }),
     });
   }

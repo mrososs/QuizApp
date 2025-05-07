@@ -7,7 +7,7 @@ export const learnerGuard: CanActivateFn = (route, state) => {
     const router = inject(Router);
     const role = storage.getUserRole();
   
-    if (role === 'Learner') {
+    if (role === 'Student') {
       return true;
     }
     router.navigate(['/login']);

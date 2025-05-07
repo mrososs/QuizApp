@@ -52,4 +52,8 @@ register(data:RegisterParams):Observable<RegisterRes>{
   resetPassword(data: IReset): Observable<any> {
     return this._http.post('auth/reset-password', data);
   }
+  
+  getUserRole(): string | null {
+    return this.storageService.getUserRole();
+  }
 }
