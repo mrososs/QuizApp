@@ -6,7 +6,7 @@
   <div class="mt-5 flex justify-start items-center gap-8">
 
    <a routerLink="/auth/login" routerLinkActive="active" >
-    <button class="auth-button "  >
+    <button class="auth-button "  [routerLink]="['/auth/login']">
       <div class="flex flex-col items-center gap-4">
         <img src="assets/icons/signInN.png" alt="Sign In" class="w-8 h-8" />
         <p class="text-sm">Sign in</p>

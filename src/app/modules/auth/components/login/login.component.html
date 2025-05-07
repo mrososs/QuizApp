@@ -10,7 +10,10 @@
       </div>
     </button>
     <button class="auth-button">
-      <div class="flex flex-col items-center gap-4">
+      <div
+        class="flex flex-col items-center gap-4"
+        [routerLink]="['/auth/register']"
+      >
         <img src="assets/icons/signUp.png" alt="Sign Un" class="w-10 h-8" />
         <p class="text-sm">Sign Up</p>
       </div>
@@ -76,7 +79,9 @@
           <button class="submit-button">
             Sign in <mat-icon>check</mat-icon>
           </button>
-          <p class="forgetPassword">Forget Password? <a routerLink="/auth/forgot">Click here</a></p>
+          <p class="forgetPassword">
+            Forget Password? <a routerLink="/auth/forgot">Click here</a>
+          </p>
         </div>
       </form>
     </div>
