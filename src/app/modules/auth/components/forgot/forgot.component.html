@@ -20,7 +20,7 @@
               placeholder="Type your email"
               required
             />
-            @if (forgotForm.controls['email'].invalid) {
+            @if (forgotForm.controls['email'].dirty) {
             <div
               class="error-message text-red-600 text-[0.8rem] mt-3"
               *ngIf="forgotForm.controls['email'].errors?.['required']"
