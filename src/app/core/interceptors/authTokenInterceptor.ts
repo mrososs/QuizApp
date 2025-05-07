@@ -1,10 +1,10 @@
 // src/app/core/interceptors/auth-token.interceptor.ts
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { StorgeService } from '../services/storge.service';
+import { StorageService } from '../services/storage.service';
 
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
-  const storage = inject(StorgeService);
+  const storage = inject(StorageService);
   const token = storage.getAccessToken();
 
   // Skip requests to /auth endpoints
