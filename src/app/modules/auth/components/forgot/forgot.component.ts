@@ -6,6 +6,7 @@ import { Router, RouterModule } from '@angular/router';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { IForgot } from '../../models/forgot';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-forgot',
@@ -27,7 +28,8 @@ export class ForgotComponent {
   constructor(
     private fb: NonNullableFormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private _Toastr: ToastrService
   ) {
     this.forgotForm = this.fb.group({
       email: this.fb.control('', {
@@ -45,11 +47,11 @@ export class ForgotComponent {
   
     this.authService.forgot(data).subscribe({
       next: (res) => {
-        console.log('Email sent successfully:', res);
+        this._Toastr.success(res.message);
         this.router.navigate(['/auth/forgot/reset']); // Navigate to reset page
       },
       error: (err) => {
-        console.error('There was an error sending the email:', err);
+        this._Toastr.error(err.message);
       }
     });
   }
