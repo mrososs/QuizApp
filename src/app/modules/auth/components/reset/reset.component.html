@@ -1,0 +1,88 @@
+<app-shared-layout>
+    <div class="text">
+      <h1>Reset your password to continue learning with QuizWiz!</h1>
+    </div>
+
+    <div class="mt-8">
+      <div>
+        <form
+          class="flex flex-col gap-3"
+          [formGroup]="resetForm"
+          (ngSubmit)="onSubmit()"
+        >
+        <div class="w-full auth-form-field">
+            <label for="otp">OTP</label>
+            <mat-icon>vpn_key</mat-icon>
+            <input
+              formControlName="otp"
+              id="otp"
+              type="text"
+              placeholder="Enter the OTP sent to your email"
+              required
+            />
+            @if (resetForm.controls['otp'].invalid) {
+            <div
+              class="error-message text-red-600 text-[0.8rem] mt-3"
+              *ngIf="resetForm.controls['otp'].errors?.['required']"
+            >
+              OTP is required
+            </div>
+            }
+          </div>
+          <div class="w-full auth-form-field">
+            <label for="email">Your email address</label>
+            <mat-icon>mail</mat-icon>
+            <input
+              formControlName="email"
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              required
+            />
+            @if (resetForm.controls['email'].invalid) {
+            <div
+              class="error-message text-red-600 text-[0.8rem] mt-3"
+              *ngIf="resetForm.controls['email'].errors?.['required']"
+            >
+              Email is required
+            </div>
+            <div
+              class="error-message text-red-600 text-[0.8rem] mt-3"
+              *ngIf="resetForm.controls['email'].errors?.['email']"
+            >
+              Invalid email format
+            </div>
+            }
+          </div>
+          <div class="w-full auth-form-field">
+            <label for="password">Password</label>
+            <mat-icon>key</mat-icon>
+            <mat-icon (click)="togglePasswordVisibility()" class="eye">
+              {{ passwordVisible ? "visibility_off" : "visibility" }}
+            </mat-icon>
+            <input
+              formControlName="password"
+              id="password"
+              [type]="passwordVisible ? 'text' : 'password'"
+              placeholder="Enter your new password"
+              required
+            />
+            @if (resetForm.controls['password'].invalid) {
+            <div
+              class="error-message text-red-600 text-[0.8rem] mt-3"
+              *ngIf="resetForm.controls['password'].errors?.['required']"
+            >
+              Password is required
+            </div>
+            }
+          </div>
+          <div class="mt-5 flex justify-between items-center">
+            <button class="submit-button">
+              Reset <mat-icon>refresh</mat-icon>
+            </button>
+          </div>          
+        </form>
+      </div>
+    </div>
+  </app-shared-layout>
+  
