@@ -2,23 +2,30 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { instructorGuard } from '../../core/guards/instructor.guard';
 import { learnerGuard } from '../../core/guards/learner.guard';
+import { LayoutWrapperComponent } from './components/shared/layout-wrapper/layout-wrapper.component';
 
 const routes: Routes = [
   {
-    path: 'instructor',
-    canActivate: [instructorGuard],
-    loadChildren: () =>
-      import('./modules/instructor/instructor-routing.module').then(
-        (m) => m.InstructorRoutingModule
-      ),
-  },
-  {
-    path: 'learner',
-    canActivate: [learnerGuard],
-    loadChildren: () =>
-      import('./modules/learner/learner-routing.module').then(
-        (m) => m.LearnerRoutingModule
-      ),
+    path: '',
+    component: LayoutWrapperComponent,
+    children: [
+      {
+        path: 'instructor',
+        canActivate: [instructorGuard],
+        loadChildren: () =>
+          import('./modules/instructor/instructor-routing.module').then(
+            (m) => m.InstructorRoutingModule
+          ),
+      },
+      {
+        path: 'learner',
+        canActivate: [learnerGuard],
+        loadChildren: () =>
+          import('./modules/learner/learner-routing.module').then(
+            (m) => m.LearnerRoutingModule
+          ),
+      },
+    ],
   },
 ];
 
@@ -26,4 +33,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule {}
+export class MainAppRoutingModule {}

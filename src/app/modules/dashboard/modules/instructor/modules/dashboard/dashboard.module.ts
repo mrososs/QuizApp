@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [HomePageComponent],
   imports: [CommonModule, DashboardRoutingModule],
 })
 export class DashboardModule {}

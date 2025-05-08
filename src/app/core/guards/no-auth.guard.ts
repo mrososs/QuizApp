@@ -10,9 +10,9 @@ export const noAuthGuard: CanActivateFn = () => {
 
   if (token) {
     if (role === 'Instructor') {
-      router.navigate(['/dashboard/instructor']);
+      router.navigate(['/instructor']);
     } else if (role === 'Student') {
-      router.navigate(['/dashboard/learner']);
+      router.navigate(['/learner']);
     } else {
       router.navigate(['/dashboard']);
     }

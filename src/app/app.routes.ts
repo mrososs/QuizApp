@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { instructorGuard } from './core/guards/instructor.guard';
 import { authGuard } from './core/guards/auth.guard';
 import { noAuthGuard } from './core/guards/no-auth.guard';
 
@@ -14,11 +13,11 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'dashboard',
+    path: '',
     canActivate: [authGuard],
     loadChildren: () =>
       import('./modules/dashboard/dashboard-routing.module').then(
-        (m) => m.DashboardRoutingModule
+        (m) => m.MainAppRoutingModule
       ),
   },
 ];
