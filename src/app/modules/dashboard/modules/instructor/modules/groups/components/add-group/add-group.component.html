@@ -12,19 +12,32 @@
   </div>
 
   <!-- input -->
-  <!-- <app-shared-input
-    [type]="'input'"
-    [label]="'اسم المجموعة'"
-    [placeholder]="'اكتب اسم المجموعة'"
-    [control]="groupNameControl">
-  </app-shared-input> -->
+  <mat-form-field appearance="fill">
+    <mat-label>Group Name</mat-label>
+    <input matInput [formControl]="groupNameControl" placeholder="Enter Group Name">
+  </mat-form-field>
 
   <!-- select -->
-  <!-- <app-shared-input
-    [type]="'select'"
-    [label]="'نوع المشاركة'"
-    [placeholder]="'اختر نوع المشاركة'"
-    [control]="groupTypeControl"
-    [options]="sharingOptions">
-  </app-shared-input> -->
+  <mat-form-field appearance="fill">
+    <mat-label>List Students</mat-label>
+    <select matNativeControl [formControl]="groupTypeControl">
+      <option *ngFor="let option of sharingOptions" [value]="option">{{ option }}</option>
+    </select>
+  </mat-form-field>
 </div>
+
+
+<!-- input -->
+<!-- <app-shared-input
+  [type]="'input'"
+  [label]="'Group Name'"
+  [control]="groupNameControl">
+</app-shared-input> -->
+
+<!-- select -->
+<!-- <app-shared-input
+  [type]="'select'"
+  [label]="'List Students'"
+  [control]="groupTypeControl"
+  [options]="sharingOptions">
+</app-shared-input> -->

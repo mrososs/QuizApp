@@ -6,17 +6,16 @@
         *ngSwitchCase="'input'"
         matInput
         [formControl]="control"
-        [placeholder]="placeholder || label"
-        [attr.aria-label]="label || placeholder"
-        [attr.title]="label || placeholder"
+        [attr.aria-label]="label"
+        [attr.title]="label"
         class="custom-input"
       />
       <!-- Select -->
       <mat-select
         *ngSwitchCase="'select'"
         [formControl]="control"
-        [attr.aria-label]="label || placeholder"
-        [attr.title]="label || placeholder"
+        [attr.aria-label]="label"
+        [attr.title]="label"
         class="custom-select"
       >
         <mat-option *ngFor="let opt of options" [value]="opt.value">

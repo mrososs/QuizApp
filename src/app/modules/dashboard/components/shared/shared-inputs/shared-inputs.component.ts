@@ -8,7 +8,6 @@ import { FormControl } from '@angular/forms';
 })
 export class SharedInputsComponent {
   @Input() label: string = 'Label';
-  @Input() placeholder: string = '';
   @Input() control!: FormControl;
   @Input() type: 'input' | 'select' = 'input';
   @Input() options: { label: string; value: any }[] = [];

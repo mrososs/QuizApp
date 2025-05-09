@@ -1,6 +1,6 @@
+// groups.module.ts
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { GroupsRoutingModule } from './groups-routing.module';
 import { ListGroupsComponent } from './components/list-groups/list-groups.component';
 import { AddGroupComponent } from './components/add-group/add-group.component';
@@ -12,15 +12,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { DashboardModule } from '../dashboard/dashboard.module';
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from '../../../../../shared/shared.module';
 
 @NgModule({
   declarations: [
     ListGroupsComponent,
     AddGroupComponent,
     UpdateGroupComponent,
-    DeleteGroupComponent
+    DeleteGroupComponent,
   ],
   imports: [
     CommonModule,
@@ -31,8 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    DashboardModule,
-    MatIconModule
+    SharedModule,
+    MatIconModule,
   ]
 })
-export class GroupsModule { }
+export class GroupsModule {}
