@@ -6,6 +6,7 @@ import { MainAppRoutingModule } from './dashboard-routing.module';
 import { LayoutWrapperComponent } from './components/shared/layout-wrapper/layout-wrapper.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
+import { MatIcon } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SidebarComponent } from './components/shared/sidebar/sidebar.component'
     InstructorModule,
     LearnerModule,
     MainAppRoutingModule,
+    MatIcon
   ],
   exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent],
 })
