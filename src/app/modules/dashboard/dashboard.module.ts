@@ -11,6 +11,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedInputsComponent } from './components/shared/shared-inputs/shared-inputs.component';
+import { MatIconModule } from '@angular/material/icon';
+
 @NgModule({
   declarations: [
     LayoutWrapperComponent,
@@ -26,7 +28,8 @@ import { SharedInputsComponent } from './components/shared/shared-inputs/shared-
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent,SharedInputsComponent],
 })

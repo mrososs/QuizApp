@@ -1,28 +1,17 @@
-.add-group-card {
-    padding: 20px;
-    width: 100%;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  
-    mat-card-title {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-  
-    mat-card-content {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-  
-    mat-card-actions {
-      margin-top: 20px;
-      display: flex;
-      justify-content: flex-end;
-      gap: 10px;
-    }
-  
-    .custom-form-field {
-      width: 100%;
-    }
-  }
-  
+.dialog-container {
+  padding: 20px;
+  min-width: 500px;
+}
+
+.dialog-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}

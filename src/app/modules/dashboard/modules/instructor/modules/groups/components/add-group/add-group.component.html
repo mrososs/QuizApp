@@ -1,27 +1,30 @@
-<mat-card class="add-group-card">
-    <mat-card-title>إضافة مجموعة</mat-card-title>
-    <mat-card-content>
-      <!-- حقل اسم المجموعة -->
-      <app-shared-input
-        [type]="'input'"
-        [label]="'اسم المجموعة'"
-        [placeholder]="'اكتب اسم المجموعة'"
-        [control]="groupNameControl">
-      </app-shared-input>
-  
-      <!-- حقل نوع المشاركة -->
-      <app-shared-input
-        [type]="'select'"
-        [label]="'نوع المشاركة'"
-        [placeholder]="'اختر نوع المشاركة'"
-        [control]="groupTypeControl"
-        [options]="sharingOptions">
-      </app-shared-input>
-    </mat-card-content>
-  
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary">حفظ</button>
-      <button mat-button mat-dialog-close>إلغاء</button>
-    </mat-card-actions>
-  </mat-card>
-  
+<div class="dialog-container">
+  <div class="dialog-header">
+    <h2 class="dialog-title">Set up a new Group</h2>
+    <div class="dialog-actions">
+      <button mat-icon-button color="primary" aria-label="حفظ">
+        <mat-icon>check</mat-icon>
+      </button>
+      <button mat-icon-button mat-dialog-close aria-label="إلغاء">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- input -->
+  <!-- <app-shared-input
+    [type]="'input'"
+    [label]="'اسم المجموعة'"
+    [placeholder]="'اكتب اسم المجموعة'"
+    [control]="groupNameControl">
+  </app-shared-input> -->
+
+  <!-- select -->
+  <!-- <app-shared-input
+    [type]="'select'"
+    [label]="'نوع المشاركة'"
+    [placeholder]="'اختر نوع المشاركة'"
+    [control]="groupTypeControl"
+    [options]="sharingOptions">
+  </app-shared-input> -->
+</div>

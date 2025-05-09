@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { DashboardModule } from '../dashboard/dashboard.module';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DashboardModule } from '../dashboard/dashboard.module';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    DashboardModule
+    DashboardModule,
+    MatIconModule
   ]
 })
 export class GroupsModule { }
