@@ -1,1 +1,27 @@
-<p>add-group works!</p>
+<mat-card class="add-group-card">
+    <mat-card-title>إضافة مجموعة</mat-card-title>
+    <mat-card-content>
+      <!-- حقل اسم المجموعة -->
+      <app-shared-input
+        [type]="'input'"
+        [label]="'اسم المجموعة'"
+        [placeholder]="'اكتب اسم المجموعة'"
+        [control]="groupNameControl">
+      </app-shared-input>
+  
+      <!-- حقل نوع المشاركة -->
+      <app-shared-input
+        [type]="'select'"
+        [label]="'نوع المشاركة'"
+        [placeholder]="'اختر نوع المشاركة'"
+        [control]="groupTypeControl"
+        [options]="sharingOptions">
+      </app-shared-input>
+    </mat-card-content>
+  
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary">حفظ</button>
+      <button mat-button mat-dialog-close>إلغاء</button>
+    </mat-card-actions>
+  </mat-card>
+  

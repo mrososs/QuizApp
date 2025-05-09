@@ -6,19 +6,28 @@ import { MainAppRoutingModule } from './dashboard-routing.module';
 import { LayoutWrapperComponent } from './components/shared/layout-wrapper/layout-wrapper.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
-
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SharedInputsComponent } from './components/shared/shared-inputs/shared-inputs.component';
 @NgModule({
   declarations: [
     LayoutWrapperComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    SharedInputsComponent  
   ],
   imports: [
-    CommonModule,
+  CommonModule,
     InstructorModule,
     LearnerModule,
     MainAppRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
-  exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent],
+  exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent,SharedInputsComponent],
 })
 export class DashboardModule {}

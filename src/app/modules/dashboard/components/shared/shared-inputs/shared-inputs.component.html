@@ -1,0 +1,28 @@
+<mat-form-field appearance="outline" class="custom-form-field w-full">
+    <mat-label *ngIf="label">{{ label }}</mat-label>
+    <ng-container [ngSwitch]="type">
+      <!-- Input -->
+      <input
+        *ngSwitchCase="'input'"
+        matInput
+        [formControl]="control"
+        [placeholder]="placeholder || label"
+        [attr.aria-label]="label || placeholder"
+        [attr.title]="label || placeholder"
+        class="custom-input"
+      />
+      <!-- Select -->
+      <mat-select
+        *ngSwitchCase="'select'"
+        [formControl]="control"
+        [attr.aria-label]="label || placeholder"
+        [attr.title]="label || placeholder"
+        class="custom-select"
+      >
+        <mat-option *ngFor="let opt of options" [value]="opt.value">
+          {{ opt.label }}
+        </mat-option>
+      </mat-select>
+    </ng-container>
+  </mat-form-field>
+  
