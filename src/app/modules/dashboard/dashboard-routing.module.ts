@@ -2,19 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { instructorGuard } from '../../core/guards/instructor.guard';
 import { learnerGuard } from '../../core/guards/learner.guard';
-import { LayoutWrapperComponent } from './components/shared/layout-wrapper/layout-wrapper.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LayoutWrapperComponent,
-    children: [
-      {
+ {
         path: 'instructor',
         canActivate: [instructorGuard],
         loadChildren: () =>
-          import('./modules/instructor/instructor-routing.module').then(
-            (m) => m.InstructorRoutingModule
+          import('./modules/instructor/instructor.module').then(
+            (m) => m.InstructorModule
           ),
       },
       {
@@ -25,8 +20,6 @@ const routes: Routes = [
             (m) => m.LearnerRoutingModule
           ),
       },
-    ],
-  },
 ];
 
 @NgModule({
