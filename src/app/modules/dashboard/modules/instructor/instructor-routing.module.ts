@@ -10,8 +10,8 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./modules/dashboard/dashboard.module').then(
-            (m) => m.DashboardModule // ✅ not just dashboard-routing.module
+          import('./modules/dashboard/dashboard-routing.module').then(
+            (m) => m.DashboardRoutingModule // ✅ not just dashboard-routing.module
           ),
       },
       {

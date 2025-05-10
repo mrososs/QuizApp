@@ -8,8 +8,8 @@ const routes: Routes = [
         path: 'instructor',
         canActivate: [instructorGuard],
         loadChildren: () =>
-          import('./modules/instructor/instructor.module').then(
-            (m) => m.InstructorModule
+          import('./modules/instructor/instructor-routing.module').then(
+            (m) => m.InstructorRoutingModule
           ),
       },
       {
