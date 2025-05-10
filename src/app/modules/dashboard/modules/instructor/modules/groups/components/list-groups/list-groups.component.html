@@ -1,1 +1,35 @@
-<p>list-groups works!</p>
+<div class="  border-2 border-opacity-300 rounded-lg m-5 p-5">
+  <h2 class=" font-medium text-xl ">Groups list</h2>
+
+  <div class="groups my-4 mx-2 grid sm:grid-cols-1 md:grid-cols-2 gap-5 ">
+
+  @for (group of allGroups; track $index) {
+    <div class="group  ">
+      <div class=" r-side">
+         <h3 class=" group-title ">Group :{{ group.name }} </h3>
+         <p class=" group-text ">Number of students :  {{group.students.length  }} </p>
+      </div>
+      <div class="l-side">
+        <!-- <a class=" hover:cursor-pointer mx-1"
+         [routerLink]="['/instructor/groups/update' , group._id]"
+         > Edit
+        </a>
+        <a
+        class=" hover:cursor-pointer mx-1"
+        [routerLink]="['/instructor/groups/delete' , group._id]"
+        >Delete
+        </a> -->
+        <!-- <mat-icon class="mat-18">edit_square</mat-icon>
+        <mat-icon class="mat-18">delete</mat-icon> -->
+      </div>
+    </div>
+
+  }
+
+  </div>
+  </div>
+
+
+
+
+

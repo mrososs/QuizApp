@@ -6,6 +6,7 @@ import { MainAppRoutingModule } from './dashboard-routing.module';
 import { LayoutWrapperComponent } from './components/shared/layout-wrapper/layout-wrapper.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
+import { SharedModule } from '../shared/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,12 @@ import { SidebarComponent } from './components/shared/sidebar/sidebar.component'
     InstructorModule,
     LearnerModule,
     MainAppRoutingModule,
+    SharedModule,
+
   ],
-  exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent],
+  exports:[LayoutWrapperComponent,
+     NavbarComponent, SidebarComponent
+     ,SharedModule
+    ] 
 })
 export class DashboardModule {}
