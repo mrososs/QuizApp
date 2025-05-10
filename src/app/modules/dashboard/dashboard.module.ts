@@ -7,6 +7,7 @@ import { LayoutWrapperComponent } from './components/shared/layout-wrapper/layou
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { MatIcon } from '@angular/material/icon';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MatIcon } from '@angular/material/icon';
     CommonModule,
     InstructorModule,
     LearnerModule,
+    SharedModule,
     MainAppRoutingModule,
     MatIcon
   ],
