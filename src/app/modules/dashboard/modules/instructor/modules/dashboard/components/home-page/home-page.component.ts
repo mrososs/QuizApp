@@ -2,6 +2,7 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { HomepageService } from '../../services/homepage.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { IUpcomingQuizzes } from '../../models/upcoming-5-quizzes.model';
+import { ITopStudents } from '../../models/topStudents.model';
 
 @Component({
   selector: 'app-home-page',
@@ -13,12 +14,16 @@ export class HomePageComponent implements OnInit {
   quizzesSignal = toSignal(this._homePageSerivce.getUpcomingQuizzes(), {
     initialValue: [] as IUpcomingQuizzes[],
   });
-constructor(){
-   effect(() => {
+  studentsSignal = toSignal(this._homePageSerivce.getTopStudents(), {
+    initialValue: [] as ITopStudents[],
+  });
+  constructor() {
+    effect(() => {
       console.log('Upcoming Quizzes: ', this.quizzesSignal());
     });
-}
-  ngOnInit(): void {
-   
+    effect(() => {
+      console.log('Students: ', this.studentsSignal());
+    });
   }
+  ngOnInit(): void {}
 }
