@@ -16,7 +16,7 @@
         [src]="
           rlaDashboard.isActive
             ? 'assets/icons/active_icons/Dashboard.svg'
-            : 'assets/icons/active_dashboard.svg'
+            : 'assets/icons/dashboard.svg'
         "
         alt="Dashboard"
         class="w-6 h-6 p-[3px] rounded-lg"
@@ -27,7 +27,7 @@
 
     <!-- Groups -->
     <a
-      [routerLink]="['/instructor/Groups']"
+    [routerLink]="['/instructor/groups']"
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
       #rlaGroups="routerLinkActive"
@@ -48,7 +48,7 @@
 
     <!-- Quizzes -->
     <a
-      [routerLink]="['/instructor/Quizzes']"
+      [routerLink]="['/instructor/quizzes']"
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
       #rlaQuizzes="routerLinkActive"
@@ -69,7 +69,7 @@
 
     <!-- Results -->
     <a
-      [routerLink]="['/instructor/Results']"
+      [routerLink]="['/instructor/results']"
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
       #rlaResults="routerLinkActive"
