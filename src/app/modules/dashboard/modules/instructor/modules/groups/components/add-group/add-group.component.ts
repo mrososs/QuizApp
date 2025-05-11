@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { GroupsService } from '../services/groups.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-group',
@@ -13,53 +14,47 @@ export class AddGroupComponent implements OnInit {
   studentsList: any[] = [];
 
   constructor(
+    private _Toastr: ToastrService,
     private groupService: GroupsService,
     private dialogRef: MatDialogRef<AddGroupComponent>
   ) {}
 
   ngOnInit(): void {
-    // تهيئة الـ FormGroup
     this.groupForm = new FormGroup({
       name: new FormControl('', Validators.required),
       students: new FormControl([], Validators.required)
     });
 
-    // جلب قائمة الطلاب من الـ API
     this.getStudents();
   }
 
-  // وظيفة جلب الطلاب
   getStudents(): void {
-    // تأكد من أن الـ API الخاص بالطلاب صحيح
-    this.groupService.getStudents().subscribe({
-      next: (res: any) => {
-        this.studentsList = res.data; // تخزين بيانات الطلاب في الـ studentsList
-      },
-      error: (err) => {
-        console.error('Error fetching students:', err);
-      }
-    });
+  this.groupService.getStudents().subscribe({
+    next: (res) => {
+      this.studentsList = res; // Assuming the array is returned directly
+    },
+    error: (err) => {
+      console.error('Error fetching students:', err);
+    }
+  });
   }
 
-  // عند إرسال الفورم
   onSubmit(): void {
     if (this.groupForm.valid) {
       const groupData = this.groupForm.value;
 
-      // إرسال بيانات الجروب إلى الـ API
       this.groupService.createGroup(groupData).subscribe({
         next: (res) => {
-          console.log('Group Added:', res);
-          this.dialogRef.close(true); // إغلاق الديالوج بعد إضافة الجروب
+          this._Toastr.success(res.message);
+          this.dialogRef.close(true);
         },
         error: (err) => {
-          console.error('Error:', err);
+          this._Toastr.error(err.message);
         }
       });
     }
   }
 
-  // إلغاء العملية وإغلاق الديالوج
   onCancel(): void {
     this.dialogRef.close();
   }

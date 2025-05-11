@@ -7,15 +7,16 @@ import { Observable } from 'rxjs';
 })
 export class GroupsService {
 
-  private apiUrl = 'https://upskilling-egypt.com:3005/api/group';  // URL الخاص بالـ API 
+  private apiUrl = 'https://upskilling-egypt.com:3005/api/group';
 
   constructor(private http: HttpClient) {}
 
   createGroup(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data); // إرسال البيانات للـ API
+    return this.http.post(this.apiUrl, data); 
   }
 
-    getStudents(): Observable<any[]> {
-    return this.http.get<any[]>('https://upskilling-egypt.com:3005/api/student'); // URL الخاص بالطلاب
+  getStudents(): Observable<any[]> {
+    return this.http.get<any[]>('https://upskilling-egypt.com:3005/api/student/without-group');
   }
+
 }

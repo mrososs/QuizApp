@@ -1,0 +1,31 @@
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 15px;
+}
+
+.dialog-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.header-icon {
+  font-size: 26px;
+  transition: color 0.3s;
+}
+
+button[mat-icon-button]:hover .header-icon {
+  color: #1976d2; // Primary hover color
+}
+
+button[mat-icon-button][color="warn"]:hover .header-icon {
+  color: #d32f2f; // Warn hover color
+}
