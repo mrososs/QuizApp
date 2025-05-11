@@ -2,25 +2,18 @@
 
 <form [formGroup]="groupForm" (ngSubmit)="onSubmit()" mat-dialog-content>
 
-  <mat-form-field appearance="fill" class="w-100">
-    <mat-label>Group Name</mat-label>
-    <input matInput placeholder="Enter group name" formControlName="name" />
-    <mat-error *ngIf="groupForm.get('name')?.invalid && groupForm.get('name')?.touched">
-      Group name is required
-    </mat-error>
+<div class="custom-input-wrapper">
+  <div class="input-label-box">Group Name</div>
+  <mat-form-field appearance="outline" class="custom-mat-field">
+    <input matInput placeholder=" " />
   </mat-form-field>
-
-  <mat-form-field appearance="fill" class="w-100">
-    <mat-label>Select Students</mat-label>
-    <mat-select formControlName="students" multiple>
-      <mat-option *ngFor="let student of studentsList" [value]="student._id">
-        {{ student.name }}
-      </mat-option>
-    </mat-select>
-    <mat-error *ngIf="groupForm.get('students')?.invalid && groupForm.get('students')?.touched">
-      At least one student must be selected
-    </mat-error>
+</div>
+<div class="custom-input-wrapper">
+  <div class="input-label-box">Group Name</div>
+  <mat-form-field appearance="outline" class="custom-mat-field">
+    <input matInput placeholder=" " />
   </mat-form-field>
+</div>
 
   <div mat-dialog-actions align="end">
     <button mat-raised-button color="primary" type="submit" [disabled]="groupForm.invalid">Save</button>
@@ -28,3 +21,5 @@
   </div>
 
 </form>
+
+
