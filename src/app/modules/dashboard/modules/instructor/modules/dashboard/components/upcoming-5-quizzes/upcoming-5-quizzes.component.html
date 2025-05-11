@@ -1,0 +1,14 @@
+<section class="upcoming-5-quizzes mb-5">
+  <div class="p-5">
+    <div class="flex justify-between items-center upcoming-5-quizzes__header">
+      <h1 class="font-bold">Upcoming 5 quizzes</h1>
+      <div class="flex items-center gap-2">
+        <p>Quiz directory</p>
+        <mat-icon>arrow_right_alt</mat-icon>
+      </div>
+    </div>
+    <div class="cards" *ngFor="let quiz of quizzes">
+        <app-up-coming-quizzes-card [quiz]="quiz"></app-up-coming-quizzes-card>
+    </div>
+  </div>
+</section>

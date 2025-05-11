@@ -1,1 +1,10 @@
-<p>home-page works!</p>
+<div class="container px-14 mx-auto mt-16">
+  <div class="grid grid-cols-2 gap-12">
+    <div class="col-span-2 lg:col-span-1">
+      <app-upcoming-5-quizzes [quizzes]="quizzesSignal()"></app-upcoming-5-quizzes>
+    </div>
+    <div class="col-span-2 lg:col-span-1">
+      <app-top-5-students [students]="studentsSignal()"></app-top-5-students>
+    </div>
+  </div>
+</div>

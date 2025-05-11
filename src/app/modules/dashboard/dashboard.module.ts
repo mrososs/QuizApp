@@ -6,7 +6,8 @@ import { MainAppRoutingModule } from './dashboard-routing.module';
 import { LayoutWrapperComponent } from './components/shared/layout-wrapper/layout-wrapper.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
-import { SharedModule } from '../shared/shared/shared.module';
+import { MatIcon } from '@angular/material/icon';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -18,13 +19,10 @@ import { SharedModule } from '../shared/shared/shared.module';
     CommonModule,
     InstructorModule,
     LearnerModule,
-    MainAppRoutingModule,
     SharedModule,
-
+    MainAppRoutingModule,
+    MatIcon
   ],
-  exports:[LayoutWrapperComponent,
-     NavbarComponent, SidebarComponent
-     ,SharedModule
-    ] 
+  exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent,SharedModule],
 })
 export class DashboardModule {}
