@@ -17,29 +17,27 @@ const routes: Routes = [
       {
         path: 'groups',
         loadChildren: () =>
-          import('./modules/groups/groups-routing.module').then(
-            (m) => m.GroupsRoutingModule
-          ),
+          import('./modules/groups/groups.module').then((m) => m.GroupsModule),
       },
       {
         path: 'students',
         loadChildren: () =>
-          import('./modules/students/students-routing.module').then(
-            (m) => m.StudentsRoutingModule
+          import('./modules/students/students.module').then(
+            (m) => m.StudentsModule
           ),
       },
       {
         path: 'quizzes',
         loadChildren: () =>
-          import('./modules/quizzes/quizzes-routing.module').then(
-            (m) => m.QuizzesRoutingModule
+          import('./modules/quizzes/quizzes.module').then(
+            (m) => m.QuizzesModule
           ),
       },
       {
         path: 'results',
         loadChildren: () =>
-          import('./modules/results/results-routing.module').then(
-            (m) => m.ResultsRoutingModule
+          import('./modules/results/results.module').then(
+            (m) => m.ResultsModule
           ),
       },
     ],
