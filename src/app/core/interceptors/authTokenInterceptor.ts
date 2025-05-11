@@ -13,11 +13,11 @@ export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   // Apply token only to /instructor or /learner APIs
-  if ((req.url.includes('/instructor') || req.url.includes('/learner')) && token) {
+  if (token) {
     const authReq = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
     return next(authReq);
   }

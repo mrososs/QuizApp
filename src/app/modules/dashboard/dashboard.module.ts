@@ -23,6 +23,6 @@ import { SharedModule } from '../shared/shared.module';
     MainAppRoutingModule,
     MatIcon
   ],
-  exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent],
+  exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent,SharedModule],
 })
 export class DashboardModule {}
