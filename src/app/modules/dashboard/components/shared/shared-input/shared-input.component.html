@@ -18,9 +18,9 @@
       [attr.title]="label"
       class="custom-select"
     >
-        <mat-option *ngFor="let opt of options" [value]="opt.value">
-          {{ opt.label }}
-        </mat-option>
-      </mat-select>
+      <mat-option *ngFor="let opt of options" [value]="opt">
+        {{ opt }}
+      </mat-option>
+    </mat-select>    
     </ng-container>
-  </mat-form-field>
+</mat-form-field>

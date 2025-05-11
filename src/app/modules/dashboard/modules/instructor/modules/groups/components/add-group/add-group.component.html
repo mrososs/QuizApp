@@ -1,1 +1,27 @@
-<p>add-group works!</p>
+<div class="dialog-container">
+    <div class="dialog-header">
+      <h2 class="dialog-title">Set up a new Group</h2>
+      <div class="dialog-actions">
+        <button mat-icon-button color="primary">
+          <mat-icon>check</mat-icon>
+        </button>
+        <button mat-icon-button mat-dialog-close>
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  
+    <!-- input -->
+    <app-shared-input
+        [type]="'input'"
+        [label]="'Group Name'"
+        [control]="groupNameControl">
+    </app-shared-input>
+    <!-- select -->
+    <app-shared-input
+        [type]="'select'"
+        [label]="'List Students'"
+        [control]="groupTypeControl"
+        [options]="groupTypeOptions">
+  </app-shared-input>
+  </div>

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { GroupsRoutingModule } from './groups-routing.module';
@@ -6,6 +6,7 @@ import { ListGroupsComponent } from './components/list-groups/list-groups.compon
 import { AddGroupComponent } from './components/add-group/add-group.component';
 import { UpdateGroupComponent } from './components/update-group/update-group.component';
 import { DeleteGroupComponent } from './components/delete-group/delete-group.component';
+import { SharedModule } from '../../../../../shared/shared.module';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { DeleteGroupComponent } from './components/delete-group/delete-group.com
   ],
   imports: [
     CommonModule,
-    GroupsRoutingModule
-  ]
+    GroupsRoutingModule,
+    SharedModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class GroupsModule { }

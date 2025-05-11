@@ -11,5 +11,5 @@ export class SharedInputComponent {
   @Input() label: string = 'Label';
   @Input() control!: FormControl;
   @Input() type: 'input' | 'select' = 'input';
-  @Input() options: { label: string; value: any }[] = [];
+  @Input() options: string[] = [];
 }
