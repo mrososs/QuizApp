@@ -8,7 +8,7 @@ import { IUpcomingQuizzes } from '../models/upcoming-5-quizzes.model';
 })
 export class HomepageService {
   private _httpClient = inject(HttpClient);
-  getUpcomingQuizzes(): Observable<IUpcomingQuizzes> {
-    return this._httpClient.get<IUpcomingQuizzes>('quiz/incomming');
+  getUpcomingQuizzes(): Observable<IUpcomingQuizzes[]> {
+    return this._httpClient.get<IUpcomingQuizzes[]>('quiz/incomming');
   }
 }

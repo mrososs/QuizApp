@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IUpcomingQuizzes } from '../../models/upcoming-5-quizzes.model';
 
 @Component({
   selector: 'app-upcoming-5-quizzes',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './upcoming-5-quizzes.component.scss'
 })
 export class Upcoming5QuizzesComponent {
+  @Input() quizzes: IUpcomingQuizzes[] = [];
 
 }

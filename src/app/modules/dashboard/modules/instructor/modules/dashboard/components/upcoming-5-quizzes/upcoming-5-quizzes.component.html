@@ -7,8 +7,8 @@
         <mat-icon>arrow_right_alt</mat-icon>
       </div>
     </div>
-    <div class="cards">
-        <app-up-coming-quizzes-card></app-up-coming-quizzes-card>
+    <div class="cards" *ngFor="let quiz of quizzes">
+        <app-up-coming-quizzes-card [quiz]="quiz"></app-up-coming-quizzes-card>
     </div>
   </div>
 </section>

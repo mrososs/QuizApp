@@ -1,5 +1,7 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { HomepageService } from '../../services/homepage.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { IUpcomingQuizzes } from '../../models/upcoming-5-quizzes.model';
 
 @Component({
   selector: 'app-home-page',
@@ -8,9 +10,15 @@ import { HomepageService } from '../../services/homepage.service';
 })
 export class HomePageComponent implements OnInit {
   private _homePageSerivce = inject(HomepageService);
-  ngOnInit(): void {
-    this._homePageSerivce.getUpcomingQuizzes().subscribe((res) => {
-      console.log(res);
+  quizzesSignal = toSignal(this._homePageSerivce.getUpcomingQuizzes(), {
+    initialValue: [] as IUpcomingQuizzes[],
+  });
+constructor(){
+   effect(() => {
+      console.log('Upcoming Quizzes: ', this.quizzesSignal());
     });
+}
+  ngOnInit(): void {
+   
   }
 }
