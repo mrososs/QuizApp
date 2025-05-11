@@ -13,41 +13,27 @@ import { RouterModule } from '@angular/router';
 import { GroupService } from '../../services/group.service';
 import { UpdateGroupComponent } from '../update-group/update-group.component';
 
-
 @Component({
   selector: 'app-list-groups',
   templateUrl: './list-groups.component.html',
-  styleUrl: './list-groups.component.scss' ,
-  standalone :false ,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './list-groups.component.scss',
+  standalone: false,
 })
 export class ListGroupsComponent {
-  allGroups : AllGroups[] =[]
-  constructor( private _GroupService:GroupService ){
-    this.getAllGroups()
+  allGroups: AllGroups[] = [];
+  constructor(private _GroupService: GroupService) {
+    this.getAllGroups();
   }
 
-  getAllGroups():void{
+  getAllGroups(): void {
     this._GroupService.allGroups().subscribe({
-      next:(res) =>{
-        this.allGroups=res
+      next: (res) => {
+        this.allGroups = res;
         console.log(this.allGroups);
       },
-      error:(err) =>{
+      error: (err) => {
         console.log(err);
       },
-    })
+    });
   }
-
-    readonly dialog = inject(MatDialog);
-
-  openDialog() {
-    this.dialog.open(UpdateGroupComponent);
-  }
-
-
 }
-
-
-
-
