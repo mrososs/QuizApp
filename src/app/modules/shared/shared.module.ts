@@ -5,6 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { SharedInputComponent } from '../dashboard/components/shared/shared-input/shared-input.component';
 
@@ -18,7 +20,8 @@ import { SharedInputComponent } from '../dashboard/components/shared/shared-inpu
     MatIconModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   exports: [CommonModule, MatButtonModule, MatIconModule,SharedInputComponent],
 })

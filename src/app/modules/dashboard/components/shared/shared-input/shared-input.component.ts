@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-shared-input',
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './shared-input.component.scss'
 })
 export class SharedInputComponent {
-
+  @Input() label: string = 'Label';
+  @Input() control!: FormControl;
+  @Input() type: 'input' | 'select' = 'input';
+  @Input() options: { label: string; value: any }[] = [];
 }

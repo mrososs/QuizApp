@@ -3,21 +3,21 @@
     <ng-container [ngSwitch]="type">
       <!-- Input -->
       <input
-        *ngSwitchCase="'input'"
-        matInput
-        [formControl]="control"
-        [attr.aria-label]="label"
-        [attr.title]="label"
-        class="custom-input"
-      />
+      *ngSwitchCase="'input'"
+      matInput
+      [formControl]="control"
+      [attr.aria-label]="label"
+      [attr.title]="label"
+      class="custom-input"
+    />
       <!-- Select -->
       <mat-select
-        *ngSwitchCase="'select'"
-        [formControl]="control"
-        [attr.aria-label]="label"
-        [attr.title]="label"
-        class="custom-select"
-      >
+      *ngSwitchCase="'select'"
+      [formControl]="control"
+      [attr.aria-label]="label"
+      [attr.title]="label"
+      class="custom-select"
+    >
         <mat-option *ngFor="let opt of options" [value]="opt.value">
           {{ opt.label }}
         </mat-option>
