@@ -10,7 +10,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { GroupsModule } from './modules/instructor/modules/groups/groups.module';
+import { MatIcon } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
+import { InstructorModule } from './modules/instructor/instructor.module';
+import { LearnerModule } from './modules/learner/learner.module';
+import { MainAppRoutingModule } from './dashboard-routing.module';
 
 @NgModule({
   declarations: [
@@ -26,8 +30,13 @@ import { SharedModule } from '../shared/shared.module';
     MatSelectModule,
     ReactiveFormsModule,
     MatIconModule,
-    SharedModule
+    SharedModule,
+    InstructorModule,
+    LearnerModule,
+    SharedModule,
+    MainAppRoutingModule,
+    MatIcon
   ],
-  exports: [LayoutWrapperComponent, NavbarComponent, SidebarComponent],
+  exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent,SharedModule],
 })
 export class DashboardModule {}

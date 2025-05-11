@@ -1,1 +1,92 @@
-<p>sidebar works!</p>
+<aside
+  class="w-20 lg:w-[10.07rem] min-h-full bg-[#ffff] border-r border-[#00000033] flex flex-col py-4 items-center lg:items-start"
+>
+  <!-- Navigation Items -->
+  <nav class="flex flex-col gap-4 w-full">
+
+    <!-- Dashboard -->
+    <a
+      [routerLink]="['/instructor/Homepage']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rlaDashboard="routerLinkActive"
+      class="flex items-center border-b border-[#00000033] gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
+    >
+      <img
+        [src]="
+          rlaDashboard.isActive
+            ? 'assets/icons/active_icons/Dashboard.svg'
+            : 'assets/icons/active_dashboard.svg'
+        "
+        alt="Dashboard"
+        class="w-6 h-6 p-[3px] rounded-lg"
+        [ngClass]="rlaDashboard.isActive ? 'bg-black' : 'bg-[#FFEDDF]'"
+      />
+      <span class="hidden lg:inline">Dashboard</span>
+    </a>
+
+    <!-- Groups -->
+    <a
+      [routerLink]="['/instructor/Groups']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rlaGroups="routerLinkActive"
+      class="flex items-center border-b border-[#00000033] gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
+    >
+      <img
+        [src]="
+          rlaGroups.isActive
+            ? 'assets/icons/active_icons/Students icon.svg'
+            : 'assets/icons/Students.svg'
+        "
+        alt="Groups"
+        class="w-6 h-6 p-[3px] rounded-lg"
+        [ngClass]="rlaGroups.isActive ? 'bg-black' : 'bg-[#FFEDDF]'"
+      />
+      <span class="hidden lg:inline">Groups</span>
+    </a>
+
+    <!-- Quizzes -->
+    <a
+      [routerLink]="['/instructor/Quizzes']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rlaQuizzes="routerLinkActive"
+      class="flex items-center border-b border-[#00000033] gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
+    >
+      <img
+        [src]="
+          rlaQuizzes.isActive
+            ? 'assets/icons/active_icons/Quiz icon.svg'
+            : 'assets/icons/Quiz icon.svg'
+        "
+        alt="Quizzes"
+        class="w-6 h-6 p-[3px] rounded-lg"
+        [ngClass]="rlaQuizzes.isActive ? 'bg-black' : 'bg-[#FFEDDF]'"
+      />
+      <span class="hidden lg:inline">Quizzes</span>
+    </a>
+
+    <!-- Results -->
+    <a
+      [routerLink]="['/instructor/Results']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rlaResults="routerLinkActive"
+      class="flex items-center gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
+    >
+      <img
+        [src]="
+          rlaResults.isActive
+            ? 'assets/icons/active_icons/Results icon.svg'
+            : 'assets/icons/Results icon.svg'
+        "
+        alt="Results"
+        class="w-6 h-6 p-[3px] rounded-lg"
+        [ngClass]="rlaResults.isActive ? 'bg-black' : 'bg-[#FFEDDF]'"
+      />
+      <span class="hidden lg:inline">Results</span>
+    </a>
+
+  </nav>
+</aside>

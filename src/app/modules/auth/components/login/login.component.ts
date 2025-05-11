@@ -44,10 +44,9 @@ export class LoginComponent implements OnInit {
     });
   }
   ngOnInit(): void {}
-  onSubmit():void {
+  onSubmit(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
-      
     } else {
       this.authService.login(this.loginForm.value).subscribe({
         next: (res) => {
@@ -58,9 +57,9 @@ export class LoginComponent implements OnInit {
           const role = this.authService.getUserRole(); // get from storage
           console.log(role);
           if (role === 'Instructor') {
-            this.router.navigate(['/dashboard/instructor']);
+            this.router.navigate(['/instructor']);
           } else if (role === 'Student') {
-            this.router.navigate(['/dashboard/learner']);
+            this.router.navigate(['/learner']);
           } else {
             this.toastr.error('Unauthorized role');
           }

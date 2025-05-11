@@ -28,5 +28,6 @@ import { SharedInputsComponent } from '../dashboard/components/shared/shared-inp
     MatSelectModule,
     MatIconModule,
   ]
+
 })
 export class SharedModule {}

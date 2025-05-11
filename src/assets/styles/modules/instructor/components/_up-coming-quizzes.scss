@@ -1,0 +1,15 @@
+.upcoming-5-quizzes{
+    border: 1px solid #00000033;
+    border-radius: 10px;
+}
+//cards
+.upcoming-5-quizzes-card{
+    &__text{
+        border: 1px solid #00000033;
+        border-radius: 10px;
+        border-left: none;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 100%;
+    }
+}
