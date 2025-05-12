@@ -12,7 +12,10 @@ export interface GroupData{
    status: string,
     instructor: string,
     students :Students[] ,
-    max_students: number
+    max_students: number ,
+     updatedAt?: string,
+     createdAt?: string,
+      __v?: number
 
 }
 export interface updateParams {
