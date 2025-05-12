@@ -6,6 +6,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 const AllMaterial = [
   MatIconModule ,
@@ -13,8 +15,8 @@ const AllMaterial = [
   MatButtonModule ,
   MatSelectModule ,
   MatFormFieldModule ,
-  MatInputModule
-
+  MatInputModule ,
+  MatPaginatorModule
 ]
 
 @NgModule({

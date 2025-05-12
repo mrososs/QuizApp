@@ -4,6 +4,8 @@ import { MatDialog,} from '@angular/material/dialog';
 import { AllGroups } from '../../model/AllGroups-model';
 import { GroupService } from '../../services/group.service';
 import { UpdateGroupComponent } from '../update-group/update-group.component';
+import { PaginatorComponent } from '../../../../../../../shared/components/paginator/paginator.component';
+
 
 @Component({
   selector: 'app-list-groups',
