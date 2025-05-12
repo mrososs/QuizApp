@@ -36,13 +36,24 @@
   gap: 0.5rem;
   padding: 0.6rem 1.5rem;
   border-radius: 10px;
+  transition: background-color 1s ease; // add transition effect
+
+  &:hover {
+    background-color: green;
+    color: white; // Optional: adjust text color for contrast
+     mat-icon {
+    color: black;
+    border-radius: 50%;
+    background-color: white;
+  }
+  }
+
   mat-icon {
     color: white;
     border-radius: 50%;
     background-color: black;
   }
-
-
 }
+
 
 
