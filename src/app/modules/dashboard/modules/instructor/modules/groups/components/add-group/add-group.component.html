@@ -1,17 +1,16 @@
-<div mat-dialog-title class="dialog-header">
+<div class="dialog-header">
   <div class="dialog-title">
-      <h2 class="">Set up a new Group</h2>
+    <h2>Set up a new Group</h2>
   </div>
   <div class="button-group">
-    <button mat-icon-button color="primary" type="submit" [disabled]="groupForm.invalid" (click)="onSubmit()" matTooltip="Save">
+    <button mat-icon-button class="custom-icon-btn" type="submit" [disabled]="groupForm.invalid" (click)="onSubmit()" matTooltip="Save">
       <mat-icon fontIcon="check_circle" class="header-icon"></mat-icon>
     </button>
-    <button mat-icon-button color="warn" (click)="onCancel()" matTooltip="Cancel">
+    <button mat-icon-button class="custom-icon-btn warn" (click)="onCancel()" matTooltip="Cancel">
       <mat-icon fontIcon="cancel" class="header-icon"></mat-icon>
     </button>
   </div>
 </div>
-
 
 
 <form [formGroup]="groupForm" mat-dialog-content>
