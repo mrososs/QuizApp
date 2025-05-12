@@ -5,6 +5,7 @@ import { AllGroups } from '../../model/AllGroups-model';
 import { GroupService } from '../../services/group.service';
 import { UpdateGroupComponent } from '../update-group/update-group.component';
 import { PaginatorComponent } from '../../../../../../../shared/components/paginator/paginator.component';
+import { DeleteGroupComponent } from '../delete-group/delete-group.component';
 
 
 @Component({
@@ -48,5 +49,17 @@ export class ListGroupsComponent implements OnInit {
     });
 
   }
+ openDialogDelete(groupID:string): void {
+    this.groupID= groupID
+    const dialogRef = this.dialog.open(DeleteGroupComponent, {
+      data: {groupID : this.groupID},
+    });
 
+     dialogRef.afterClosed().subscribe(result => {
+      this.getAllGroups()
+      if (result !== undefined) {
+      }
+    });
+
+  }
 }

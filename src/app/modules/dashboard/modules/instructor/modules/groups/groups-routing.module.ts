@@ -7,7 +7,7 @@ import { UpdateGroupComponent } from './components/update-group/update-group.com
 
 const routes: Routes = [
   {path:'' , component : ListGroupsComponent } ,
-  {path:'delete/:groupID' , component : DeleteGroupComponent } ,
+  // {path:'delete/:groupID' , component : DeleteGroupComponent } ,
   // {path:'update/:groupID' , component : UpdateGroupComponent } ,
 ];
 
