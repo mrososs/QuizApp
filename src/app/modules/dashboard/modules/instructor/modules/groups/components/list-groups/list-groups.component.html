@@ -1,4 +1,14 @@
-<button mat-raised-button color="primary" (click)="openAddGroupDialog()">Add Group</button>
+<div class="flex justify-end items-center m-5">
+  <button
+    (click)="openAddGroupDialog()"
+    class="bg-gray-100 text-black hover:bg-black hover:text-white px-4 py-2 rounded flex items-center transition-colors duration-300"
+  >
+    <mat-icon class="mr-2 transition-colors duration-300">add</mat-icon>
+    Add Group
+  </button>
+</div>
+
+
 <div class="border-2 border-opacity-300 rounded-lg m-5 p-5">
   <h2 class="font-medium text-xl">Groups list</h2>
 
