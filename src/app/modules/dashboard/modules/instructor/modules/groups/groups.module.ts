@@ -18,8 +18,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DeleteGroupComponent,
   ],
   imports: [
-    RouterLink,
-    RouterOutlet,
     RouterModule,
     CommonModule,
     GroupsRoutingModule,
@@ -28,15 +26,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
   ],
   exports: [
-    RouterLink,
-    RouterOutlet,
     RouterModule,
     CommonModule,
     GroupsRoutingModule,
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AddGroupComponent,
   ],
 })
 export class GroupsModule {}
