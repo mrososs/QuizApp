@@ -6,6 +6,8 @@ import { StorageService } from '../services/storage.service';
 export const authTokenInterceptor: HttpInterceptorFn = (req, next) => {
   const storage = inject(StorageService);
   const token = storage.getAccessToken();
+  const RefToken = storage.getRefreshToken();
+
 
   // Skip requests to /auth endpoints
   if (req.url.includes('/auth')) {
