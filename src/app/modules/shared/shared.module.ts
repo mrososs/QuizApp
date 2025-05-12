@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { MaterialModule } from './material/material.module';
 
 
 @NgModule({
@@ -14,10 +15,12 @@ import { PaginatorComponent } from './components/paginator/paginator.component';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule
 ],
   exports: [
     CommonModule,
     FormsModule,
+    MaterialModule,
     ReactiveFormsModule,
     PaginatorComponent,
     RouterModule,
