@@ -30,6 +30,7 @@
     [routerLink]="['/instructor/groups']"
       routerLinkActive="active-link"
       [routerLinkActiveOptions]="{ exact: true }"
+      (click)="setPageTitle('Groups')"
       #rlaGroups="routerLinkActive"
       class="flex items-center border-b border-[#00000033] gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
     >
@@ -50,6 +51,7 @@
     <a
       [routerLink]="['/instructor/quizzes']"
       routerLinkActive="active-link"
+      (click)="setPageTitle('Quizzes')"
       [routerLinkActiveOptions]="{ exact: true }"
       #rlaQuizzes="routerLinkActive"
       class="flex items-center border-b border-[#00000033] gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
@@ -71,6 +73,7 @@
     <a
       [routerLink]="['/instructor/results']"
       routerLinkActive="active-link"
+      (click)="setPageTitle('Results')"
       [routerLinkActiveOptions]="{ exact: true }"
       #rlaResults="routerLinkActive"
       class="flex items-center gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
