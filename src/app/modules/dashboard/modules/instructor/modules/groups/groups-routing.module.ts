@@ -6,8 +6,7 @@ import { UpdateGroupComponent } from './components/update-group/update-group.com
 
 
 const routes: Routes = [
-  {path:'' , redirectTo :'list' , pathMatch:'full'} ,
-  {path:'list' , component : ListGroupsComponent } ,
+  {path:'' , component : ListGroupsComponent } ,
   {path:'delete/:groupID' , component : DeleteGroupComponent } ,
   // {path:'update/:groupID' , component : UpdateGroupComponent } ,
 ];
