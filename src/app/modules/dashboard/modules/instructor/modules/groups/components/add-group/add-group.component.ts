@@ -7,7 +7,7 @@ import { GroupService } from '../../services/group.service';
 @Component({
   selector: 'app-add-group',
   templateUrl: './add-group.component.html',
-  styleUrls: ['./add-group.component.scss']
+  styleUrls: ['./add-group.component.scss'],
 })
 export class AddGroupComponent implements OnInit {
   groupForm!: FormGroup;
@@ -22,21 +22,21 @@ export class AddGroupComponent implements OnInit {
   ngOnInit(): void {
     this.groupForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      students: new FormControl([], Validators.required)
+      students: new FormControl([], Validators.required),
     });
 
     this.getStudents();
   }
 
   getStudents(): void {
-  this.groupService.getAllStudentsWithoutGroups().subscribe({
-    next: (res) => {
-      this.studentsList = res; // Assuming the array is returned directly
-    },
-    error: (err) => {
-      console.error('Error fetching students:', err);
-    }
-  });
+    this.groupService.getAllStudentsWithoutGroups().subscribe({
+      next: (res) => {
+        this.studentsList = res; // Assuming the array is returned directly
+      },
+      error: (err) => {
+        console.error('Error fetching students:', err);
+      },
+    });
   }
 
   onSubmit(): void {
@@ -50,7 +50,7 @@ export class AddGroupComponent implements OnInit {
         },
         error: (err) => {
           this._Toastr.error(err.message);
-        }
+        },
       });
     }
   }
