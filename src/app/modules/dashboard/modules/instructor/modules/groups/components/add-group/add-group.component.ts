@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { GroupsService } from '../services/groups.service';
 import { ToastrService } from 'ngx-toastr';
+import { GroupService } from '../../services/group.service';
 
 @Component({
   selector: 'app-add-group',
@@ -15,7 +15,7 @@ export class AddGroupComponent implements OnInit {
 
   constructor(
     private _Toastr: ToastrService,
-    private groupService: GroupsService,
+    private groupService: GroupService,
     private dialogRef: MatDialogRef<AddGroupComponent>
   ) {}
 
@@ -29,7 +29,7 @@ export class AddGroupComponent implements OnInit {
   }
 
   getStudents(): void {
-  this.groupService.getStudents().subscribe({
+  this.groupService.getAllStudentsWithoutGroups().subscribe({
     next: (res) => {
       this.studentsList = res; // Assuming the array is returned directly
     },

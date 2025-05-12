@@ -31,7 +31,8 @@ import { MaterialModule } from '../../../../../shared/material/material.module';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AddGroupComponent
+    AddGroupComponent,
+    MaterialModule
   ],
   exports :[
     RouterLink, 
@@ -42,7 +43,8 @@ import { MaterialModule } from '../../../../../shared/material/material.module';
     SharedModule,
     FormsModule,
     ReactiveFormsModule,
-    AddGroupComponent
+    AddGroupComponent,
+    MaterialModule
   ]
 })
 export class GroupsModule { }

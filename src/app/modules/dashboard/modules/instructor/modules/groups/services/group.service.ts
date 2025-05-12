@@ -17,6 +17,9 @@ export class GroupService {
     return this._http.get<AllGroups[]>(`group`)
   }
 
+  createGroup(data: any): Observable<any> {
+    return this._http.post(`group`, data); 
+  }
   getAllStudentsWithoutGroups():Observable<Students[]>{
     return this._http.get<Students[]>(`student/without-group`)
   }
