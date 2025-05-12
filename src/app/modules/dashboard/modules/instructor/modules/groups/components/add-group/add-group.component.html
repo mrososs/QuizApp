@@ -18,7 +18,7 @@
   <!-- Group Name Styled like Select -->
   <div class="custom-input-wrapper">
     <div class="input-label-box">Group Name</div>
-    <mat-form-field appearance="outline" class="w-100 custom-mat-field">
+    <mat-form-field appearance="fill" class="w-100 custom-mat-field">
       <input matInput placeholder=" " formControlName="name" />
     </mat-form-field>
     <mat-error *ngIf="groupForm.get('name')?.invalid && groupForm.get('name')?.touched">
@@ -29,7 +29,7 @@
   <!-- Select Students -->
   <div class="custom-input-wrapper">
     <div class="input-label-box">Select Students</div>
-    <mat-form-field appearance="outline" class="w-100 custom-mat-field">
+    <mat-form-field appearance="fill" class="w-100 custom-mat-field">
       <mat-select formControlName="students" multiple placeholder=" ">
         <mat-option *ngFor="let student of studentsList" [value]="student._id">
           {{ student.first_name }} {{ student.last_name }}
