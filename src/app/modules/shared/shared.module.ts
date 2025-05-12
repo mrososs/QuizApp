@@ -1,25 +1,29 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { MaterialModule } from './material/material.module';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-PaginatorComponent
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { PaginatorComponent } from './components/paginator/paginator.component';
+import { MaterialModule } from './material/material.module';
 
 
 @NgModule({
   declarations: [
-   PaginatorComponent
+    PaginatorComponent
   ],
   imports: [
-    CommonModule ,
-    RouterModule ,
-    MaterialModule ,
-     FormsModule, ReactiveFormsModule
-  ],
-  exports: [CommonModule, MaterialModule ,RouterModule ,  FormsModule, ReactiveFormsModule ,
-    PaginatorComponent],
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialModule
+],
+  exports: [
+    CommonModule,
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    PaginatorComponent,
+    RouterModule,
+    ],
 })
 export class SharedModule {}

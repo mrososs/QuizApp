@@ -1,6 +1,7 @@
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AddGroupComponent } from '../add-group/add-group.component';
 
-import { Component, inject, OnInit } from '@angular/core';
-import { MatDialog,} from '@angular/material/dialog';
 import { AllGroups } from '../../model/AllGroups-model';
 import { GroupService } from '../../services/group.service';
 import { UpdateGroupComponent } from '../update-group/update-group.component';
@@ -14,11 +15,12 @@ import { PaginatorComponent } from '../../../../../../../shared/components/pagin
   standalone: false,
 
 })
+
 export class ListGroupsComponent implements OnInit {
   allGroups: AllGroups[] = [];
-  groupID:string =''
-  readonly dialog = inject(MatDialog);
-  GroupService = inject(GroupService)
+  groupID:string ='';
+  constructor(private dialog: MatDialog, private GroupService: GroupService) {}
+
 
   ngOnInit() {
     this.getAllGroups();
@@ -35,6 +37,17 @@ export class ListGroupsComponent implements OnInit {
     });
   }
 
+  openAddGroupDialog() {
+  const dialogRef = this.dialog.open(AddGroupComponent, {
+    width: '80%'
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      console.log('Group was added successfully.');
+    }
+  });
+}
    openDialog(groupID:string): void {
     this.groupID= groupID
     const dialogRef = this.dialog.open(UpdateGroupComponent, {

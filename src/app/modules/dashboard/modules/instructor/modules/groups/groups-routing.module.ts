@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListGroupsComponent } from './components/list-groups/list-groups.component';
 import { DeleteGroupComponent } from './components/delete-group/delete-group.component';
-import { UpdateGroupComponent } from './components/update-group/update-group.component';
-
 
 const routes: Routes = [
   {path:'' , component : ListGroupsComponent } ,
