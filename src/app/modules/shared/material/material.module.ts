@@ -3,20 +3,17 @@ import { CommonModule } from '@angular/common';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogTitle,
-} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 const AllMaterial = [
   MatIconModule ,
   MatDialogModule ,
   MatButtonModule ,
-  
-
+  MatSelectModule ,
+  MatFormFieldModule ,
+  MatInputModule
 
 ]
 

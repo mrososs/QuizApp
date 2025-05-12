@@ -9,11 +9,7 @@ const routes: Routes = [
   {path:'' , redirectTo :'list' , pathMatch:'full'} ,
   {path:'list' , component : ListGroupsComponent } ,
   {path:'delete/:groupID' , component : DeleteGroupComponent } ,
-  {path:'update/:groupID' , component : UpdateGroupComponent } ,
-
-
-
-
+  // {path:'update/:groupID' , component : UpdateGroupComponent } ,
 ];
 
 @NgModule({

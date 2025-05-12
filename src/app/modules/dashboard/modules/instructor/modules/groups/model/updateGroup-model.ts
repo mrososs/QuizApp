@@ -1,3 +1,5 @@
+import { Students } from "./students"
+
 // update && get by id
 export interface UpdateGroupRes {
   data : GroupData ,
@@ -9,14 +11,12 @@ export interface GroupData{
    name: string,
    status: string,
     instructor: string,
-    students :students[] ,
+    students :Students[] ,
     max_students: number
 
 }
-export interface students {
-  _id: string,
-  first_name: string,
-  last_name: string,
-  email: string
+export interface updateParams {
+name: string,
+ students: any
 }
 

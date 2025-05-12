@@ -1,3 +1,60 @@
 
-  <button mat-button mat-dialog-close>Close</button>
+<div  class=" p-8 m-2">
+<h2 mat-dialog-title>Update Group :  {{groupName}} </h2>
 
+  <mat-dialog-content>
+
+ <div class="container mx-auto">
+  <div class="custom-input-wrapper">
+    <div class="input-label-box">Group Name</div>
+    <mat-form-field appearance="fill" class="custom-mat-field">
+      <input matInput placeholder=" " [(ngModel)]="groupName" />
+    </mat-form-field>
+  </div>
+  <div class="custom-input-wrapper">
+    <div class="input-label-box">Group Name</div>
+    <mat-form-field appearance="fill" class="custom-mat-field">
+    <mat-select  [(ngModel)]="studentsID" multiple>
+     @for (student of allStudentInSelectMat; track student)
+    {
+    <mat-option
+    [value]="student._id">
+    {{student.first_name }} {{student.last_name}}
+    </mat-option>
+    }
+     </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button (click)="update()" >Update </button>
+   <button mat-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+
+</div>
+
+
+
+
+
+
+    <!-- <label for="">Group Name :</label>
+    <input [(ngModel)]="groupName" >
+ <mat-form-field>
+  <mat-label> Students </mat-label>
+  <mat-select [formControl]="students" multiple>
+
+    @for (student of allStudentInSelectMat; track student)
+    {
+    <mat-option
+    [value]="student._id">
+    {{student.first_name }} {{student.last_name}}
+  </mat-option>
+    }
+
+
+  </mat-select>
+</mat-form-field> -->

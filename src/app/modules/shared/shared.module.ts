@@ -4,19 +4,18 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material/material.module';
 import { RouterModule } from '@angular/router';
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,MatButtonModule,MatIconModule,
-     CommonModule ,
+    CommonModule ,
     RouterModule ,
     MaterialModule ,
-    MatIconModule
+     FormsModule, ReactiveFormsModule
   ],
-  exports: [CommonModule, MatButtonModule, MatIconModule , MaterialModule ,RouterModule , MatIconModule],
+  exports: [CommonModule, MaterialModule ,RouterModule ,  FormsModule, ReactiveFormsModule],
 })
 export class SharedModule {}
