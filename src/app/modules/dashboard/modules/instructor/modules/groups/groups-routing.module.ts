@@ -5,7 +5,7 @@ import { DeleteGroupComponent } from './components/delete-group/delete-group.com
 
 const routes: Routes = [
   {path:'' , component : ListGroupsComponent } ,
-  {path:'delete/:groupID' , component : DeleteGroupComponent } ,
+  // {path:'delete/:groupID' , component : DeleteGroupComponent } ,
   // {path:'update/:groupID' , component : UpdateGroupComponent } ,
 ];
 
