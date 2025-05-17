@@ -1,0 +1,63 @@
+<div class="p-5 m-5">
+  <!-- Add -->
+
+  <div class="flex justify-end items-center m-5">
+  <button
+    (click)="openDialog('', '') "
+    class="bg-gray-100 text-black hover:bg-black
+     hover:text-white px-4 py-2 rounded flex items-center
+      transition-colors duration-300"
+  >
+    <mat-icon class="mr-2 transition-colors duration-300">add</mat-icon>
+    Add Question
+  </button>
+</div>
+
+<!-- ---------- -->
+  <table class="border-separate border-spacing-2 ">
+    <thead>
+      <th >Question Title</th>
+      <th> Question Des</th>
+      <th> Question difficulty level</th>
+      <th> Question Type</th>
+      <th> Actions</th>
+    </thead>
+    <tbody>
+      @for (question of allQuestion; track $index) {
+      <tr>
+        <td class="border border-gray-300  rounded-lg ">{{ question.title}}</td>
+        <td class="border border-gray-300  rounded-lg "> {{ question.description}}</td>
+        <td class="border border-gray-300  rounded-lg "> {{ question.difficulty}}</td>
+        <td class="border border-gray-300  rounded-lg "> {{ question.type}}</td>
+        <td class="border border-gray-300  rounded-lg ">
+          <div class=" flex items-center justify-center">
+               <!-- view -->
+            <button
+            (click)="openDialog(question._id , 'view') "
+             class="hover:cursor-pointer mx-1"
+          > <mat-icon class="mat-18">visibility</mat-icon>
+        </button>
+               <!-- update -->
+         <button
+         (click)="openDialog(question._id , 'edit') "
+         class="hover:cursor-pointer mx-1"
+         >
+          <mat-icon class="mat-18 ">edit_square</mat-icon>
+        </button>
+        <!-- delete -->
+        <button
+        (click)="openDialog(question._id , 'delete') "
+          class="hover:cursor-pointer mx-1"
+          > <mat-icon class="mat-18">delete</mat-icon>
+        </button>
+          </div>
+        </td>
+      </tr>
+    }
+
+    </tbody>
+
+  </table>
+  <app-paginator [length]="length"></app-paginator>
+
+</div>
