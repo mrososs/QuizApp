@@ -12,9 +12,10 @@ export class PaginatorComponent {
 
   @Input() length :number = 30;
   @Input()  pageSize = 10;
+  @Input()  pageIndex = 0;
   @Output() pageChange = new EventEmitter<PageEvent>();
 
-  pageIndex = 0;
+
   pageSizeOptions = [5,7, 10, 15 , 25];
   hidePageSize = true;
   showPageSizeOptions = false;
