@@ -28,12 +28,10 @@
           <mat-icon class="mat-18 ">edit_square</mat-icon>
         </button>
         <!-- delete -->
-        <a
-          class="hover:cursor-pointer mx-1"
-          [routerLink]="['/instructor/groups/delete', group._id]"
-          > <mat-icon class="mat-18">delete</mat-icon>
-        </a>
-
+           <button  class="hover:cursor-pointer mx-1"
+         (click)="openDialogDelete(group._id) ">
+          <mat-icon class="mat-18 ">delete</mat-icon>
+        </button>
 
       </div>
     </div>
