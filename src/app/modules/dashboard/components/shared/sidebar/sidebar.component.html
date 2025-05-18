@@ -112,5 +112,29 @@
       <span class="hidden lg:inline">Results</span>
     </a>
 
+    <!-- Question -->
+
+     <a
+      [routerLink]="['/instructor/question']"
+      routerLinkActive="active-link"
+      (click)="setPageTitle('question')"
+      [routerLinkActiveOptions]="{ exact: true }"
+      #rlaResults="routerLinkActive"
+      class="flex items-center gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
+    >
+    <!-- [ngClass]="rlaResults.isActive ? 'bg-black' : 'bg-[#FFEDDF]'" -->
+      <img
+        [src]="
+          rlaResults.isActive
+            ? 'assets/icons/active_icons/Results icon.svg'
+            : 'assets/icons/Results icon.svg'
+        "
+        alt="question"
+        class="w-6 h-6 p-[3px] rounded-lg"
+
+      />
+      <span class="hidden lg:inline">Questions</span>
+    </a>
+
   </nav>
 </aside>

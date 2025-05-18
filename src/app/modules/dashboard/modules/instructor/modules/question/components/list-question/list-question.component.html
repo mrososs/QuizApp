@@ -1,0 +1,78 @@
+<div class="p-8 ">
+  <!-- title & Add -->
+   <div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-semibold">Bank Of Questions</h2>
+
+    <button
+     (click)="openDialog('', '') "
+    class="
+    border border-black text-black
+    px-4 py-2 rounded-full
+    flex justify-end items-center gap-2
+     hover:bg-gray-800
+     hover:text-white
+     transition-colors duration-300
+     ">
+      <mat-icon class="mr-2 transition-colors duration-300">add</mat-icon>
+      Add Question
+    </button>
+  </div>
+
+<!-- ------  Table -->
+ <div class="md:mx-6">
+  <table
+  class="min-w-full bg-white rounded-lg
+  overflow-hidden shadow-sm border-separate
+   table-auto  border-spacing-y-2 " >
+    <thead >
+      <th class=" rounded-s-lg">Question Title</th>
+      <th> Question Des</th>
+      <th> Question difficulty level</th>
+      <th> Question Type</th>
+      <th class=" rounded-e-lg"> Actions</th>
+    </thead>
+    <tbody class="text-sm " >
+      @for (question of paginatedData; track $index) {
+      <tr class="hover:bg-gray-50">
+        <td >{{ question.title}}</td>
+        <td > {{ question.description}}</td>
+        <td > {{ question.difficulty}}</td>
+        <td > {{ question.type}}</td>
+        <td >
+          <div class=" flex gap-2 items-center justify-center">
+               <!-- view -->
+            <button
+            (click)="openDialog(question._id , 'view') "
+             class="icons"
+          > <mat-icon class="mat-18">visibility</mat-icon>
+        </button>
+               <!-- update -->
+         <button
+         (click)="openDialog(question._id , 'edit') "
+         class="icons"
+         >
+          <mat-icon class="mat-18 ">edit_square</mat-icon>
+        </button>
+        <!-- delete -->
+        <button
+        (click)="openDialog(question._id , 'delete') "
+          class="icons"
+          > <mat-icon class="mat-18">delete</mat-icon>
+        </button>
+          </div>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+  <app-paginator
+  [length]="allQuestion.length"
+  [pageSize]="pageSize"
+  (pageChange)="onPageChange($event)">
+</app-paginator>
+
+ </div>
+</div>
+
+
+

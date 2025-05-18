@@ -171,7 +171,7 @@ openDeleteDialog(studentId: string): void {
 
 openRemoveFromGroupDialog(studentId: string, groupId: string): void {
   this.dialog.open(DeleteSharedComponent, {
-    width: '80%', 
+    width: '80%',
     data: {
       id: studentId,
       groupId: groupId,
@@ -197,7 +197,7 @@ openRemoveFromGroupDialog(studentId: string, groupId: string): void {
     const endIndex = startIndex + this.pageSize;
     this.studentsPerPage = this.allStudent.slice(startIndex, endIndex);
   }
-  onPageChange(event: PageEvent): void {
+  onPageChange(event: any ): void {
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
     this.paginateStudents();

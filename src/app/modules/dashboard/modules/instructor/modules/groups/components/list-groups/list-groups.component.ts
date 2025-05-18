@@ -37,7 +37,7 @@ export class ListGroupsComponent implements OnInit {
       },
     });
   }
-
+// add
   openAddGroupDialog() {
   const dialogRef = this.dialog.open(AddGroupComponent, {
     width: '80%'
@@ -49,6 +49,7 @@ export class ListGroupsComponent implements OnInit {
     }
   });
 }
+// update
    openDialog(groupID:string): void {
     this.groupID= groupID
     const dialogRef = this.dialog.open(UpdateGroupComponent, {
