@@ -31,5 +31,8 @@ export class GroupService {
     return this._http.put<GroupData>(`group/${groupID}` , data)
   }
 
+  deleteGroup(groupID:string  ):Observable<UpdateGroupRes>{
+    return this._http.delete<UpdateGroupRes>(`group/${groupID}` )
+  }
 
 }
