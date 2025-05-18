@@ -64,17 +64,19 @@
           <h3 class="group-title">{{ student.first_name }} {{ student.last_name }}</h3>
           <p class="group-text">{{ student.status }} | {{ student.role }}</p>
         </div>
-        <div class="l-side">
-          <!-- update -->
-           <!-- (click)="openEditDialog(student._id)" -->
-          <button class="hover:cursor-pointer mx-1" >
-            <mat-icon class="mat-18">edit_square</mat-icon>
-          </button>
-          <!-- delete -->
-          <button class="hover:cursor-pointer mx-1">
-            <mat-icon class="mat-18">delete</mat-icon>
-          </button>
-        </div>
+      <div class="l-side">
+        <!-- View -->
+        <button  class="hover:cursor-pointer mx-1"
+         (click)="openDialog(student._id) ">
+          <mat-icon class="mat-18 ">visibility</mat-icon>
+        </button>
+        <!-- delete -->
+        <button  class="hover:cursor-pointer mx-1"
+         (click)="openDialogDelete(student._id) ">
+          <mat-icon class="mat-18 ">delete</mat-icon>
+        </button>
+
+      </div>
       </div>
       }
     </div>
@@ -93,17 +95,19 @@
           <h3 class="group-title">{{ student.first_name }} {{ student.last_name }}</h3>
           <p class="group-text">{{ student.status }} | {{ student.role }}</p>
         </div>
-        <div class="l-side">
-          <!-- update -->
-           <!-- (click)="openEditDialog(student._id)" -->
-          <button class="hover:cursor-pointer mx-1" >
-            <mat-icon class="mat-18">edit_square</mat-icon>
-          </button>
-          <!-- delete -->
-          <button class="hover:cursor-pointer mx-1">
-            <mat-icon class="mat-18">delete</mat-icon>
-          </button>
-        </div>
+      <div class="l-side">
+        <!-- View -->
+        <button  class="hover:cursor-pointer mx-1"
+         (click)="openDialog(student._id) ">
+          <mat-icon class="mat-18 ">visibility</mat-icon>
+        </button>
+        <!-- delete -->
+        <button  class="hover:cursor-pointer mx-1"
+         (click)="openDialogDelete(student._id) ">
+          <mat-icon class="mat-18 ">delete</mat-icon>
+        </button>
+
+      </div>
       </div>
       }
     </div>
@@ -127,17 +131,34 @@
           <h3 class="group-title">{{ group.first_name }} {{ group.last_name }}</h3>
           <p class="group-text">{{ group.status }} | {{ group.role }}</p>
         </div>
-        <div class="l-side">
-          <!-- update -->
-            <!-- (click)="openDialog(group._id)" -->
-          <button class="hover:cursor-pointer mx-1">
-            <mat-icon class="mat-18">edit_square</mat-icon>
-          </button>
-          <!-- delete -->
-          <button class="hover:cursor-pointer mx-1">
-            <mat-icon class="mat-18">delete</mat-icon>
-          </button>
-        </div>
+      <div class="l-side">
+
+
+        <!-- View -->
+
+        <button  class="hover:cursor-pointer mx-1"
+         (click)="openDialog(group._id) ">
+          <mat-icon class="mat-18 ">visibility</mat-icon>
+        </button>
+
+
+
+        <!-- delete -->
+
+        <button class="hover:cursor-pointer mx-1" (click)="openDeleteDialog(group._id)">
+          <mat-icon class="mat-18 text-danger">delete_forever</mat-icon>
+        </button>
+
+
+
+        <!-- delete From Group  -->
+        <button class="hover:cursor-pointer mx-1" (click)="openRemoveFromGroupDialog(group._id, group.group!._id)">
+          <mat-icon class="mat-18 text-warning">group_remove</mat-icon>
+        </button>
+
+
+
+      </div>
       </div>
       }
     </div>

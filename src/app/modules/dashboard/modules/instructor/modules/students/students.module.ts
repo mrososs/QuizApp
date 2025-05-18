@@ -4,10 +4,14 @@ import { CommonModule } from '@angular/common';
 import { StudentsRoutingModule } from './students-routing.module';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { ListStudentsComponent } from './components/list-students/list-students.component';
+import { ViewStudentsComponent } from './components/view-students/view-students.component';
+import { DeleteSharedComponent } from './components/delete-shared/delete-shared.component';
 
 @NgModule({
   declarations: [
-    ListStudentsComponent
+    ListStudentsComponent,
+    ViewStudentsComponent,
+    DeleteSharedComponent
   ],
   imports: [
     CommonModule, 
