@@ -46,6 +46,27 @@
       />
       <span class="hidden lg:inline">Groups</span>
     </a>
+    <!-- Groups -->
+    <a
+    [routerLink]="['/instructor/students']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{ exact: true }"
+      (click)="setPageTitle('Students')"
+      #rlaStudents="routerLinkActive"
+      class="flex items-center border-b border-[#00000033] gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
+    >
+      <img
+        [src]="
+          rlaStudents.isActive
+            ? 'assets/icons/active_icons/Students icon.svg'
+            : 'assets/icons/Students.svg'
+        "
+        alt="Students"
+        class="w-6 h-6 p-[3px] rounded-lg"
+        [ngClass]="rlaStudents.isActive ? 'bg-black' : 'bg-[#FFEDDF]'"
+      />
+      <span class="hidden lg:inline">Students</span>
+    </a>
 
     <!-- Quizzes -->
     <a
