@@ -12,7 +12,7 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { QuestionService } from '../../services/question.service';
 import { Question } from '../../model/question-model';
-import { FormControl, FormGroup , Validator } from '@angular/forms';
+import { FormControl, FormGroup , Validator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-update-question',
@@ -42,14 +42,14 @@ export class AddUpdateQuestionComponent implements OnInit {
   title:new FormControl('' ),
   description:new FormControl('' ),
   options :new FormGroup({
-  A: new FormControl('' ),
-  B:  new FormControl('' ),
-  C:  new FormControl('' ),
-  D:  new FormControl('' ),
+  A: new FormControl('' , [Validators.required ] ),
+  B:  new FormControl('' , [Validators.required ] ),
+  C:  new FormControl('' , [Validators.required ] ),
+  D:  new FormControl('' , [Validators.required ] ),
   }) ,
-  difficulty :new FormControl('' ),
-  answer:new FormControl('' ),
-  type: new FormControl('' ),
+  difficulty :new FormControl('' , [Validators.required ] ),
+  answer:new FormControl('' , [Validators.required ] ),
+  type: new FormControl('' , [Validators.required ] ),
   })
 
   ngOnInit(): void {
@@ -73,7 +73,6 @@ export class AddUpdateQuestionComponent implements OnInit {
 
   }
 
-
   onSubmit():void{
     if(this.editMode){
       this.update()
@@ -81,7 +80,6 @@ export class AddUpdateQuestionComponent implements OnInit {
     else{
       this.addQuestion()
     }
-
   }
   getQuestionByID():void{
     this.QuestionService.getQuestionByID(this.QuestionID).subscribe({

@@ -1,5 +1,10 @@
 
 
+.disabledBtn{
+  @apply  disabled:cursor-not-allowed  disabled:bg-gray-200 disabled:text-gray-400  ;
+}
+
+
 // .custom-dialog-container {
 //  width: auto !important;
 //   max-width: none !important;

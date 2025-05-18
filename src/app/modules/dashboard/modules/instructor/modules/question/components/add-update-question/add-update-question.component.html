@@ -4,7 +4,6 @@
 <div class="p-5 m-5  ">
  <h4> Question </h4>
 <form [formGroup]="QuestionForm" mat-dialog-content>
-
   <!-- title -->
   <div class="custom-input-wrapper">
     <div class="input-label-box">Question Title</div>
@@ -94,8 +93,11 @@
 
     <mat-dialog-actions>
     @if (!viewMode) {
-    <button mat-button
+    <button
+     mat-button
+    [disabled]="QuestionForm.invalid || !QuestionForm.touched "
     (click)="onSubmit()"
+    class="disabledBtn "
      >
       <span> {{editMode? 'Update' :'Add'}}</span>
     </button>
@@ -109,9 +111,11 @@
 
 @if (deleteMode){
 <div class="p-5 m-5">
-  <p> Are you sure you want to delete this Question ? </p>
+  <p> Are you sure you want to delete
+     <span class="text-red-400"> {{QuestionData?.title}} </span>
+      Question?
+   </p>
      <mat-dialog-actions>
-
     <button mat-button
     (click)="delete()"
      >
