@@ -1,4 +1,4 @@
-import { Component, Input, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output} from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 
 @Component({
@@ -12,21 +12,23 @@ export class PaginatorComponent {
 
   @Input() length :number = 30;
   @Input()  pageSize = 10;
-  // length = 30;
-  // pageSize = 10;
+  @Output() pageChange = new EventEmitter<PageEvent>();
+
   pageIndex = 0;
-  pageSizeOptions = [5, 10, 25];
+  pageSizeOptions = [5,7, 10, 15 , 25];
   hidePageSize = true;
   showPageSizeOptions = false;
-  showFirstLastButtons = false;
+  showFirstLastButtons = true;
   disabled = false;
   pageEvent!: PageEvent;
 
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
+    this.pageChange.emit(e); // Emit event to parent
     this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
+
   }
 
     setPageSizeOptions(setPageSizeOptionsInput: string) {
@@ -36,3 +38,4 @@ export class PaginatorComponent {
   }
 
 }
+

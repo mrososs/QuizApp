@@ -5,6 +5,7 @@ import { PaginatorComponent } from '../../../../../../../shared/components/pagin
 import { AddUpdateQuestionComponent } from '../add-update-question/add-update-question.component';
 
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 
 AddUpdateQuestionComponent
 @Component({
@@ -15,7 +16,11 @@ AddUpdateQuestionComponent
 })
 export class ListQuestionComponent {
   allQuestion : Question[] =[]
-   length :number =0
+  paginatedData :  Question[] = [];
+   pageIndex:number  = 0;
+   pageSize:number  = 7 ;
+
+
    constructor(private _QuestionService:QuestionService ,
      private dialog: MatDialog){
     this.getAllQuestions()
@@ -25,7 +30,7 @@ export class ListQuestionComponent {
     this._QuestionService.getAllQuestions().subscribe({
       next:(res)=> {
         this.allQuestion = res
-        this.length=this.allQuestion.length
+        this. updatePaginatedData()
       },
       error:(err)=>{
           console.log(err);
@@ -54,6 +59,18 @@ export class ListQuestionComponent {
      }
 
 
+
+    //  paginator
+  updatePaginatedData() {
+  const start = this.pageIndex * this.pageSize;
+  const end = start + this.pageSize;
+  this.paginatedData = this.allQuestion.slice(start, end);
+}
+onPageChange(event: PageEvent) {
+  this.pageIndex = event.pageIndex;
+  this.pageSize = event.pageSize;
+  this.updatePaginatedData();
+}
 
 
 }
