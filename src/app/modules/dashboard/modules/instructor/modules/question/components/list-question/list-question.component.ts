@@ -37,7 +37,12 @@ export class ListQuestionComponent {
      openDialog(QuestionID :string , status:string): void {
 
        const dialogRef = this.dialog.open(AddUpdateQuestionComponent ,
-         { data: {QuestionID : QuestionID , status : status} }
+         { data: {QuestionID : QuestionID , status : status} ,
+         width: 'auto',
+        maxWidth: 'none',
+        panelClass: 'custom-dialog-container'
+
+        }
       );
 
         dialogRef.afterClosed().subscribe(result => {

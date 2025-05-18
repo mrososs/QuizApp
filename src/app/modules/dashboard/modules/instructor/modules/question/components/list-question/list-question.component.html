@@ -1,63 +1,73 @@
-<div class="p-5 m-5">
-  <!-- Add -->
+<div class="p-8 ">
+  <!-- title & Add -->
+   <div class="flex justify-between items-center mb-4">
+    <h2 class="text-2xl font-semibold">Bank Of Questions</h2>
 
-  <div class="flex justify-end items-center m-5">
-  <button
-    (click)="openDialog('', '') "
-    class="bg-gray-100 text-black hover:bg-black
-     hover:text-white px-4 py-2 rounded flex items-center
-      transition-colors duration-300"
-  >
-    <mat-icon class="mr-2 transition-colors duration-300">add</mat-icon>
-    Add Question
-  </button>
-</div>
+    <button
+     (click)="openDialog('', '') "
+    class="
+    border border-black text-black
+    px-4 py-2 rounded-full
+    flex justify-end items-center gap-2
+     hover:bg-gray-800
+     hover:text-white
+     transition-colors duration-300
+     ">
+      <mat-icon class="mr-2 transition-colors duration-300">add</mat-icon>
+      Add Question
+    </button>
+  </div>
 
-<!-- ---------- -->
-  <table class="border-separate border-spacing-2 ">
-    <thead>
-      <th >Question Title</th>
+<!-- ------  Table -->
+ <div class="md:mx-6">
+  <table
+  class="min-w-full bg-white rounded-lg
+  overflow-hidden shadow-sm border-separate
+   table-auto  border-spacing-y-2 " >
+    <thead >
+      <th class=" rounded-s-lg">Question Title</th>
       <th> Question Des</th>
       <th> Question difficulty level</th>
       <th> Question Type</th>
-      <th> Actions</th>
+      <th class=" rounded-e-lg"> Actions</th>
     </thead>
-    <tbody>
+    <tbody class="text-sm " >
       @for (question of allQuestion; track $index) {
-      <tr>
-        <td class="border border-gray-300  rounded-lg ">{{ question.title}}</td>
-        <td class="border border-gray-300  rounded-lg "> {{ question.description}}</td>
-        <td class="border border-gray-300  rounded-lg "> {{ question.difficulty}}</td>
-        <td class="border border-gray-300  rounded-lg "> {{ question.type}}</td>
-        <td class="border border-gray-300  rounded-lg ">
-          <div class=" flex items-center justify-center">
+      <tr class="hover:bg-gray-50">
+        <td >{{ question.title}}</td>
+        <td > {{ question.description}}</td>
+        <td > {{ question.difficulty}}</td>
+        <td > {{ question.type}}</td>
+        <td >
+          <div class=" flex gap-2 items-center justify-center">
                <!-- view -->
             <button
             (click)="openDialog(question._id , 'view') "
-             class="hover:cursor-pointer mx-1"
+             class="icons"
           > <mat-icon class="mat-18">visibility</mat-icon>
         </button>
                <!-- update -->
          <button
          (click)="openDialog(question._id , 'edit') "
-         class="hover:cursor-pointer mx-1"
+         class="icons"
          >
           <mat-icon class="mat-18 ">edit_square</mat-icon>
         </button>
         <!-- delete -->
         <button
         (click)="openDialog(question._id , 'delete') "
-          class="hover:cursor-pointer mx-1"
+          class="icons"
           > <mat-icon class="mat-18">delete</mat-icon>
         </button>
           </div>
         </td>
       </tr>
     }
-
     </tbody>
-
   </table>
   <app-paginator [length]="length"></app-paginator>
-
+ </div>
 </div>
+
+
+
