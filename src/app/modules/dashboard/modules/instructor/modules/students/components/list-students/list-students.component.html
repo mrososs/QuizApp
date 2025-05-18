@@ -55,12 +55,28 @@
 <!-- All Students Template -->
 <ng-template #allStudentsTemplate>
   <div class="border-2 border-opacity-300 rounded-lg m-5 p-5">
-    <h3 class="font-bold text-lg mb-5">Students List</h3>
-    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
-      <div *ngFor="let student of studentsPerPage" class="p-4 border rounded">
-        <h3 class="font-bold text-lg">{{ student.first_name }} {{ student.last_name }}</h3>
-        <p class="text-sm text-gray-500">{{ student.status }} | {{ student.role }}</p>
+    <h2 class="font-medium text-xl">Students List</h2>
+
+    <div class="groups my-4 mx-2 grid sm:grid-cols-1 md:grid-cols-2 gap-5">
+      @for (student of studentsPerPage; track $index) {
+      <div class="group">
+        <div class="r-side">
+          <h3 class="group-title">{{ student.first_name }} {{ student.last_name }}</h3>
+          <p class="group-text">{{ student.status }} | {{ student.role }}</p>
+        </div>
+        <div class="l-side">
+          <!-- update -->
+           <!-- (click)="openEditDialog(student._id)" -->
+          <button class="hover:cursor-pointer mx-1" >
+            <mat-icon class="mat-18">edit_square</mat-icon>
+          </button>
+          <!-- delete -->
+          <button class="hover:cursor-pointer mx-1">
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </div>
       </div>
+      }
     </div>
   </div>
 </ng-template>
@@ -68,34 +84,66 @@
 <!-- Students Without Group Template -->
 <ng-template #studentsWithoutGroupTemplate>
   <div class="border-2 border-opacity-300 rounded-lg m-5 p-5">
-    <h3 class="font-bold text-lg mb-5">Students Without Group</h3>
-    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
-      <div *ngFor="let student of studentsPerPage" class="p-4 border rounded">
-        <h3 class="font-bold text-lg">{{ student.first_name }} {{ student.last_name }}</h3>
-        <p class="text-sm text-gray-500">{{ student.status }} | {{ student.role }}</p>
+    <h2 class="font-medium text-xl">Students Without Group</h2>
+
+    <div class="groups my-4 mx-2 grid sm:grid-cols-1 md:grid-cols-2 gap-5">
+      @for (student of studentsPerPage; track $index) {
+      <div class="group">
+        <div class="r-side">
+          <h3 class="group-title">{{ student.first_name }} {{ student.last_name }}</h3>
+          <p class="group-text">{{ student.status }} | {{ student.role }}</p>
+        </div>
+        <div class="l-side">
+          <!-- update -->
+           <!-- (click)="openEditDialog(student._id)" -->
+          <button class="hover:cursor-pointer mx-1" >
+            <mat-icon class="mat-18">edit_square</mat-icon>
+          </button>
+          <!-- delete -->
+          <button class="hover:cursor-pointer mx-1">
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </div>
       </div>
+      }
     </div>
   </div>
 </ng-template>
 
 <!-- Groups Template -->
 <ng-template #groupsTemplate>
-
   <div class="border-2 border-opacity-300 rounded-lg m-5 p-5">
-  <h3
-    class="mb-5 font-bold text-black transition-all duration-500 ease-in-out opacity-100 animate-fade-in"
-    *ngIf="selectedGroupName"
-  >
-    Group Name: <span class="font-semibold text-green-400">{{ selectedGroupName }}</span>
-  </h3>
-    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-5">
-      <div *ngFor="let student of studentsPerPage" class="p-4 border rounded">
-        <h3 class="font-bold text-lg">{{ student.first_name }} {{ student.last_name }}</h3>
-        <p class="text-sm text-gray-500">{{ student.status }} | {{ student.role }}</p>
+    <h3
+      class="mb-5 font-bold text-black transition-all duration-500 ease-in-out opacity-100 animate-fade-in"
+      *ngIf="selectedGroupName"
+    >
+      Group Name: <span class="font-semibold text-green-400">{{ selectedGroupName }}</span>
+    </h3>
+
+    <div class="groups my-4 mx-2 grid sm:grid-cols-1 md:grid-cols-2 gap-5">
+      @for (group of studentsPerPage; track $index) {
+      <div class="group">
+        <div class="r-side">
+          <h3 class="group-title">{{ group.first_name }} {{ group.last_name }}</h3>
+          <p class="group-text">{{ group.status }} | {{ group.role }}</p>
+        </div>
+        <div class="l-side">
+          <!-- update -->
+            <!-- (click)="openDialog(group._id)" -->
+          <button class="hover:cursor-pointer mx-1">
+            <mat-icon class="mat-18">edit_square</mat-icon>
+          </button>
+          <!-- delete -->
+          <button class="hover:cursor-pointer mx-1">
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </div>
       </div>
+      }
     </div>
   </div>
 </ng-template>
+
 
 <app-paginator
   [length]="allStudent.length"

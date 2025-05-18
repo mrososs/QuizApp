@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Students } from '../../groups/model/students';
-import { AllStudent } from '../model/AllStudent.model';
+import { AllStudent, StudentGroup } from '../model/AllStudent.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class StudentsService {
     return this._http.get<Students[]>(`student/without-group`);
   }
 
-  getAllGroups(): Observable<AllStudent[]> {
-    return this._http.get<AllStudent[]>(`group`);
-  }
+getAllGroups(): Observable<StudentGroup[]> {
+  return this._http.get<StudentGroup[]>(`group`);
+}
 }
