@@ -25,12 +25,18 @@ getAllGroups(): Observable<StudentGroup[]> {
 getStudentById(id: string): Observable<any> {
   return this._http.get<any>(`student/${id}`);
 }
+
 deleteStudent(id: string): Observable<any> {  
   return this._http.delete<any>(`student/${id}`);
 }
+
 removeStudentFromGroup(groupId: string, studentId: string) {
-  console.log(`Deleting student ${studentId} from group ${groupId}`);
-  const url = `student/${groupId}/${studentId}`;
-  return this._http.delete(url);
+  return this._http.delete(`student/${studentId}/${groupId}`);
 }
+
+updateStudentGroup(studentId: string, groupId: string) {
+  return this._http.put(`student/${studentId}/${groupId}`, {});
+}
+
+
 }

@@ -156,7 +156,10 @@
           <mat-icon class="mat-18 text-warning">group_remove</mat-icon>
         </button>
 
-
+        <!-- Update Group -->
+        <button class="hover:cursor-pointer mx-1" (click)="openUpdateGroupDialog(group)">
+          <mat-icon class="mat-18 text-primary">group_add</mat-icon>
+        </button>
 
       </div>
       </div>
@@ -167,7 +170,7 @@
 
 
 <app-paginator
-  [length]="allStudent.length"
+  [length]="students.length"
   [pageSize]="pageSize"
   [pageIndex]="pageIndex"
   (page)="onPageChange($event)">
