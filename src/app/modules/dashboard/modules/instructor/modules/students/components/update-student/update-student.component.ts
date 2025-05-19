@@ -44,19 +44,28 @@ export class UpdateStudentComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onUpdate() {
-    if (!this.selectedGroupId) {
-      this.toastr.warning('Please select a group');
-      return;
-    }
-    this._studentService.updateStudentGroup(this.student._id, this.selectedGroupId).subscribe({
-      next: () => {
-        this.toastr.success('Student updated successfully');
-        this.dialogRef.close(true);
-      },
-      error: () => {
-        this.toastr.error('Failed to update student');
-      }
-    });
+onUpdate() {
+  if (!this.selectedGroupId) {
+    this.toastr.warning('Please select a group');
+    return;
   }
+
+  const isNew = !this.currentGroupId;
+
+  const request = isNew
+    ? this._studentService.addStudentToGroup(this.student._id, this.selectedGroupId)
+    : this._studentService.updateStudentGroup(this.student._id, this.selectedGroupId);
+
+  request.subscribe({
+    next: () => {
+      const action = isNew ? 'added to' : 'updated in';
+      this.toastr.success(`Student successfully ${action} group`);
+      this.dialogRef.close(true);
+    },
+    error: () => {
+      this.toastr.error('Failed to update student group');
+    }
+  });
+}
+
 }

@@ -16,7 +16,8 @@
     (click)="setTab('no-group')"
     [ngClass]="{
       'bg-black text-white': selectedTab === 'no-group',
-      'bg-transparent text-black border border-black': selectedTab !== 'no-group'
+      'bg-transparent text-black border border-black':
+        selectedTab !== 'no-group'
     }"
     class="px-4 py-2 rounded mx-2 flex items-center transition-all duration-300 transform hover:-translate-y-1 hover:opacity-80 cursor-pointer"
   >
@@ -39,14 +40,24 @@
       </option>
     </select>
 
-    <div class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-white">
-      <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+    <div
+      class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-white"
+    >
+      <svg
+        class="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19 9l-7 7-7-7"
+        />
       </svg>
     </div>
   </div>
-
-
 </div>
 
 <!-- dynamic content -->
@@ -61,22 +72,27 @@
       @for (student of studentsPerPage; track $index) {
       <div class="group">
         <div class="r-side">
-          <h3 class="group-title">{{ student.first_name }} {{ student.last_name }}</h3>
+          <h3 class="group-title">
+            {{ student.first_name }} {{ student.last_name }}
+          </h3>
           <p class="group-text">{{ student.status }} | {{ student.role }}</p>
         </div>
-      <div class="l-side">
-        <!-- View -->
-        <button  class="hover:cursor-pointer mx-1"
-         (click)="openDialog(student._id) ">
-          <mat-icon class="mat-18 ">visibility</mat-icon>
-        </button>
-        <!-- delete -->
-        <button  class="hover:cursor-pointer mx-1"
-         (click)="openDialogDelete(student._id) ">
-          <mat-icon class="mat-18 ">delete</mat-icon>
-        </button>
-
-      </div>
+        <div class="l-side">
+          <!-- View -->
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openDialog(student._id)"
+          >
+            <mat-icon class="mat-18">visibility</mat-icon>
+          </button>
+          <!-- delete -->
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openDialogDelete(student._id)"
+          >
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </div>
       </div>
       }
     </div>
@@ -92,22 +108,35 @@
       @for (student of studentsPerPage; track $index) {
       <div class="group">
         <div class="r-side">
-          <h3 class="group-title">{{ student.first_name }} {{ student.last_name }}</h3>
+          <h3 class="group-title">
+            {{ student.first_name }} {{ student.last_name }}
+          </h3>
           <p class="group-text">{{ student.status }} | {{ student.role }}</p>
         </div>
-      <div class="l-side">
-        <!-- View -->
-        <button  class="hover:cursor-pointer mx-1"
-         (click)="openDialog(student._id) ">
-          <mat-icon class="mat-18 ">visibility</mat-icon>
-        </button>
-        <!-- delete -->
-        <button  class="hover:cursor-pointer mx-1"
-         (click)="openDialogDelete(student._id) ">
-          <mat-icon class="mat-18 ">delete</mat-icon>
-        </button>
-
-      </div>
+        <div class="l-side">
+          <!--add to grouo -->
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openUpdateGroupDialog(student)"
+            title="Add to Group"
+          >
+            <mat-icon class="mat-18 text-primary">group_add</mat-icon>
+          </button>
+          <!-- View -->
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openDialog(student._id)"
+          >
+            <mat-icon class="mat-18">visibility</mat-icon>
+          </button>
+          <!-- delete -->
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openDialogDelete(student._id)"
+          >
+            <mat-icon class="mat-18">delete</mat-icon>
+          </button>
+        </div>
       </div>
       }
     </div>
@@ -121,57 +150,64 @@
       class="mb-5 font-bold text-black transition-all duration-500 ease-in-out opacity-100 animate-fade-in"
       *ngIf="selectedGroupName"
     >
-      Group Name: <span class="font-semibold text-green-400">{{ selectedGroupName }}</span>
+      Group Name:
+      <span class="font-semibold text-green-400">{{ selectedGroupName }}</span>
     </h3>
 
     <div class="groups my-4 mx-2 grid sm:grid-cols-1 md:grid-cols-2 gap-5">
       @for (group of studentsPerPage; track $index) {
       <div class="group">
         <div class="r-side">
-          <h3 class="group-title">{{ group.first_name }} {{ group.last_name }}</h3>
+          <h3 class="group-title">
+            {{ group.first_name }} {{ group.last_name }}
+          </h3>
           <p class="group-text">{{ group.status }} | {{ group.role }}</p>
         </div>
-      <div class="l-side">
+        <div class="l-side">
+          <!-- View -->
 
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openDialog(group._id)"
+          >
+            <mat-icon class="mat-18">visibility</mat-icon>
+          </button>
 
-        <!-- View -->
+          <!-- delete -->
 
-        <button  class="hover:cursor-pointer mx-1"
-         (click)="openDialog(group._id) ">
-          <mat-icon class="mat-18 ">visibility</mat-icon>
-        </button>
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openDeleteDialog(group._id)"
+          >
+            <mat-icon class="mat-18 text-danger">delete_forever</mat-icon>
+          </button>
 
+          <!-- delete From Group  -->
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openRemoveFromGroupDialog(group._id, group.group!._id)"
+          >
+            <mat-icon class="mat-18 text-warning">group_remove</mat-icon>
+          </button>
 
-
-        <!-- delete -->
-
-        <button class="hover:cursor-pointer mx-1" (click)="openDeleteDialog(group._id)">
-          <mat-icon class="mat-18 text-danger">delete_forever</mat-icon>
-        </button>
-
-
-
-        <!-- delete From Group  -->
-        <button class="hover:cursor-pointer mx-1" (click)="openRemoveFromGroupDialog(group._id, group.group!._id)">
-          <mat-icon class="mat-18 text-warning">group_remove</mat-icon>
-        </button>
-
-        <!-- Update Group -->
-        <button class="hover:cursor-pointer mx-1" (click)="openUpdateGroupDialog(group)">
-          <mat-icon class="mat-18 text-primary">group_add</mat-icon>
-        </button>
-
-      </div>
+          <!-- Update Group -->
+          <button
+            class="hover:cursor-pointer mx-1"
+            (click)="openUpdateGroupDialog(group)"
+          >
+            <mat-icon class="mat-18 text-primary">group_add</mat-icon>
+          </button>
+        </div>
       </div>
       }
     </div>
   </div>
 </ng-template>
 
-
 <app-paginator
   [length]="students.length"
   [pageSize]="pageSize"
   [pageIndex]="pageIndex"
-  (page)="onPageChange($event)">
+  (page)="onPageChange($event)"
+>
 </app-paginator>

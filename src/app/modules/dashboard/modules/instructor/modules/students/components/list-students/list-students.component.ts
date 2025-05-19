@@ -230,24 +230,28 @@ export class ListStudentsComponent implements OnInit {
     });
   }
 
-  openUpdateGroupDialog(student: any): void {
-    const dialogRef = this.dialog.open(UpdateStudentComponent, {
-      width: '80%',
-      data: {
-        student: student,
-        currentGroupId: student.group?._id,
-      },
-    });
+ openUpdateGroupDialog(student: any): void {
+  const dialogRef = this.dialog.open(UpdateStudentComponent, {
+    width: '80%',
+    data: {
+      student: student,
+      currentGroupId: student.group?._id 
+    }
+  });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.loadGroups(); // لتحديث بيانات الجروبات
-        setTimeout(() => {
-          location.reload();
-        }, 300);
-      }
-    });
+ dialogRef.afterClosed().subscribe(result => {
+  if (result) {
+    this.loadGroups();
+    if (this.selectedTab === 'groups') {
+      this.refreshSelectedGroupStudents();
+    } else if (this.selectedTab === 'no-group') {
+      this.getAllStudentsWithoutGroups();
+    }
   }
+});
+
+}
+
 
   refreshStudentList(): void {
     switch (this.selectedTab) {
