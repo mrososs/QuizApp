@@ -9,10 +9,9 @@ import { UpdateStudentComponent } from '../update-student/update-student.compone
 @Component({
   selector: 'app-list-students',
   templateUrl: './list-students.component.html',
-  styleUrls: ['./list-students.component.scss']
+  styleUrls: ['./list-students.component.scss'],
 })
 export class ListStudentsComponent implements OnInit {
-
   selectedTab: 'all' | 'no-group' | 'groups' = 'all';
 
   students: AllStudent[] = [];
@@ -26,26 +25,63 @@ export class ListStudentsComponent implements OnInit {
   pageSize = 8;
   pageIndex = 0;
 
-  @ViewChild('allStudentsTemplate', { static: true }) allStudentsTemplate!: TemplateRef<any>;
-  @ViewChild('studentsWithoutGroupTemplate', { static: true }) studentsWithoutGroupTemplate!: TemplateRef<any>;
-  @ViewChild('groupsTemplate', { static: true }) groupsTemplate!: TemplateRef<any>;
+  @ViewChild('allStudentsTemplate', { static: true })
+  allStudentsTemplate!: TemplateRef<any>;
+  @ViewChild('studentsWithoutGroupTemplate', { static: true })
+  studentsWithoutGroupTemplate!: TemplateRef<any>;
+  @ViewChild('groupsTemplate', { static: true })
+  groupsTemplate!: TemplateRef<any>;
 
-  constructor(private _StudentService: StudentsService, private dialog: MatDialog) {}
-
+  constructor(
+    private _StudentService: StudentsService,
+    private dialog: MatDialog
+  ) {}
   ngOnInit(): void {
     this.loadGroups();
-    this.getAllStudents();
+
+    const savedTab = localStorage.getItem('selectedTab') as
+      | 'all'
+      | 'no-group'
+      | 'groups';
+    const savedGroupId = localStorage.getItem('selectedGroupId');
+
+    if (savedTab === 'groups' && savedGroupId) {
+      this.selectedTab = 'groups';
+      this.selectedGroupId = savedGroupId;
+
+      this._StudentService.getAllStudents().subscribe({
+        next: (res) => {
+          this.students = res;
+          this.allStudentsOriginal = res;
+
+          const selectedGroup = this.groups.find((g) => g._id === savedGroupId);
+          if (selectedGroup) {
+            this.selectedGroupName = selectedGroup.name;
+            this.students = this.allStudentsOriginal.filter(
+              (s) =>
+                selectedGroup.students && selectedGroup.students.includes(s._id)
+            );
+            this.paginateStudents();
+          }
+        },
+      });
+    } else if (savedTab === 'no-group') {
+      this.setTab('no-group');
+    } else {
+      this.setTab('all');
+    }
   }
 
   loadGroups(): void {
     this._StudentService.getAllGroups().subscribe({
-      next: (res) => this.groups = res,
-      error: (err) => console.error('Error loading groups:', err)
+      next: (res) => (this.groups = res),
+      error: (err) => console.error('Error loading groups:', err),
     });
   }
 
   setTab(tab: 'all' | 'no-group' | 'groups'): void {
     this.selectedTab = tab;
+    localStorage.setItem('selectedTab', tab);
 
     if (tab === 'all') {
       this.getAllStudents();
@@ -56,10 +92,14 @@ export class ListStudentsComponent implements OnInit {
 
   getTemplate(): TemplateRef<any> {
     switch (this.selectedTab) {
-      case 'all': return this.allStudentsTemplate;
-      case 'no-group': return this.studentsWithoutGroupTemplate;
-      case 'groups': return this.groupsTemplate;
-      default: return this.allStudentsTemplate;
+      case 'all':
+        return this.allStudentsTemplate;
+      case 'no-group':
+        return this.studentsWithoutGroupTemplate;
+      case 'groups':
+        return this.groupsTemplate;
+      default:
+        return this.allStudentsTemplate;
     }
   }
 
@@ -71,8 +111,22 @@ export class ListStudentsComponent implements OnInit {
         this.pageIndex = 0;
         this.paginateStudents();
       },
-      error: (err) => console.error(err)
+      error: (err) => console.error(err),
     });
+  }
+  refreshSelectedGroupStudents(): void {
+    const selectedGroup = this.groups.find(
+      (g) => g._id === this.selectedGroupId
+    );
+    if (!selectedGroup) return;
+
+    this.selectedGroupName = selectedGroup.name;
+
+    this.students = this.allStudentsOriginal.filter(
+      (s) => selectedGroup.students && selectedGroup.students.includes(s._id)
+    );
+
+    this.paginateStudents();
   }
 
   getAllStudentsWithoutGroups(): void {
@@ -82,28 +136,31 @@ export class ListStudentsComponent implements OnInit {
         this.pageIndex = 0;
         this.paginateStudents();
       },
-      error: (err) => console.error(err)
+      error: (err) => console.error(err),
     });
   }
-
   onGroupSelected(event: Event): void {
     const groupId = (event.target as HTMLSelectElement).value;
 
     if (!groupId) {
       this.setTab('all');
       this.selectedGroupName = '';
+      localStorage.removeItem('selectedGroupId');
       return;
     }
 
-    const selectedGroup = this.groups.find(g => g._id === groupId);
+    const selectedGroup = this.groups.find((g) => g._id === groupId);
     if (!selectedGroup) return;
 
     this.selectedGroupId = groupId;
     this.selectedGroupName = selectedGroup.name;
     this.selectedTab = 'groups';
 
+    localStorage.setItem('selectedTab', 'groups');
+    localStorage.setItem('selectedGroupId', groupId);
+
     this.students = this.allStudentsOriginal.filter(
-      s => selectedGroup.students && selectedGroup.students.includes(s._id)
+      (s) => selectedGroup.students && selectedGroup.students.includes(s._id)
     );
 
     this.pageIndex = 0;
@@ -113,17 +170,20 @@ export class ListStudentsComponent implements OnInit {
   openDialog(studentId: string): void {
     this.dialog.open(ViewStudentsComponent, {
       width: '80%',
-      data: { id: studentId, mode: 'view' }
+      data: { id: studentId, mode: 'view' },
     });
   }
 
   openDialogDelete(studentId: string): void {
-    this.dialog.open(ViewStudentsComponent, {
-      width: '80%',
-      data: { id: studentId, mode: 'delete' }
-    }).afterClosed().subscribe(result => {
-      if (result) this.refreshStudentList();
-    });
+    this.dialog
+      .open(ViewStudentsComponent, {
+        width: '80%',
+        data: { id: studentId, mode: 'delete' },
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result) this.refreshStudentList();
+      });
   }
 
   openDeleteDialog(studentId: string): void {
@@ -131,12 +191,22 @@ export class ListStudentsComponent implements OnInit {
       width: '80%',
       data: {
         id: studentId,
-        mode: 'delete'
-      }
+        mode: 'delete',
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) this.refreshStudentList();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        if (this.selectedTab === 'groups') {
+          this.loadGroups();
+          setTimeout(() => this.refreshSelectedGroupStudents(), 300);
+        } else {
+          this.refreshStudentList();
+        }
+        setTimeout(() => {
+          location.reload();
+        }, 300);
+      }
     });
   }
 
@@ -146,12 +216,17 @@ export class ListStudentsComponent implements OnInit {
       data: {
         id: studentId,
         groupId: groupId,
-        mode: 'deleteFromGroup'
-      }
+        mode: 'deleteFromGroup',
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) this.refreshStudentList();
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.refreshStudentList();
+        setTimeout(() => {
+          location.reload();
+        }, 300);
+      }
     });
   }
 
@@ -160,12 +235,17 @@ export class ListStudentsComponent implements OnInit {
       width: '80%',
       data: {
         student: student,
-        currentGroupId: student.group?._id
-      }
+        currentGroupId: student.group?._id,
+      },
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.loadGroups(); // لتحديث بيانات الجروبات
+        setTimeout(() => {
+          location.reload();
+        }, 300);
+      }
     });
   }
 

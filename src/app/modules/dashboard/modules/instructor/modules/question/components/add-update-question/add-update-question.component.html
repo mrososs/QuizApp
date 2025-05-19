@@ -1,129 +1,158 @@
-
-
 @if (!deleteMode) {
-<div class="p-5 m-5  ">
- <h4> Question </h4>
-<form [formGroup]="QuestionForm" mat-dialog-content>
-  <!-- title -->
-  <div class="custom-input-wrapper">
-    <div class="input-label-box">Question Title</div>
-    <mat-form-field appearance="fill" class="w-100 custom-mat-field">
-      <input matInput placeholder="" formControlName="title" />
-    </mat-form-field>
-    <mat-error *ngIf="QuestionForm.get('title')?.invalid && QuestionForm.get('title')?.touched">
-      Question title is required
-    </mat-error>
-  </div>
-   <!-- Des -->
-  <div class="custom-input-wrapper">
-    <div class="input-label-box">Q description</div>
-    <mat-form-field appearance="fill" class="w-100 custom-mat-field">
-      <textarea matInput placeholder="" formControlName="description" ></textarea>
-    </mat-form-field>
-    <mat-error *ngIf="QuestionForm.get('description')?.invalid && QuestionForm.get('description')?.touched">
-      Question description is required
-    </mat-error>
-  </div>
-  <!-- Answer -->
+<div class="p-5 m-5">
+  <h4>Question</h4>
+  <form [formGroup]="QuestionForm" mat-dialog-content>
+    <!-- title -->
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">Question Title</div>
+      <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+        <input matInput placeholder="" formControlName="title" />
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          QuestionForm.get('title')?.invalid &&
+          QuestionForm.get('title')?.touched
+        "
+      >
+        Question title is required
+      </mat-error>
+    </div>
+    <!-- Des -->
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">Q description</div>
+      <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+        <textarea
+          matInput
+          placeholder=""
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+      <mat-error
+        *ngIf="
+          QuestionForm.get('description')?.invalid &&
+          QuestionForm.get('description')?.touched
+        "
+      >
+        Question description is required
+      </mat-error>
+    </div>
+    <!-- Answer -->
 
     <form formGroupName="options">
-   <div class="grid md:grid-cols-2 sm:grid-cols-1  items-center justify-center ">
-    @for (answer of optionsKeys; track $index) {
-     <div class="custom-input-wrapper">
-    <div class="input-label-box"> {{answer}} </div>
-    <mat-form-field appearance="fill" class="w-100 custom-mat-field">
-      <input matInput placeholder="" [formControlName]="answer" />
-    </mat-form-field>
-    <mat-error *ngIf="QuestionForm.get('answer')?.invalid && QuestionForm.get('answer')?.touched">
-      answer is required
-    </mat-error>
-  </div>
-    }
-     </div>
-  </form>
+      <div
+        class="grid md:grid-cols-2 sm:grid-cols-1 items-center justify-center"
+      >
+        @for (answer of optionsKeys; track $index) {
+        <div class="custom-input-wrapper">
+          <div class="input-label-box">{{ answer }}</div>
+          <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+            <input matInput placeholder="" [formControlName]="answer" />
+          </mat-form-field>
+          <mat-error
+            *ngIf="
+              QuestionForm.get('answer')?.invalid &&
+              QuestionForm.get('answer')?.touched
+            "
+          >
+            answer is required
+          </mat-error>
+        </div>
+        }
+      </div>
+    </form>
 
+    <div class="grid md:grid-cols-3 sm:grid-cols-1">
+      <!-- Right Answer -->
+      <div class="custom-input-wrapper">
+        <div class="input-label-box">Right Answer</div>
+        <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+          <mat-select formControlName="answer" placeholder=" ">
+            <mat-option *ngFor="let answer of optionsKeys" [value]="answer">
+              {{ answer }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-error
+          *ngIf="
+            QuestionForm.get('answer')?.invalid &&
+            QuestionForm.get('answer')?.touched
+          "
+        >
+          right answer is required
+        </mat-error>
+      </div>
 
-  <div class="grid md:grid-cols-3 sm:grid-cols-1   ">
-    <!-- Right Answer -->
-         <div class="custom-input-wrapper">
-    <div class="input-label-box"> Right Answer</div>
-      <mat-form-field appearance="fill" class="w-100 custom-mat-field">
-      <mat-select formControlName="answer"  placeholder=" ">
-        <mat-option *ngFor="let answer of optionsKeys" [value]="answer">
-          {{answer}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-error *ngIf="QuestionForm.get('answer')?.invalid && QuestionForm.get('answer')?.touched">
-      right answer is required
-    </mat-error>
-  </div>
-
-    <!-- category type -->
-         <div class="custom-input-wrapper">
-    <div class="input-label-box">Difficulty level</div>
-    <mat-form-field appearance="fill" class="w-100 custom-mat-field">
-      <mat-select formControlName="type"  placeholder=" ">
-        <mat-option *ngFor="let type of categoryType" [value]="type">
-          {{type}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-error *ngIf="QuestionForm.get('type')?.invalid && QuestionForm.get('type')?.touched">
-      type is required
-    </mat-error>
-  </div>
-    <!--  difficulty -->
-     <div class="custom-input-wrapper">
-    <div class="input-label-box">Difficulty level</div>
-    <mat-form-field appearance="fill" class="w-100 custom-mat-field">
-      <mat-select formControlName="difficulty"  placeholder=" ">
-        <mat-option *ngFor="let difficulty of DifficultyLevel" [value]="difficulty">
-          {{difficulty}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-error *ngIf="QuestionForm.get('difficulty')?.invalid && QuestionForm.get('difficulty')?.touched">
-      difficulty is required
-    </mat-error>
-  </div>
-
-  </div>
-
+      <!-- category type -->
+      <div class="custom-input-wrapper">
+        <div class="input-label-box">Question Type</div>
+        <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+          <mat-select formControlName="type" placeholder=" ">
+            <mat-option *ngFor="let type of categoryType" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-error
+          *ngIf="
+            QuestionForm.get('type')?.invalid &&
+            QuestionForm.get('type')?.touched
+          "
+        >
+          type is required
+        </mat-error>
+      </div>
+      <!--  difficulty -->
+      <div class="custom-input-wrapper">
+        <div class="input-label-box">Difficulty level</div>
+        <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+          <mat-select formControlName="difficulty" placeholder=" ">
+            <mat-option
+              *ngFor="let difficulty of DifficultyLevel"
+              [value]="difficulty"
+            >
+              {{ difficulty }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-error
+          *ngIf="
+            QuestionForm.get('difficulty')?.invalid &&
+            QuestionForm.get('difficulty')?.touched
+          "
+        >
+          difficulty is required
+        </mat-error>
+      </div>
+    </div>
 
     <mat-dialog-actions>
-    @if (!viewMode) {
-    <button
-     mat-button
-    [disabled]="QuestionForm.invalid || !QuestionForm.touched "
-    (click)="onSubmit()"
-    class="disabledBtn "
-     >
-      <span> {{editMode? 'Update' :'Add'}}</span>
-    </button>
-  }
-   <button mat-button mat-dialog-close>Close</button>
-  </mat-dialog-actions>
-
-</form>
+      @if (!viewMode) {
+      <button
+        mat-button
+        [disabled]="QuestionForm.invalid || !QuestionForm.touched"
+        (click)="onSubmit()"
+        class="disabledBtn"
+      >
+        <span> {{ editMode ? "Update" : "Add" }}</span>
+      </button>
+      }
+      <button mat-button mat-dialog-close>Close</button>
+    </mat-dialog-actions>
+  </form>
 </div>
-}
-
-@if (deleteMode){
+} @if (deleteMode){
 <div class="p-5 m-5">
-  <p> Are you sure you want to delete
-     <span class="text-red-400"> {{QuestionData.title}} </span>
-      Question?
-   </p>
-     <mat-dialog-actions>
-    <button mat-button
-    (click)="delete()"
-     >
+  <p>
+    Are you sure you want to delete
+    <span class="text-red-400"> {{ QuestionData.title }} </span>
+    Question?
+  </p>
+  <mat-dialog-actions>
+    <button mat-button (click)="delete()">
       <span> Delete </span>
     </button>
 
-   <button mat-button mat-dialog-close>Close</button>
+    <button mat-button mat-dialog-close>Close</button>
   </mat-dialog-actions>
-
 </div>
 }
