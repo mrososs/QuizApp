@@ -1,0 +1,42 @@
+<!-- Dialog Header -->
+<div class="dialog-header">
+  <div class="dialog-title">
+    <h2>Update Student Group</h2>
+  </div>
+
+  <div class="button-group">
+    <button mat-icon-button color="custom-icon-btn warn" (click)="onUpdate()">
+        <mat-icon fontIcon="check_circle" class="header-icon"></mat-icon>
+    </button>
+    <button mat-icon-button class="custom-icon-btn warn" (click)="onCancel()" matTooltip="Close">
+        <mat-icon fontIcon="cancel" class="header-icon"></mat-icon>
+    </button>
+  </div>
+</div>
+
+
+<div class="p-5">
+  <mat-dialog-content>
+    <div class="container mx-auto">
+
+      <div class="custom-input-wrapper">
+        <div class="input-label-box">Student Name</div>
+        <mat-form-field appearance="fill" class="custom-mat-field">
+          <input matInput [value]="student?.first_name + ' ' + student?.last_name" disabled />
+        </mat-form-field>
+      </div>
+
+
+      <div class="custom-input-wrapper">
+        <div class="input-label-box">Select Group</div>
+        <mat-form-field appearance="fill" class="custom-mat-field">
+          <mat-select [(ngModel)]="selectedGroupId">
+            <mat-option *ngFor="let group of allGroups" [value]="group._id">
+              {{ group.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </mat-dialog-content>
+</div>
