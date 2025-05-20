@@ -5,11 +5,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { MaterialModule } from './material/material.module';
+import { DeleteComponent } from './components/delete/delete.component';
+
 
 
 @NgModule({
   declarations: [
-    PaginatorComponent
+    PaginatorComponent ,
+    DeleteComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +26,7 @@ import { MaterialModule } from './material/material.module';
     MaterialModule,
     ReactiveFormsModule,
     PaginatorComponent,
+    DeleteComponent ,
     RouterModule,
     ],
 })
