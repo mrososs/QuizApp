@@ -1,1 +1,75 @@
-<p>quiz-dashboard works!</p>
+<div class="grid grid-cols-4 gap-5 p-5 bg-gray-50 min-h-screen">
+<div class="col-span-2 grid grid-cols-2 gap-5 w-full">
+
+  <!-- Set up new quiz button -->
+  <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center justify-center h-40 cursor-pointer hover:shadow-lg hover:-translate-y-0.5 transition-all">
+    <div class="flex items-center justify-center w-16 h-16 mb-4">
+      <img src="assets/icons/new quiz icon.png" alt="">
+    </div>
+    <span class="font-large font-bold text-base text-gray-800">Set up a new quiz</span>
+  </div>
+
+  <!-- Question Bank button -->
+  <div class="bg-white rounded-lg shadow p-6 flex flex-col items-center justify-center h-40 cursor-pointer hover:shadow-lg hover:-translate-y-0.5 transition-all">
+    <div class="flex items-center justify-center w-16 h-16 mb-4">
+      <img src="assets/icons/Vault icon.png" alt="">
+    </div>
+    <span class="font-large font-bold text-base text-gray-800">Question Bank</span>
+  </div>
+</div>
+  
+<div class="col-span-2 flex flex-col gap-5">
+<!-- Upcoming Quizzes Section -->
+<div class="bg-white rounded-lg shadow p-5">
+<h2 class="text-lg font-medium text-gray-800 mb-5">Upcoming quizzes</h2>
+<div class="flex flex-col gap-4">
+<!-- Quiz Card 1 -->
+<div class="top-five-student-card mt-5">
+    <div class="flex gap-[-10px]">
+        <img src="assets/images/Quiz img.png" alt="Student Image" class="" />
+        <div class="top-five-student-card__text py-8 px-10 -translate-x-3">
+            <div class="flex justify-between items-center">
+                <div class="flex flex-col gap-2">
+                    <h1 class="font-bold">Introduction to computer programming</h1>
+                    <div class="text-sm text-gray-600 mb-2">12/03/2023 | 09:00 AM</div>
+                    <div class="flex justify-between items-center text-xs text-gray-600">
+                        <span>No. of student's enrolled: 32</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quiz Card 2 -->
+<div class="top-five-student-card">
+    <div class="flex gap-[-10px]">
+        <img src="assets/images/Quiz img.png" alt="Student Image" class="" />
+        <div class="top-five-student-card__text py-8 px-10 -translate-x-3">
+            <div class="flex justify-between items-center">
+                <div class="flex flex-col gap-2">
+                    <h1 class="font-bold">Psychology 101</h1>
+                    <div class="text-sm text-gray-600 mb-2">27/03/2023 | 12:00 PM</div>
+                    <div class="flex justify-between items-center text-xs text-gray-600">
+                        <span>No. of student's enrolled: 17</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+<!-- Completed Quizzes Section -->
+<div class="bg-white rounded-lg shadow p-5">
+    <div class="flex justify-between items-center mb-5">
+    <h2 class="text-lg font-medium text-gray-800">Completed Quizzes</h2>
+    <button mat-button class="text-green-500 flex items-center">
+        Results
+        <mat-icon class="ml-1 text-base">arrow_forward</mat-icon>
+    </button>
+    </div>
+</div>
+</div>
+</div>
