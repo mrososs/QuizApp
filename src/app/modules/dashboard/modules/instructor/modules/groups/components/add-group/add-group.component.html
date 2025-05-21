@@ -31,12 +31,12 @@
     <mat-form-field appearance="fill" class="custom-mat-field">
       <input matInput placeholder=" " formControlName="name" />
     </mat-form-field>
-    <!-- <mat-error
-      *ngIf="groupForm.get('name')?.invalid && groupForm.get('name')?.touched"
-    >
-      Group name is required
-    </mat-error> -->
   </div>
+  <mat-error
+    *ngIf="groupForm.get('name')?.invalid && groupForm.get('name')?.touched"
+  >
+    Group name is required
+  </mat-error>
 
   <!-- Select Students -->
   <div class="custom-input-wrapper">
@@ -48,12 +48,12 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <!-- <mat-error
-      *ngIf="
-        groupForm.get('students')?.invalid && groupForm.get('students')?.touched
-      "
-    >
-      At least one student must be selected
-    </mat-error> -->
   </div>
+  <mat-error
+    *ngIf="
+      groupForm.get('students')?.invalid && groupForm.get('students')?.touched
+    "
+  >
+    At least one student must be selected
+  </mat-error>
 </form>
