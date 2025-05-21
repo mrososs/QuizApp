@@ -1,12 +1,7 @@
-import { Component, Inject, inject,  OnInit } from '@angular/core';
+import { Component,  inject,  OnInit } from '@angular/core';
 import {
   MAT_DIALOG_DATA,
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
   MatDialogRef,
-  MatDialogTitle,
 } from '@angular/material/dialog';
 
 import { ToastrService } from 'ngx-toastr';
@@ -32,11 +27,10 @@ export class AddUpdateQuestionComponent implements OnInit {
   editMode : boolean =false
   viewMode : boolean =false
   addMode : boolean =false
-  deleteMode: boolean =false
   QuestionData !: Question
   optionsKeys  :string[]=[]
   categoryType :string[]=['FE' , 'BE']
-  DifficultyLevel :string[]=[ 'easy','medium' ,'entry' ,'hard' ]
+  DifficultyLevel :string[]=[ 'easy','medium' ,'hard' ]
 
   QuestionForm :FormGroup = new FormGroup({
   title:new FormControl('' ),
@@ -63,9 +57,6 @@ export class AddUpdateQuestionComponent implements OnInit {
    if(this.status === 'view'){
       this.viewMode =true
       this.QuestionForm.disable()
-    }
-    if(this.status === 'delete'){
-      this.deleteMode =true
     }
     else{
       this.addMode=true
@@ -130,23 +121,6 @@ export class AddUpdateQuestionComponent implements OnInit {
    this.QuestionForm.patchValue(this.QuestionData)
  }
 
- delete():void{
-   this.QuestionService.deleteQuestion(this.QuestionID ).subscribe({
-        next:(res)=> {
-        console.log(res);
-         this.ToastrService.success( res.message)
-      },
-      error:(err)=>{
-          console.log(err);
-      },
-      complete:()=>{
-        this.ToastrService.success('Question deleted Successfully')
-        this.onNoClick()
-      },
-
-    })
-
- }
  onNoClick(): void {
     this.dialogRef.close();
   }

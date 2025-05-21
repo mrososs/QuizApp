@@ -1,6 +1,27 @@
-@if (!deleteMode) {
-<div class="p-5 m-5">
-  <h4>Question</h4>
+<div class="Add-Update ">
+
+<div class="dialog-header">
+  <div class="dialog-title">
+    <h2> {{viewMode? 'View' : editMode? 'Update' : 'Add new '}} Question</h2>
+  </div>
+  <div class="button-group">
+    <button
+     mat-icon-button
+      class="custom-icon-btn"
+       type="submit"
+      [disabled]="QuestionForm.invalid || !QuestionForm.touched"
+        (click)="onSubmit()"
+        matTooltip="Save">
+      <mat-icon fontIcon="check_circle" class="header-icon"></mat-icon>
+    </button>
+    <button mat-icon-button
+    class="custom-icon-btn warn " mat-dialog-close matTooltip="Cancel">
+      <mat-icon fontIcon="cancel" class="header-icon"></mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="mx-6  my-2 sm:mx-3">
   <form [formGroup]="QuestionForm" mat-dialog-content>
     <!-- title -->
     <div class="custom-input-wrapper">
@@ -60,7 +81,6 @@
         }
       </div>
     </form>
-
     <div class="grid md:grid-cols-3 sm:grid-cols-1">
       <!-- Right Answer -->
       <div class="custom-input-wrapper">
@@ -124,35 +144,6 @@
         </mat-error>
       </div>
     </div>
-
-    <mat-dialog-actions>
-      @if (!viewMode) {
-      <button
-        mat-button
-        [disabled]="QuestionForm.invalid || !QuestionForm.touched"
-        (click)="onSubmit()"
-        class="disabledBtn"
-      >
-        <span> {{ editMode ? "Update" : "Add" }}</span>
-      </button>
-      }
-      <button mat-button mat-dialog-close>Close</button>
-    </mat-dialog-actions>
   </form>
 </div>
-} @if (deleteMode){
-<div class="p-5 m-5">
-  <p>
-    Are you sure you want to delete
-    <span class="text-red-400"> {{ QuestionData.title }} </span>
-    Question?
-  </p>
-  <mat-dialog-actions>
-    <button mat-button (click)="delete()">
-      <span> Delete </span>
-    </button>
-
-    <button mat-button mat-dialog-close>Close</button>
-  </mat-dialog-actions>
 </div>
-}
