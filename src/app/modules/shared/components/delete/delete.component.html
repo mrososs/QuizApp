@@ -1,0 +1,39 @@
+
+
+<div class="dialog-header">
+  <div class="dialog-title">
+    <h2 >Delete </h2>
+  </div>
+  <div class="button-group">
+    <button
+     mat-icon-button
+     class="custom-icon-btn"
+     (click)="deleteAction()"
+      matTooltip="Delete"
+      >
+      <mat-icon fontIcon="delete" class="header-icon"></mat-icon>
+    </button>
+    <button
+     mat-icon-button
+      class="custom-icon-btn warn"
+      (click)="onCancel()" matTooltip="Close">
+      <mat-icon fontIcon="cancel" class="header-icon"></mat-icon>
+    </button>
+  </div>
+</div>
+
+
+<div mat-dialog-content class=" px-6 py-3 bg-white">
+  <p
+class="p-3 mb-3 font-semibold text-lg text-center">
+  Are you sure you want to delete this Item?
+</p>
+
+  <div class=" flex items-center justify-center m-4">
+    <img src="../../../../../assets/images/Delete.png" class="w-3/4" alt="">
+  </div>
+
+
+
+
+</div>
