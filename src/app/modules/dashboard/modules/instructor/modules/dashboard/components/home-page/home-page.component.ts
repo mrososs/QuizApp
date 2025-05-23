@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { HomepageService } from '../../services/homepage.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { IUpcomingQuizzes } from '../../models/upcoming-5-quizzes.model';
@@ -17,6 +17,8 @@ export class HomePageComponent implements OnInit {
   studentsSignal = toSignal(this._homePageSerivce.getTopStudents(), {
     initialValue: [] as ITopStudents[],
   });
+  reversedQuizzes = computed(() => [...this.quizzesSignal()].reverse());
+
   constructor() {
     effect(() => {
       console.log('Upcoming Quizzes: ', this.quizzesSignal());
