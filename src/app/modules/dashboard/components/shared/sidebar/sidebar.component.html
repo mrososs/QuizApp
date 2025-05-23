@@ -7,6 +7,8 @@
     <a
       [routerLink]="['/instructor/Homepage']"
       routerLinkActive="active-link"
+            (click)="setPageTitle('Dashboard')"
+
       [routerLinkActiveOptions]="{ exact: true }"
       #rlaDashboard="routerLinkActive"
       class="flex items-center border-b border-[#00000033] gap-4 px-4 py-2 w-full text-black font-medium hover:bg-white transition"
