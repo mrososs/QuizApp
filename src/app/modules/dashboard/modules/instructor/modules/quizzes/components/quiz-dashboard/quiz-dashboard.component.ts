@@ -40,6 +40,11 @@ constructor(private _QuizzService: QuizzService) { }
       maxHeight: '80vh',
       panelClass: 'centered-dialog',
     });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.GetUpcoming();
+      }
+    });
   }
   GetCompleted() {
     this._QuizzService.getCompletedQuizzes().subscribe({
