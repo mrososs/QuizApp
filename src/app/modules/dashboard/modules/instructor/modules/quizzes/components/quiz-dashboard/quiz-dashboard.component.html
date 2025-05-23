@@ -41,11 +41,17 @@
                     <h1>No. of students enrolled: {{ quiz.participants }}</h1>
                   </div>
                 </div>
-                <div class="flex items-center">
+                <div class="flex items-center ">
                   <button class="quiz-open-btn">
                     Open
                     <span class="quiz-open-btn__dot"></span>
                   </button>
+
+                   <button class="mx-2 "
+                    [routerLink]="['/instructor/quizzes/details' , quiz._id]">
+                    <mat-icon class="text-base">arrow_forward</mat-icon>
+                  </button>
+
                 </div>
               </div>
             </div>
@@ -85,7 +91,8 @@
               <td class="hidden md:table-cell">{{ question.type }}</td>
               <td>
                 <div class="action-btns">
-                  <button class="icons">
+                  <button class="icons"
+                  [routerLink]="['/instructor/quizzes/details' , question._id]" >
                     <mat-icon class="mat-18">visibility</mat-icon>
                   </button>
                 </div>

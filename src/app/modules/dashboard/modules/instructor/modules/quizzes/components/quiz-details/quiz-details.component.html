@@ -1,0 +1,144 @@
+<div class=" w-3/4 m-auto mt-7 p-5 border border-3  shadow-sm rounded ">
+  <h3 class="text-lg font-extrabold text-black mb-4 "> {{QuizDetails.title}}</h3>
+  <!-- schedule -->
+    <div class=" flex items-center my-3">
+      <mat-icon class="mat-18">calendar_month</mat-icon>
+      <span class=" me-4 ms-2"> {{QuizDetails.schadule | date:'d/M/yyyy':'UTC' }} </span>
+       <mat-icon class="mat-18">schedule</mat-icon>
+      <span class="  me-4 ms-2"> {{QuizDetails.schadule | date:'H:mm':'UTC' }} </span>
+
+    </div>
+<!-- status -->
+       <div class="my-2">
+        <p >Status :
+          <span class=" font-light "
+          [ngClass]="QuizDetails.status==='closed' ? 'text-red-700':'text-green-400' "
+         >{{QuizDetails.status}}
+          </span>
+         </p>
+        </div>
+
+  <form class=""  [formGroup]="QuizForm">
+
+      <!-- Duration -->
+          <div class="custom-input-wrapper">
+      <div class="input-label-box">Duration</div>
+      <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+        <input matInput placeholder="" formControlName="duration" />
+      </mat-form-field>
+      </div>
+
+       <!-- questions_number -->
+           <div class="custom-input-wrapper">
+      <div class="input-label-box">number of questions </div>
+      <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+        <input matInput placeholder="" formControlName="questions_number" />
+      </mat-form-field>
+      </div>
+
+       <!-- score_per_question -->
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">score per question</div>
+      <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+        <input matInput placeholder="" formControlName="score_per_question" />
+      </mat-form-field>
+    </div>
+
+    <!-- Des -->
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">Description</div>
+      <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+        <textarea
+          matInput
+          placeholder=""
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+    </div>
+         <!-- type -->
+    <div class="custom-input-wrapper">
+        <div class="input-label-box">Question Type</div>
+        <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+          <mat-select formControlName="type" placeholder=" ">
+            <mat-option *ngFor="let type of ['FE' , 'BE']" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- Actions  -->
+      <div class=" flex items-center justify-start">
+        @if (QuizDetails.status==='open' ) {
+
+        @if (!editMode) {
+             <button
+      (click)="editQuiz()"
+    class="
+    border border-green-500 text-green-500
+    px-4 py-2 rounded-full mx-2
+    flex justify-center items-center gap-1
+     hover:bg-green-500
+     hover:text-white
+     transition-colors duration-300
+     disabled:cursor-not-allowed
+     disabled:opacity-80
+     ">
+      <mat-icon class="mr-2 transition-colors duration-300">edit</mat-icon>
+      Edit
+    </button>
+        }
+
+    @if (editMode) {
+          <button
+      (click)="updateQuiz()"
+    class="
+    border border-green-500 text-green-500
+    px-4 py-2 rounded-full mx-2
+    flex justify-center items-center gap-1
+     hover:bg-green-500
+     hover:text-white
+     transition-colors duration-300
+     disabled:cursor-not-allowed
+     disabled:opacity-80
+     ">
+      <mat-icon class="mr-2 transition-colors duration-300">edit</mat-icon>
+      Update
+    </button>
+
+
+    }
+       }
+       <!-- delete -->
+    <button
+    (click)="openDeleteDialog(quizId)"
+    class="
+    border border-red-700 text-red-700
+    px-4 py-2 rounded-full mx-2
+    flex justify-center items-center gap-1
+     hover:bg-red-700
+     hover:text-white
+     transition-colors duration-300
+     ">
+      <mat-icon class="mr-2 transition-colors duration-300">delete</mat-icon>
+      Delete
+    </button>
+      </div>
+
+
+
+  </form>
+
+</div>
+
+
+<!-- ------------------------ -->
+    <!-- <div class="custom-input-wrapper">
+        <div class="input-label-box">score per questions</div>
+        <mat-form-field appearance="fill" class="w-100 custom-mat-field">
+          <mat-select formControlName="score_per_question" placeholder=" ">
+            <mat-option *ngFor="let score_per_question of ['2' ,'5' ,'10'  ]" [value]="score_per_question">
+              {{ score_per_question }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
