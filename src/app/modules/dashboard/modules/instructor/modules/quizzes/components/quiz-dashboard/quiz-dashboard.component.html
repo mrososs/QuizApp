@@ -2,12 +2,12 @@
   <!-- Left Top Buttons -->
   <div class="left-top-buttons">
     <div class="button-card" (click)="openAddQuizDialog()">
-      <div class="button-icon-container" >
+      <div class="button-icon-container">
         <img src="assets/icons/new quiz icon.png" alt="New Quiz Icon" />
       </div>
       <span class="button-text">Set up a new quiz</span>
     </div>
-    <div class="button-card">
+    <div class="button-card" [routerLink]="['/instructor/question']">
       <div class="button-icon-container">
         <img src="assets/icons/Vault icon.png" alt="Vault Icon" />
       </div>
@@ -20,7 +20,10 @@
     <div class="upcoming-section">
       <h2 class="upcoming-section__title">Upcoming quizzes</h2>
       <div class="flex flex-col gap-4">
-        <div *ngFor="let quiz of quizzes" class="upcoming-quiz-card top-five-student-card">
+        <div
+          *ngFor="let quiz of quizzes"
+          class="upcoming-quiz-card top-five-student-card"
+        >
           <div class="quiz-card">
             <img
               src="assets/images/Quiz img.png"
@@ -32,7 +35,7 @@
                 <div class="quiz-card__details">
                   <div>
                     <h1 class="font-bold">{{ quiz.title }}</h1>
-                    <p>{{ quiz.schadule | date: 'dd/MM/yyyy | hh:mm a' }}</p>
+                    <p>{{ quiz.schadule | date : "dd/MM/yyyy | hh:mm a" }}</p>
                   </div>
                   <div>
                     <h1>No. of students enrolled: {{ quiz.participants }}</h1>
@@ -72,7 +75,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let question of completedQuizzes; let i = index" class="hover:bg-gray-50">
+            <tr
+              *ngFor="let question of completedQuizzes; let i = index"
+              class="hover:bg-gray-50"
+            >
               <td class="max-w-0 truncate">{{ question.title }}</td>
               <td>{{ question.status }}</td>
               <td class="hidden md:table-cell">{{ question.difficulty }}</td>
