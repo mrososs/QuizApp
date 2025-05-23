@@ -5,12 +5,14 @@ import { QuizzesRoutingModule } from './quizzes-routing.module';
 import { QuizDashboardComponent } from './components/quiz-dashboard/quiz-dashboard.component';
 import { SharedModule } from '../../../../../shared/shared.module';
 import { AddQuizzDialogComponent } from './components/add-quizz-dialog/add-quizz-dialog.component';
+import { CodeDialogComponent } from './components/code-dialog/code-dialog.component';
 
 
 @NgModule({
   declarations: [
     QuizDashboardComponent,
-    AddQuizzDialogComponent
+    AddQuizzDialogComponent,
+    CodeDialogComponent
   ],
   imports: [
     CommonModule,
