@@ -1,0 +1,153 @@
+<div class="dialog-header">
+  <div class="dialog-title">
+    <h2>Set up a new Quiz</h2>
+  </div>
+  <div class="button-group">
+    <button
+      mat-icon-button
+      class="custom-icon-btn"
+      [disabled]="addQuiz.invalid"
+      (click)="onSubmit()"
+      matTooltip="Save"
+    >
+      <mat-icon fontIcon="check_circle" class="header-icon"></mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="custom-icon-btn warn"
+      matTooltip="Cancel"
+      (click)="onCancel()"
+    >
+      <mat-icon fontIcon="cancel" class="header-icon"></mat-icon>
+    </button>
+  </div>
+</div>
+
+<form [formGroup]="addQuiz" mat-dialog-content class="">
+  <!-- Group Name Styled like Select -->
+  <h1>Details</h1>
+  <div class="custom-input-wrapper">
+    <div class="input-label-box">Title</div>
+    <mat-form-field appearance="fill" class="custom-mat-field">
+      <input matInput placeholder="" formControlName="title" />
+    </mat-form-field>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">Duration ( in minutes )</div>
+      <mat-form-field appearance="fill" class="custom-mat-field">
+        <mat-select formControlName="duration">
+          <mat-option *ngFor="let time of durations" [value]="time">{{
+            time
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">No. of questions</div>
+      <mat-form-field appearance="fill" class="custom-mat-field">
+        <mat-select formControlName="questions_number">
+          <mat-option *ngFor="let count of questions" [value]="count">{{
+            count
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">Score per question</div>
+      <mat-form-field appearance="fill" class="custom-mat-field">
+        <mat-select formControlName="score_per_question">
+          <mat-option *ngFor="let score of scores" [value]="score">{{
+            score
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="custom-input-wrapper h-32">
+    <div class="input-label-box h-full flex justify-center items-center">
+      Description
+    </div>
+    <mat-form-field appearance="fill" class="w-100 h-full custom-mat-field">
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        formControlName="description"
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="4"
+        cdkAutosizeMaxRows="10"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <div class="custom-input-wrapper">
+    <div class="input-label-box">Schedule</div>
+    <div class="flex gap-3">
+      <div>
+        <mat-form-field>
+          <mat-label>Choose a date</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="schedule_date"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <input
+            type="text"
+            matInput
+            [matTimepicker]="timepicker"
+            formControlName="schedule_time"
+          />
+          <mat-timepicker-toggle
+            matSuffix
+            [for]="timepicker"
+          ></mat-timepicker-toggle>
+          <mat-timepicker #timepicker></mat-timepicker>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">Difficulty level</div>
+      <mat-form-field appearance="fill" class="custom-mat-field">
+        <mat-select formControlName="difficulty">
+          <mat-option *ngFor="let level of difficultyLevels" [value]="level">
+            {{ level }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">Category type</div>
+      <mat-form-field appearance="fill" class="custom-mat-field">
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let cat of categoryList" [value]="cat">
+            {{ cat }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="custom-input-wrapper">
+      <div class="input-label-box">Group name</div>
+      <mat-form-field appearance="fill" class="custom-mat-field w-full">
+        <mat-label>Group</mat-label>
+        <mat-select formControlName="group">
+          <ng-container *ngIf="group()?.length">
+            <mat-option *ngFor="let grp of group()" [value]="grp._id">
+              {{ grp.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</form>

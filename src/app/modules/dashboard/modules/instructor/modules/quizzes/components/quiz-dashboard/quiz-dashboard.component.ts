@@ -1,17 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { IUpcomingQuizzes } from '../../../dashboard/models/upcoming-5-quizzes.model';
 import { QuizzService } from '../../services/quizz.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddQuizzDialogComponent } from '../add-quizz-dialog/add-quizz-dialog.component';
 
 @Component({
   selector: 'app-quiz-dashboard',
   standalone: false,
   templateUrl: './quiz-dashboard.component.html',
-  styleUrl: './quiz-dashboard.component.scss'
+  styleUrl: './quiz-dashboard.component.scss',
 })
 export class QuizDashboardComponent implements OnInit {
 completedQuizzes: any[] = [];
 quizzes: IUpcomingQuizzes[] = [];
 
+ private _dialog = inject(MatDialog);
 
 constructor(private _QuizzService: QuizzService) { }
 
@@ -29,6 +32,15 @@ constructor(private _QuizzService: QuizzService) { }
       }
     });
   } 
+    openAddQuizDialog() {
+    const dialogRef = this._dialog.open(AddQuizzDialogComponent, {
+      width: '80vw',
+      height: '80vh',
+      maxWidth: '80vw',
+      maxHeight: '80vh',
+      panelClass: 'centered-dialog',
+    });
+  }
   GetCompleted() {
     this._QuizzService.getCompletedQuizzes().subscribe({
       next: (data) => {

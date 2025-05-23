@@ -6,28 +6,31 @@ import { RouterModule } from '@angular/router';
 import { PaginatorComponent } from './components/paginator/paginator.component';
 import { MaterialModule } from './material/material.module';
 import { DeleteComponent } from './components/delete/delete.component';
-
-
+import {
+  MatNativeDateTimeModule,
+  MatTimepickerModule,
+} from '@dhutaryan/ngx-mat-timepicker';
 
 @NgModule({
-  declarations: [
-    PaginatorComponent ,
-    DeleteComponent
-  ],
+  declarations: [PaginatorComponent, DeleteComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
-],
+    MaterialModule,
+    MatTimepickerModule,
+    MatNativeDateTimeModule,
+  ],
   exports: [
     CommonModule,
+    MatTimepickerModule,
+    MatNativeDateTimeModule,
     FormsModule,
     MaterialModule,
     ReactiveFormsModule,
     PaginatorComponent,
-    DeleteComponent ,
+    DeleteComponent,
     RouterModule,
-    ],
+  ],
 })
 export class SharedModule {}
