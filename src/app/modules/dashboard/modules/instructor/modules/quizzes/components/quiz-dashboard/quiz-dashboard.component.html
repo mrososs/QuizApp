@@ -41,17 +41,18 @@
                     <h1>No. of students enrolled: {{ quiz.participants }}</h1>
                   </div>
                 </div>
-                <div class="flex items-center ">
+                <div class="flex items-center">
                   <button class="quiz-open-btn">
                     Open
                     <span class="quiz-open-btn__dot"></span>
                   </button>
 
-                   <button class="mx-2 "
-                    [routerLink]="['/instructor/quizzes/details' , quiz._id]">
+                  <button
+                    class="mx-2"
+                    [routerLink]="['/instructor/quizzes/details', quiz._id]"
+                  >
                     <mat-icon class="text-base">arrow_forward</mat-icon>
                   </button>
-
                 </div>
               </div>
             </div>
@@ -65,7 +66,7 @@
       <div class="completed-header">
         <h2 class="completed-title">Completed Quizzes</h2>
         <div class="completed-actions">
-          <button>Results</button>
+          <button [routerLink]="['/instructor/results']">Results</button>
           <mat-icon class="text-base">arrow_forward</mat-icon>
         </div>
       </div>
@@ -91,8 +92,10 @@
               <td class="hidden md:table-cell">{{ question.type }}</td>
               <td>
                 <div class="action-btns">
-                  <button class="icons"
-                  [routerLink]="['/instructor/quizzes/details' , question._id]" >
+                  <button
+                    class="icons"
+                    [routerLink]="['/instructor/quizzes/details', question._id]"
+                  >
                     <mat-icon class="mat-18">visibility</mat-icon>
                   </button>
                 </div>

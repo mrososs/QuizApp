@@ -11,12 +11,12 @@ import { AddQuizzDialogComponent } from '../add-quizz-dialog/add-quizz-dialog.co
   styleUrl: './quiz-dashboard.component.scss',
 })
 export class QuizDashboardComponent implements OnInit {
-completedQuizzes: any[] = [];
-quizzes: IUpcomingQuizzes[] = [];
+  completedQuizzes: any[] = [];
+  quizzes: IUpcomingQuizzes[] = [];
 
- private _dialog = inject(MatDialog);
+  private _dialog = inject(MatDialog);
 
-constructor(private _QuizzService: QuizzService) { }
+  constructor(private _QuizzService: QuizzService) {}
 
   ngOnInit() {
     this.GetUpcoming();
@@ -25,14 +25,14 @@ constructor(private _QuizzService: QuizzService) { }
   GetUpcoming() {
     this._QuizzService.getUpcomingQuizzes().subscribe({
       next: (data) => {
-        this.quizzes = data.slice(0, 2);
+        this.quizzes = data.reverse().slice(0, 2);
       },
       error: (err) => {
         console.error('Error fetching quizzes:', err);
-      }
+      },
     });
-  } 
-    openAddQuizDialog() {
+  }
+  openAddQuizDialog() {
     const dialogRef = this._dialog.open(AddQuizzDialogComponent, {
       width: '80vw',
       height: '80vh',
@@ -53,7 +53,7 @@ constructor(private _QuizzService: QuizzService) { }
       },
       error: (err) => {
         console.error('Error loading completed quizzes:', err);
-      }
+      },
     });
-  } 
+  }
 }
