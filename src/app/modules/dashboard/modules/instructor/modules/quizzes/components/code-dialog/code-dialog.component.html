@@ -1,0 +1,25 @@
+<div class="dialog-header">
+  <div class="dialog-title">
+    <h2>Quiz Code</h2>
+  </div>
+  <div class="button-group">
+    <button
+      mat-icon-button
+      class="custom-icon-btn warn"
+      matTooltip="Cancel"
+      (click)="onCancel()"
+    >
+      <mat-icon fontIcon="cancel" class="header-icon"></mat-icon>
+    </button>
+  </div>
+</div>
+<div class="text-center">
+  <h2>Quiz Created Successfully!</h2>
+  <p>Your quiz code is:</p>
+  <div class="code-box">
+    <strong>{{ data.code }}</strong>
+    <button mat-icon-button (click)="copyCode()" matTooltip="Copy Code">
+      <mat-icon>content_copy</mat-icon>
+    </button>
+  </div>
+</div>

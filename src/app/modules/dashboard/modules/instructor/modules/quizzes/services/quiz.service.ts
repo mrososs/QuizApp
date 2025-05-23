@@ -1,26 +1,29 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Quiz , UpdateQuiz } from '../model/quiz';
-Observable
-
-
+import { inject, Injectable } from '@angular/core';
+import { AllGroups } from '../../groups/model/AllGroups-model';
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
-
-  constructor(private http:HttpClient) { }
+ private _http = inject(HttpClient);
 
   getQuizById(id:string):Observable<Quiz>{
-    return this.http.get<Quiz>(`quiz/${id}`)
+    return this._http.get<Quiz>(`quiz/${id}`)
   }
   updateQuiz(id:string , data:any):Observable<UpdateQuiz>{
-    return this.http.put<UpdateQuiz>(`quiz/${id}` , data )
+    return this._http.put<UpdateQuiz>(`quiz/${id}` , data )
   }
    deleteQuiz(id:string):Observable<UpdateQuiz>{
-    return this.http.delete<UpdateQuiz>(`quiz/${id}`)
+    return this._http.delete<UpdateQuiz>(`quiz/${id}`)
   }
 
 
+  getGroups(): Observable<AllGroups[]> {
+    return this._http.get<AllGroups[]>('group');
+  }
+  addQuizz(quizData: Quiz): Observable<Quiz> {
+    return this._http.post<Quiz>('quiz', quizData);
+  }
 }

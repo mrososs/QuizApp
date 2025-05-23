@@ -1,0 +1,134 @@
+/* Container Grid */
+.dashboard-container {
+  @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 p-3 md:p-5 bg-gray-50 min-h-screen;
+}
+
+/* Left Top Buttons Container */
+.left-top-buttons {
+  @apply col-span-1 md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5 w-full;
+}
+
+.button-card {
+  @apply bg-white rounded-lg shadow p-6 flex flex-col items-center justify-center h-40 cursor-pointer hover:shadow-lg hover:-translate-y-0.5 transition-all;
+}
+
+.button-icon-container {
+  @apply flex items-center justify-center w-16 h-16 mb-4;
+}
+
+.button-text {
+@apply text-lg font-bold text-base text-gray-800;
+}
+
+/* Right Side Container */
+.right-side {
+  @apply col-span-1 md:col-span-2 flex flex-col gap-3;
+}
+
+/* Upcoming Section */
+.upcoming-section {
+  @apply bg-white rounded-lg shadow p-3;
+}
+.upcoming-quiz-card {
+  @apply border border-gray-100 rounded-lg mb-2 bg-white shadow-sm;
+}
+.upcoming-section__title {
+  @apply text-lg font-bold text-black mb-3;
+}
+
+.quiz-card {
+  @apply flex flex-col sm:flex-row gap-2;
+}
+
+.quiz-img {
+  @apply w-full sm:w-auto sm:block hidden rounded-md object-cover;
+}
+
+.quiz-card__text {
+  @apply py-4 px-5 sm:-translate-x-3 w-full;
+}
+
+.quiz-card__content {
+  @apply flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4;
+}
+
+.quiz-card__details {
+  @apply flex flex-col gap-4;
+}
+
+.quiz-open-btn {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800;
+}
+
+.quiz-open-btn__dot {
+  @apply ml-1 w-2 h-2 bg-green-500 rounded-full;
+}
+
+/* Completed Quizzes Section */
+.completed-section {
+  @apply bg-white rounded-lg shadow p-2;
+}
+
+.completed-header {
+  @apply flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2;
+}
+
+.completed-title {
+  @apply text-lg font-bold text-black;
+}
+
+.completed-actions {
+  @apply text-black flex justify-between items-center;
+}
+
+.completed-actions button {
+  @apply font-semibold me-2;
+}
+
+.completed-table-wrapper {
+  @apply overflow-x-auto;
+}
+
+.completed-table {
+  @apply min-w-full bg-white rounded-lg overflow-hidden shadow-sm border-separate table-auto border-spacing-1;
+}
+
+.completed-table thead th {
+  @apply text-xs sm:text-sm;
+}
+
+.completed-table tbody {
+  @apply text-xs sm:text-sm;
+}
+
+.completed-table tbody tr:hover {
+  @apply bg-gray-50;
+}
+
+.completed-table td {
+  @apply max-w-0 truncate;
+}
+
+.completed-table td.hidden-sm {
+  @apply hidden sm:table-cell;
+}
+
+.completed-table td.hidden-md {
+  @apply hidden md:table-cell;
+}
+
+.action-btns {
+  @apply flex gap-2 items-center justify-center;
+}
+
+.icons {
+  @apply cursor-pointer;
+}
+thead{
+    @apply bg-gray-900 text-white text-left text-sm ;
+}
+
+td ,th{
+  @apply border border-gray-300  rounded-lg m-1
+           md:px-4 md:py-3  md:px-2 md:py-2 ;
+}
