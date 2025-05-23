@@ -6,7 +6,7 @@ import { QuizDetailsComponent } from './components/quiz-details/quiz-details.com
 const routes: Routes = [
   {path:'' , redirectTo:'dashboard' ,pathMatch:'full'} ,
   {path:'dashboard' , component : QuizDashboardComponent } ,
-  {path:'details' , component : QuizDetailsComponent } ,
+  {path:'details/:id' , component : QuizDetailsComponent } ,
 
 ];
 

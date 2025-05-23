@@ -5,7 +5,7 @@ import { Quiz } from '../../model/quiz';
 import { FormControl, FormGroup , Validator, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from '../../../../../../../shared/components/delete/delete.component';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz-details',
@@ -14,24 +14,33 @@ import { Router } from '@angular/router';
   styleUrl: './quiz-details.component.scss'
 })
 export class QuizDetailsComponent {
-  quizId = '682f31fef2d321d7ea62b0d4'
+  quizId :any =''
   QuizDetails !:Quiz
   editMode:boolean =false
 
-  QuizForm :FormGroup = new FormGroup({
-  // title:new FormControl('' ),
-  description:new FormControl('' ),
-  questions_number :new FormControl('' , [Validators.required ] ),
-  score_per_question :new FormControl('' , [Validators.required ] ),
-  duration:new FormControl('' , [Validators.required ] ),
-  type:new FormControl('' , [Validators.required ] ),
-  // schadule: new FormControl('' , [Validators.required ] ),
-  })
+  QuizForm :FormGroup =new FormGroup({
+    title: new FormControl(''),
+    description: new FormControl(''),
+    questions_number: new FormControl(),
+    difficulty: new FormControl(''),
+    type: new FormControl(''), 
+    // schedule_date: new FormControl(new Date()),
+    // schedule_time: new FormControl('12:00'), // Time string (e.g., '14:30')
+    duration: new FormControl(''),
+    score_per_question: new FormControl(''), // was scorePerQuestion
+  });
+
+
+
   constructor(private _QuizService:QuizService ,
     private _ToastrService:ToastrService ,
     private dialog: MatDialog ,
-    private _Router:Router
+    private _Router:Router ,
+    private _ActivatedRoute:ActivatedRoute
   ){
+    this.quizId=this._ActivatedRoute.snapshot.paramMap.get('id')
+
+
     this.getQuizById()
   }
 
@@ -53,13 +62,11 @@ export class QuizDetailsComponent {
   editQuiz():void{
       this.editMode =true
       this.QuizForm.enable()
+      console.log(this.QuizForm.value);
+
   }
   updateQuiz():void{
-    // let updatedData = this.QuizForm.value
-     let updatedData   =
-     {questions_number:6 ,  title:"Quiz A1" ,
-     schadule: "2025-05-25T21:19:34.000Z" ,
-          score_per_question:5 ,type:"BE"}
+     let updatedData = this.QuizForm.value
 
     this._QuizService.updateQuiz(this.quizId , updatedData).subscribe({
       next :(res) =>{

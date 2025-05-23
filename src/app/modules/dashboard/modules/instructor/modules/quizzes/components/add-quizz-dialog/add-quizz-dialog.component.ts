@@ -21,7 +21,7 @@ export class AddQuizzDialogComponent implements OnInit {
   difficultyLevels = Object.values(DifficultyLevel);
   categoryList = Object.values(categories);
 
-  questions = [10, 15, 20, 25, 30];
+  questions = [3,4,5,10, 15, 20, 25, 30];
   scores = [1, 5, 10];
   private _quizzService = inject(QuizService);
   group = toSignal(this._quizzService.getGroups(), {
