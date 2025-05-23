@@ -1,84 +1,48 @@
-<div class="grid grid-cols-4 gap-5 p-5 bg-gray-50 min-h-screen">
-  <div class="col-span-2 grid grid-cols-2 gap-5 w-full">
-    <!-- Set up new quiz button -->
-    <div
-      (click)="openAddQuizDialog()"
-      class="bg-white rounded-lg shadow p-6 flex flex-col items-center justify-center h-40 cursor-pointer hover:shadow-lg hover:-translate-y-0.5 transition-all"
-    >
-      <div class="flex items-center justify-center w-16 h-16 mb-4">
-        <img src="assets/icons/new quiz icon.png" alt="" />
+<div class="dashboard-container">
+  <!-- Left Top Buttons -->
+  <div class="left-top-buttons">
+    <div class="button-card">
+      <div class="button-icon-container" (click)="openAddQuizDialog()">
+        <img src="assets/icons/new quiz icon.png" alt="New Quiz Icon" />
       </div>
-      <span class="font-large font-bold text-base text-gray-800"
-        >Set up a new quiz</span
-      >
+      <span class="button-text">Set up a new quiz</span>
     </div>
-
-    <!-- Question Bank button -->
-    <div
-      class="bg-white rounded-lg shadow p-6 flex flex-col items-center justify-center h-40 cursor-pointer hover:shadow-lg hover:-translate-y-0.5 transition-all"
-    >
-      <div class="flex items-center justify-center w-16 h-16 mb-4">
-        <img src="assets/icons/Vault icon.png" alt="" />
+    <div class="button-card">
+      <div class="button-icon-container">
+        <img src="assets/icons/Vault icon.png" alt="Vault Icon" />
       </div>
-      <span class="font-large font-bold text-base text-gray-800"
-        >Question Bank</span
-      >
+      <span class="button-text">Question Bank</span>
     </div>
   </div>
 
-  <div class="col-span-2 flex flex-col gap-5">
+  <div class="right-side">
     <!-- Upcoming Quizzes Section -->
-    <div class="bg-white rounded-lg shadow p-5">
-      <h2 class="text-lg font-medium text-gray-800 mb-5">Upcoming quizzes</h2>
+    <div class="upcoming-section">
+      <h2 class="upcoming-section__title">Upcoming quizzes</h2>
       <div class="flex flex-col gap-4">
-        <!-- Quiz Card 1 -->
-        <div class="top-five-student-card mt-5">
-          <div class="flex gap-[-10px]">
+        <div *ngFor="let quiz of quizzes" class="upcoming-quiz-card top-five-student-card">
+          <div class="quiz-card">
             <img
               src="assets/images/Quiz img.png"
               alt="Student Image"
-              class=""
+              class="quiz-img"
             />
-            <div class="top-five-student-card__text py-8 px-10 -translate-x-3">
-              <div class="flex justify-between items-center">
-                <div class="flex flex-col gap-2">
-                  <h1 class="font-bold">
-                    Introduction to computer programming
-                  </h1>
-                  <div class="text-sm text-gray-600 mb-2">
-                    12/03/2023 | 09:00 AM
+            <div class="quiz-card__text">
+              <div class="quiz-card__content">
+                <div class="quiz-card__details">
+                  <div>
+                    <h1 class="font-bold">{{ quiz.title }}</h1>
+                    <p>{{ quiz.schadule | date: 'dd/MM/yyyy | hh:mm a' }}</p>
                   </div>
-                  <div
-                    class="flex justify-between items-center text-xs text-gray-600"
-                  >
-                    <span>No. of student's enrolled: 32</span>
+                  <div>
+                    <h1>No. of students enrolled: {{ quiz.participants }}</h1>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Quiz Card 2 -->
-        <div class="top-five-student-card">
-          <div class="flex gap-[-10px]">
-            <img
-              src="assets/images/Quiz img.png"
-              alt="Student Image"
-              class=""
-            />
-            <div class="top-five-student-card__text py-8 px-10 -translate-x-3">
-              <div class="flex justify-between items-center">
-                <div class="flex flex-col gap-2">
-                  <h1 class="font-bold">Psychology 101</h1>
-                  <div class="text-sm text-gray-600 mb-2">
-                    27/03/2023 | 12:00 PM
-                  </div>
-                  <div
-                    class="flex justify-between items-center text-xs text-gray-600"
-                  >
-                    <span>No. of student's enrolled: 17</span>
-                  </div>
+                <div class="flex items-center">
+                  <button class="quiz-open-btn">
+                    Open
+                    <span class="quiz-open-btn__dot"></span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -88,13 +52,41 @@
     </div>
 
     <!-- Completed Quizzes Section -->
-    <div class="bg-white rounded-lg shadow p-5">
-      <div class="flex justify-between items-center mb-5">
-        <h2 class="text-lg font-medium text-gray-800">Completed Quizzes</h2>
-        <button mat-button class="text-green-500 flex items-center">
-          Results
-          <mat-icon class="ml-1 text-base">arrow_forward</mat-icon>
-        </button>
+    <div class="completed-section">
+      <div class="completed-header">
+        <h2 class="completed-title">Completed Quizzes</h2>
+        <div class="completed-actions">
+          <button>Results</button>
+          <mat-icon class="text-base">arrow_forward</mat-icon>
+        </div>
+      </div>
+      <div class="completed-table-wrapper">
+        <table class="completed-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Status</th>
+              <th class="hidden md:table-cell">Level</th>
+              <th class="hidden md:table-cell">Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let question of completedQuizzes; let i = index" class="hover:bg-gray-50">
+              <td class="max-w-0 truncate">{{ question.title }}</td>
+              <td>{{ question.status }}</td>
+              <td class="hidden md:table-cell">{{ question.difficulty }}</td>
+              <td class="hidden md:table-cell">{{ question.type }}</td>
+              <td>
+                <div class="action-btns">
+                  <button class="icons">
+                    <mat-icon class="mat-18">visibility</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
