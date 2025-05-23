@@ -1,0 +1,66 @@
+<div class="md:mx-6" *ngIf="!selectedResult()">
+  <table
+    class="min-w-full bg-white rounded-lg overflow-hidden shadow-sm border-separate table-auto border-spacing-2"
+  >
+    <thead>
+      <th>Title</th>
+      <th>Group name</th>
+      <th>No. of persons in group</th>
+      <th>Participants</th>
+      <th>Date</th>
+      <th>Actions</th>
+    </thead>
+    <tbody class="text-sm">
+      @for (result of joinResult() ; track $index) {
+      <tr class="hover:bg-gray-50">
+        <td>{{ result.quiz.title }}</td>
+        <td>{{ result.groupName }}</td>
+        <td>{{ result.groupSize }}</td>
+        <td>{{ result.participants.length }}</td>
+        <td>{{ result.quiz.schadule | date : "medium" }}</td>
+        <td class="flex justify-center">
+          <button
+            class="bg-[#C5D86D] p-4 rounded-md"
+            (click)="viewDetails(result)"
+          >
+            View
+          </button>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<div class="md:mx-6">
+  <div *ngIf="selectedResult() as selected">
+    <h2 class="text-xl font-semibold mb-4">
+      Results for "{{ selected.quiz.title }}" - {{ selected.groupName }}
+    </h2>
+    <table
+      class="min-w-full bg-white rounded-lg overflow-hidden shadow-sm border-separate table-auto border-spacing-2"
+    >
+      <thead>
+        <tr>
+          <th>Student name</th>
+          <th>Score</th>
+          <th>Average</th>
+          <th>Time submitted</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of selected.participants; track $index) {
+        <td>{{ p.student }}</td>
+        <td>{{ p.score }}</td>
+        <td>{{ p.average }}</td>
+        <td>{{ p.time_submitted | date : "medium" }}</td>
+        <td class="flex justify-center">
+          <button class="bg-[#C5D86D] p-4 rounded-md" (click)="closeDetails()">
+            View
+          </button>
+        </td>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
