@@ -42,15 +42,9 @@
                   </div>
                 </div>
                 <div class="flex items-center">
-                  <button class="quiz-open-btn">
+                  <button class="quiz-open-btn" [routerLink]="['/instructor/quizzes/details', quiz._id]">
                     Open
                     <span class="quiz-open-btn__dot"></span>
-                  </button>
-
-                  <button
-                    class="mx-2"
-                    [routerLink]="['/instructor/quizzes/details', quiz._id]"
-                  >
                     <mat-icon class="text-base">arrow_forward</mat-icon>
                   </button>
                 </div>

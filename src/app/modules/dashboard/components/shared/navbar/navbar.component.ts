@@ -9,4 +9,24 @@ import { PageTitleService } from '../../../services/pageTitle.service';
 export class NavbarComponent {
   private _pageTitleService = inject(PageTitleService);
   title = this._pageTitleService.title$;
+
+
+  userName: string = '';
+  userRole: string = '';
+  constructor() {
+    this.profileNav()
+  }
+profileNav(){
+  const userProfile = localStorage.getItem('userProfile');
+  if (userProfile) {
+    const user = JSON.parse(userProfile);
+    this.userName = user.first_name + ' ' + user.last_name;
+    this.userRole = user.role;
+  }
+}
+
+logout() {
+  localStorage.clear();
+  window.location.reload();
+}
 }

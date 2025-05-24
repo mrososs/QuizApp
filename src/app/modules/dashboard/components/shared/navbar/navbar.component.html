@@ -9,9 +9,9 @@
     class="hidden lg:block absolute h-full top-0 right-[15rem] w-px bg-[#00000033]"
   ></div>
 
-  <div class="container px-4 py-3">
+  <div class="container-fluid px-4 py-3">
     <div
-      class="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-6 lg:gap-8"
+      class="grid grid-cols-1 lg:grid-cols-[auto_1fr_auto] items-center gap-6 lg:gap-20"
     >
       <!-- Left section -->
       <div
@@ -32,19 +32,41 @@
         </div>
         <button
           [routerLink]="['/instructor/quizzes/dashboard']"
-          class="border px-3 lg:px-4 py-1 rounded-full flex items-center gap-2 text-sm"
+          class="border px-3 lg:px-4 py-1 rounded-full flex items-center gap-2 text-sm
+                hover:bg-black hover:text-white transition-colors duration-300"
         >
-          🌐 New quiz
+          <img class="img w-4 h-4" src="../../../../../../assets/icons/new quiz icon.png" alt="" />
+          New quiz
         </button>
       </div>
 
       <!-- Right section -->
       <div class="flex items-center gap-4 justify-center lg:justify-end px-2">
         <div class="flex flex-col text-start">
-          <h1 class="text-sm lg:text-base font-medium">Mohamed Osama</h1>
+          <h1 class="text-sm lg:text-base font-medium">{{ userName }}</h1>
           <p class="text-xs lg:text-sm text-green-600">Instructor</p>
         </div>
-        <mat-icon>keyboard_arrow_down</mat-icon>
+        <!-- Trigger button -->
+        <button
+          mat-icon-button
+          [matMenuTriggerFor]="userMenu"
+          aria-label="User menu"
+          class="focus:outline-none"
+        >
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </button>
+
+        <!-- MatMenu Dropdown -->
+        <mat-menu #userMenu="matMenu" class="bg-white shadow-lg rounded-lg">
+          <button
+            mat-menu-item
+            (click)="logout()"
+            class="text-sm text-red-600 hover:bg-gray-100 w-full"
+          >
+            <mat-icon class="text-red-600 mr-2">logout</mat-icon>
+            <span>Logout</span>
+          </button>
+        </mat-menu>
       </div>
     </div>
   </div>
