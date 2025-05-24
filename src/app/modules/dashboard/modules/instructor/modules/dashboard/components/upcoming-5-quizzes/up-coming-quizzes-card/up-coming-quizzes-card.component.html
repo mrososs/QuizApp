@@ -1,8 +1,8 @@
-<div class="upcoming-5-quizzes-card mt-10">
+<div class="upcoming-5-quizzes-card mt-5">
   <div class="flex gap-[-10px]">
     <img src="assets/images/Quiz img.png" alt="Quiz Image" />
-    <div class="upcoming-5-quizzes-card__text py-5 px-10 -translate-x-3">
-      <div class="flex flex-col gap-4">
+    <div class="upcoming-5-quizzes-card__text py-3 px-5 -translate-x-3">
+      <div class="flex flex-col gap-2">
         <div>
           <h1 class="font-bold">{{quiz.title}}</h1>
           <p>{{ quiz.schadule | date: 'dd / MM / yyyy | hh:mm a' }}</p>
@@ -12,9 +12,10 @@
         </div>
       </div>
       <div class="flex items-center">
-        <button class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
-            Open
-            <span class="ml-1 w-2 h-2 bg-green-500 rounded-full"></span>
+        <button class="quiz-open-btn" [routerLink]="['/instructor/quizzes/details', quiz._id]">
+          Open
+          <span class="quiz-open-btn__dot"></span>
+          <mat-icon class="text-base">arrow_forward</mat-icon>
         </button>
       </div>
     </div>

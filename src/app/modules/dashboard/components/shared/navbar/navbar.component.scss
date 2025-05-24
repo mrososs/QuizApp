@@ -1,0 +1,7 @@
+.img {
+  transition: filter 0.3s ease;
+}
+
+button:hover .img {
+  filter: invert(1) brightness(2) contrast(1.2);
+}
