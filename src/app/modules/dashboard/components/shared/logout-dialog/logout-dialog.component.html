@@ -1,0 +1,29 @@
+<div class="dialog-header">
+  <div class="dialog-title">
+    <h2>Logout</h2>
+  </div>
+  <div class="button-group">
+    <button
+      mat-icon-button
+      class="custom-icon-btn"
+      (click)="onLogout()"
+      matTooltip="Save"
+    >
+      <mat-icon fontIcon="check_circle" class="header-icon"></mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="custom-icon-btn warn"
+      matTooltip="Cancel"
+      (click)="onCancel()"
+    >
+      <mat-icon fontIcon="cancel" class="header-icon"></mat-icon>
+    </button>
+  </div>
+</div>
+
+<div class="text-center">
+  <div class="dialog-title">
+    <h2>Are you want to logout ? </h2>
+  </div>
+</div>

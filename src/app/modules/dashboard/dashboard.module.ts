@@ -8,12 +8,14 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { MatIcon } from '@angular/material/icon';
 import { SharedModule } from '../shared/shared.module';
+import { LogoutDialogComponent } from './components/shared/logout-dialog/logout-dialog.component';
 
 @NgModule({
   declarations: [
     LayoutWrapperComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    LogoutDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -21,8 +23,13 @@ import { SharedModule } from '../shared/shared.module';
     LearnerModule,
     SharedModule,
     MainAppRoutingModule,
-    MatIcon
+    MatIcon,
   ],
-  exports:[LayoutWrapperComponent, NavbarComponent, SidebarComponent,SharedModule],
+  exports: [
+    LayoutWrapperComponent,
+    NavbarComponent,
+    SidebarComponent,
+    SharedModule,
+  ],
 })
 export class DashboardModule {}

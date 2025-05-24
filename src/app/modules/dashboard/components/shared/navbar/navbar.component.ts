@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { PageTitleService } from '../../../services/pageTitle.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LogoutDialogComponent } from '../logout-dialog/logout-dialog.component';
 
 @Component({
   selector: 'app-dashboard-navbar',
@@ -8,25 +10,28 @@ import { PageTitleService } from '../../../services/pageTitle.service';
 })
 export class NavbarComponent {
   private _pageTitleService = inject(PageTitleService);
-  title = this._pageTitleService.title$;
+  private _dialog = inject(MatDialog);
 
+  title = this._pageTitleService.title$;
 
   userName: string = '';
   userRole: string = '';
   constructor() {
-    this.profileNav()
+    this.profileNav();
   }
-profileNav(){
-  const userProfile = localStorage.getItem('userProfile');
-  if (userProfile) {
-    const user = JSON.parse(userProfile);
-    this.userName = user.first_name + ' ' + user.last_name;
-    this.userRole = user.role;
+  profileNav() {
+    const userProfile = localStorage.getItem('userProfile');
+    if (userProfile) {
+      const user = JSON.parse(userProfile);
+      this.userName = user.first_name + ' ' + user.last_name;
+      this.userRole = user.role;
+    }
   }
-}
 
-logout() {
-  localStorage.clear();
-  window.location.reload();
-}
+  logout() {
+    const dialogRef = this._dialog.open(LogoutDialogComponent, {
+      width: '400px',
+      data: { code: 'Are you want to logout ?' },
+    });
+  }
 }
